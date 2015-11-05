@@ -7,7 +7,8 @@ public class GlobalValue {
 
 	private static final String DEMARCATION = "-----------------------------------------------------------------";
 	private static final String LOGINTITLE = "登入";
-	private static final String APPNAME = "叮噹";
+	private static final String APPNAME = "Learn On-Line";
+	private static final String MATHPLACE = "數學專區";
 
 	public String getLoginTitle() {
 		return LOGINTITLE;
@@ -15,6 +16,10 @@ public class GlobalValue {
 
 	public String getAppName() {
 		return APPNAME;
+	}
+
+	public String getMathPlace() {
+		return MATHPLACE;
 	}
 
 	public void Demarcation() {
