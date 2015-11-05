@@ -23,6 +23,7 @@
 #calculatorMachine thead tr th input[type="text"] {
 	width: 230px;
 	height: 50px;
+	text-align: right;
 }
 
 #MathExam001Table {

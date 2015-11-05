@@ -20,6 +20,12 @@
 			</thead>
 			<tbody>
 				<tr>
+					<td><input type="button" value="clear"></td>
+					<td><input type="button" value="("></td>
+					<td><input type="button" value=")"></td>
+					<td><input type="button" value="←"></td>
+				</tr>
+				<tr>
 					<td><input type="button" value="7"></td>
 					<td><input type="button" value="8"></td>
 					<td><input type="button" value="9"></td>
@@ -50,14 +56,35 @@
 	<script type="text/javascript">
 		(function($) {
 			var temp = "";
-			$("#calculatorMachine tbody tr td input[type='button']").click(
-					function() {
-						var input = $(this).val();
-						temp += input;
-						$("#output").val(temp);
-						console.log(eval(temp));
+			$("#calculatorMachine tbody tr td input[type='button']").click(function() {
+				var input = $(this).val();
 
-					});
+				if (input == "=") {
+					try {
+						var output = eval(temp);
+						if (!isNaN(output)) {
+
+							console.log("a number");
+							temp = "" + output;
+							$("#output").val(output);
+						}
+					} catch (e) {
+						console.log("haha");
+						$("#output").val("error");
+						temp = "";
+					}
+				} else if (input == "clear") {
+					temp = "";
+					$("#output").val(temp);
+				} else if (input == "←") {
+					temp = temp.substring(0, temp.length - 1);
+					$("#output").val(temp);
+				} else {
+					temp += input;
+					$("#output").val(temp);
+				}
+
+			});
 		}(jQuery));
 	</script>
 </body>
