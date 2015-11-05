@@ -3,12 +3,62 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>計算機</title>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/style/MathExam.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 </head>
 <body>
 	<center>
-		<input type="text" value="">
+		<table id="calculatorMachine">
+			<thead>
+				<tr>
+					<th colspan="4">計算機</th>
+				</tr>
+				<tr>
+					<th colspan="4"><input type="text" id="output"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><input type="button" value="7"></td>
+					<td><input type="button" value="8"></td>
+					<td><input type="button" value="9"></td>
+					<td><input type="button" value="/"></td>
+				</tr>
+				<tr>
+					<td><input type="button" value="4"></td>
+					<td><input type="button" value="5"></td>
+					<td><input type="button" value="6"></td>
+					<td><input type="button" value="*"></td>
+				</tr>
+				<tr>
+					<td><input type="button" value="1"></td>
+					<td><input type="button" value="2"></td>
+					<td><input type="button" value="3"></td>
+					<td><input type="button" value="-"></td>
+				</tr>
+				<tr>
+					<td><input type="button" value="0"></td>
+					<td><input type="button" value="."></td>
+					<td><input type="button" value="="></td>
+					<td><input type="button" value="+"></td>
+				</tr>
 
+			</tbody>
+		</table>
 	</center>
+	<script type="text/javascript">
+		(function($) {
+			var temp = "";
+			$("#calculatorMachine tbody tr td input[type='button']").click(
+					function() {
+						var input = $(this).val();
+						temp += input;
+						$("#output").val(temp);
+						console.log(eval(temp));
+
+					});
+		}(jQuery));
+	</script>
 </body>
 </html>
