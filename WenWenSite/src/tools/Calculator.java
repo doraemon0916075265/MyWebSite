@@ -33,7 +33,7 @@ public class Calculator {
 			case '/':
 			case '%':
 				lastChar = st.peek().charAt(0);
-				if (lastChar != '(' && (operator(lastChar) > operator(unitChar))) {
+				if (lastChar != '(' && (operator(lastChar) >= operator(unitChar))) {
 					list.add(st.pop());
 				}
 				st.push("" + unitChar);
@@ -49,6 +49,7 @@ public class Calculator {
 					throw new Exception(ERROR_PARENTHESIS_NOT_PAIR);
 				}
 				st.pop();
+				break;
 			case '=':
 				while (st.size() > 1 && st.peek().charAt(0) != '(') {
 					list.add(st.pop());
@@ -62,14 +63,14 @@ public class Calculator {
 					sb = new StringBuffer();
 					sb.append(unitChar);
 					while (Character.isDigit(input.charAt(i) + 1) || input.charAt(i + 1) == '.') {
-						sb.append(input).charAt(++i);
+						sb.append((input).charAt(++i));
 					}
 					list.add(sb.toString());
+					 System.out.println("sb = " + sb);
 					break;
 				} else {
-
+					throw new Exception(ERROR_CHAR_NOT_SUPPORT);
 				}
-				System.out.println("sb" + sb);
 			}
 			}
 			System.out.println(st);
@@ -78,7 +79,7 @@ public class Calculator {
 		System.out.println(st);
 		System.out.println(input.length());
 
-		return null;
+		return list;
 	}
 
 	private static int operator(char unitChar) {
@@ -113,11 +114,13 @@ public class Calculator {
 			input = sc.next();
 			USE.Demarcation();
 			System.out.println("輸入 = " + input);
+
 			try {
 				System.out.println("第一階段 = " + Calculator.inputToSequence(input));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+
 			System.out.println("輸入 Y 繼續，任意鍵離開");
 			again = sc.next();
 			USE.Demarcation();

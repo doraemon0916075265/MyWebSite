@@ -53,36 +53,6 @@
 			</tbody>
 		</table>
 	</center>
-	<script type="text/javascript">
-		(function($) {
-			var temp = "";
-			$("#calculatorMachine tbody tr td input[type='button']").click(function() {
-				var input = $(this).val();
-
-				if (input == "=") {
-					try {
-						var output = eval(temp);
-						if (!isNaN(output)) {
-							temp = "" + output;
-							$("#output").val(output);
-						}
-					} catch (e) {
-						$("#output").val("error");
-						temp = "";
-					}
-				} else if (input == "clear") {
-					temp = "";
-					$("#output").val(temp);
-				} else if (input == "←") {
-					temp = temp.substring(0, temp.length - 1);
-					$("#output").val(temp);
-				} else {
-					temp += input;
-					$("#output").val(temp);
-				}
-
-			});
-		}(jQuery));
-	</script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/scripts/CalculatorMachine.js"></script>
 </body>
 </html>

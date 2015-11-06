@@ -115,10 +115,10 @@ public class WinsonEval {
 		stack.push("=");
 		char last, ch;
 		StringBuffer sb = null;
+
 		for (int i = 0; i < expression.length(); i++) {
 			ch = expression.charAt(i);
 			switch (ch) {
-
 			case '+':
 			case '-':
 			case '*':
