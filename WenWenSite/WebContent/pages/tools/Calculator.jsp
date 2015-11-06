@@ -63,13 +63,10 @@
 					try {
 						var output = eval(temp);
 						if (!isNaN(output)) {
-
-							console.log("a number");
 							temp = "" + output;
 							$("#output").val(output);
 						}
 					} catch (e) {
-						console.log("haha");
 						$("#output").val("error");
 						temp = "";
 					}
