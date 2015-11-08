@@ -4,15 +4,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Stack;
 
-import javax.smartcardio.Card;
-
 import globalService.GlobalValue;
 
 public class CalculatorFix {
 
-	// private final static String ERROR_ENDWITH_NEED = "最後必須輸入等號";
-	// private final static String ERROR_PARENTHESIS_NOT_PAIR = "括號必須成對出現";
-	// private final static String ERROR_CHAR_NOT_SUPPORT = "不支援的字元";
+	private final static String ERROR_LEAST_A_NUMBER = "！\t至少要有一個數字\t！";
+	private final static String ERROR_PARENTHESIS_NEED_PAIR = "！\t括號必須成對出現\t！";
+	private final static String ERROR_ILLEGAL_CHAR = "！\t含錯誤字元\t！";
 
 	private static boolean isLegalExpression(String expression) throws Exception {
 		boolean result = true;
@@ -20,17 +18,25 @@ public class CalculatorFix {
 		int parenthesisLeft = 0;
 		int parenthesisRight = 0;
 
-		if (result) {// 判斷一：能出現的字元 0-9 + - * / ( )
-			boolean leastANumber = expression.matches("[0-9]{1,}");
-			System.out.println("至少一個數字\t" + leastANumber);
-			boolean isLegalUnit = (expression.matches("[0-9\\+\\-\\*\\/\\(\\)]{1,}") && (true));
+		if (result) {
+
+			/** 至少一個數字 **/
+			boolean leastANumber = expression.matches("^(?=.*\\d).+$");
+			if (!leastANumber) {
+				System.out.println(ERROR_LEAST_A_NUMBER);
+			}
+
+			/** 判斷：能出現的字元0-9*+-/() **/
+			boolean isLegalUnit = expression.matches("[0-9\\+\\-\\*\\/\\(\\)]{1,}");
 			if (!isLegalUnit) {
-				System.out.println("！！！\t含錯誤字元\t！！！");
+				System.out.println(ERROR_ILLEGAL_CHAR);
+			}
+			if (!leastANumber || !isLegalUnit) {
 				result = false;
 			}
 		}
 
-		if (result) {// 判斷二：括號必須成對出現
+		if (result) {
 			for (int i = 0; i < expressionSize; i++) {
 				char unitChar = expression.charAt(i);
 				switch (unitChar) {
@@ -44,8 +50,9 @@ public class CalculatorFix {
 				}
 				}
 			}
+			/** 括號必須成對出現 **/
 			if (parenthesisLeft != parenthesisRight) {
-				System.out.println("！！！\t括號數量錯誤\t！！！");
+				System.out.println(ERROR_PARENTHESIS_NEED_PAIR);
 				result = false;
 			}
 
@@ -54,14 +61,39 @@ public class CalculatorFix {
 		return result;
 	}
 
-	private static ArrayList<String> xxx(String expression) {
+	private static ArrayList<String> expressionToFixSequence(String expression) {
 		int expressionSize = expression.length();
+		ArrayList<String> list = new ArrayList<String>();
 		Stack<String> stack = new Stack<String>();
+
+		char unitChar;
+		String unitString;
+		int beginIndex = 0;
+		int endIndex;
+
 		for (int i = 0; i < expressionSize; i++) {
-			char unitChar = expression.charAt(i);
-			String unitString = "" + unitChar;
-			stack.push(unitString);
+			unitChar = expression.charAt(i);
+			endIndex = i;
+			if (unitChar != '*' && unitChar != '+' && unitChar != '-' && unitChar != '/' && unitChar != '(' && unitChar != ')') {
+				if (endIndex == expressionSize - 1) {
+					endIndex = expressionSize - 1;
+					unitString = expression.substring(beginIndex, expressionSize);
+					if (!unitString.equals("")) {
+						stack.push(unitString);
+					}
+				}
+			} else {
+				if (endIndex < expressionSize) {
+					unitString = expression.substring(beginIndex, endIndex);
+					beginIndex = endIndex + 1;
+					if (!unitString.equals("")) {
+						stack.push(unitString);
+					}
+				}
+			}
+
 		}
+
 		System.out.println(stack);
 		return null;
 	}
@@ -75,14 +107,15 @@ public class CalculatorFix {
 
 		while (again.toLowerCase().equals("y")) {
 			System.out.println("計算機：");
-			input = sc.next();
-			// input = "19+(27-(7+8+(5*9)+23)-55+6)*5";
+			// input = sc.next();
+			input = "19+(27-(7+8+(5*9)+23)-55+6)*5";
 
 			System.out.println("輸入：\t\t" + input);
 
 			try {
 				System.out.println("是否合法：\t" + CalculatorFix.isLegalExpression(input));
-				System.out.println("是否合法：\t" + CalculatorFix.xxx(input));
+				System.out.println("結果：\t" + CalculatorFix.expressionToFixSequence(input));
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

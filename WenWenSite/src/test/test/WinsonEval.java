@@ -179,7 +179,7 @@ public class WinsonEval {
 	}
 
 	public static void main(String[] args) {
-		String expression = "2+7*2+80=";
+		String expression = "2+((7)*2)*9+80=";
 		try {
 			System.out.println(WinsonEval.toSuffixSequence(expression).toString());
 			System.out.println(WinsonEval.eval(expression));
