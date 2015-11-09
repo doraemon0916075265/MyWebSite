@@ -20,7 +20,7 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td><input type="button" value="clear"></td>
+					<td><input type="button" value="清除"></td>
 					<td><input type="button" value="("></td>
 					<td><input type="button" value=")"></td>
 					<td><input type="button" value="←"></td>
@@ -53,6 +53,6 @@
 			</tbody>
 		</table>
 	</center>
-	<script type="text/javascript" src="<%=request.getContextPath()%>/scripts/CalculatorMachine.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/scripts/tools/CalculatorMachine.js"></script>
 </body>
 </html>
