@@ -1,6 +1,7 @@
 package tools;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -76,8 +77,7 @@ public class CalculatorFix {
 			unitChar = expression.charAt(i);
 			endIndex = i;
 			if (unitChar != '*' && unitChar != '+' && unitChar != '-' && unitChar != '/' && unitChar != '(' && unitChar != ')') {
-
-				System.out.println(i + "\t" + beginIndex + "\t" + endIndex + "\t" + expressionSize);
+				// System.out.println(i + "\t" + beginIndex + "\t" + endIndex + "\t" + expressionSize);
 
 			} else {
 
@@ -86,17 +86,10 @@ public class CalculatorFix {
 					beginIndex = endIndex + 1;
 					if (!unitString.equals("")) {
 						list.add(unitString);
+						// System.out.println(unitString);
 					}
 				}
 
-				if (endIndex == expressionSize - 1) {
-					endIndex = expressionSize - 1;
-					unitString = expression.substring(beginIndex, expressionSize);
-					System.out.println("haha");
-					if (!unitString.equals("")) {
-						list.add(unitString);
-					}
-				}
 				switch (unitChar) {
 				case '+':
 				case '-':
@@ -113,15 +106,21 @@ public class CalculatorFix {
 					stack.push("" + unitChar);
 					break;
 				case ')':
-					lastChar = stack.peek().charAt(0);
-					if (!stack.isEmpty() && lastChar != '(') {
+					while (!stack.isEmpty() && stack.peek().charAt(0) != '(') {
 						list.add(stack.pop());
 					}
-					if (stack.isEmpty() || stack.size() == 1) {
-						stack.pop();
-					}
+
+					stack.pop();
 					break;
 
+				}
+
+				if (endIndex == (expressionSize - 2)) {
+
+					beginIndex = endIndex + 1;
+					unitString = expression.substring(beginIndex, expressionSize);
+					list.add(unitString);
+					list.add(stack.pop());
 				}
 
 			}
@@ -143,6 +142,50 @@ public class CalculatorFix {
 		default:
 			return 0;
 		}
+
+	}
+
+	private static boolean isOperator(String str) {
+		if (str != null && (str.equals("+") || str.equals("-") || str.equals("*") || str.equals("/") || str.equals("%")))
+			return true;
+		return false;
+	}
+
+	private static String doCalculate(ArrayList<String> list) throws Exception {
+		Stack<String> stack = new Stack<String>();
+		for (String s : list) {
+			if (isOperator(s)) {
+				String d1 = stack.pop();
+				String d2 = stack.pop();
+				String res = doCalc(d2, d1, s);
+				// System.out.println(d1 + "\t" + d2 + "\t" + s);
+				System.out.println(d2 + "\t" + s + "\t" + d1 + "\t" + res);
+				stack.push(res);
+			} else
+				stack.push(s);
+		}
+
+		if (stack.size() == 1) {
+			return stack.pop();
+		} else {
+			return "";
+		}
+	}
+
+	private static String doCalc(String d1, String d2, String oper) throws Exception {
+
+		switch (oper.charAt(0)) {
+		case '+':
+			return Integer.toString(Integer.parseInt(d1) + Integer.parseInt(d2));
+		case '-':
+			return Integer.toString(Integer.parseInt(d1) - Integer.parseInt(d2));
+		case '*':
+			return Integer.toString(Integer.parseInt(d1) * Integer.parseInt(d2));
+		case '/':
+			return Integer.toString(Integer.parseInt(d1) / Integer.parseInt(d2));
+		default:
+			return "error";
+		}
 	}
 
 	public static void main(String[] args) {
@@ -156,13 +199,14 @@ public class CalculatorFix {
 			System.out.println("計算機：");
 			// input = sc.next();
 			// input = "20+(25-(7*8+24)-55)*5";
-			input = "(36+54)*(50-20)";
+			input = "(36+54/27)*(50-20)+5-3";
 
 			System.out.println("輸入：\t\t" + input);
 
 			try {
 				System.out.println("是否合法：\t" + CalculatorFix.isLegalExpression(input));
-				System.out.println("結果：\t" + CalculatorFix.expressionToFixSequence(input));
+				// System.out.println("結果：\t" + CalculatorFix.expressionToFixSequence(input));
+				System.out.println("結果：\t" + CalculatorFix.doCalculate(CalculatorFix.expressionToFixSequence(input)));
 
 			} catch (Exception e) {
 				e.printStackTrace();
