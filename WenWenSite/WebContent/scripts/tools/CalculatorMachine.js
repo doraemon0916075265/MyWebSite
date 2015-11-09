@@ -1,17 +1,18 @@
 (function($) {
 
-	var errorMessage = "算式錯誤";
+	var errorExpression = "算式錯誤";
+	// var errorMessage = "沒輸入數字";
+	var regexpLeastANumber = "/^(?=.*\\d).+$/";// 至少要有一個數字
+	var answer;
 
 	$("#calculatorMachine tbody tr td input[type='button']").click(function() {
-		var answer = $("#output").val();
+		answer = $("#output").val();
 		var input = $(this).val();
 		$("#output").css('color', 'black');
 
-		if (answer == errorMessage) {
-			/** 錯誤處理* */
-			$("#output").val("");
-			answer = "";
-		}
+		exceptionHandlerBegin(); // 前置錯誤處理
+
+		// console.log(answer.match(regexpLeastANumber));
 
 		if (input == "=") {
 			try {
@@ -22,7 +23,7 @@
 					$("#output").css('color', 'blue');
 				}
 			} catch (e) {
-				$("#output").val(errorMessage);
+				$("#output").val(errorExpression);
 				$("#output").css('color', 'red');
 				answer = "";
 			}
@@ -37,6 +38,8 @@
 			$("#output").val(answer);
 		}
 
+		exceptionHandlerEnd();// 後置錯誤處理
+
 		console.log("answer =\t" + answer);
 	});
 
@@ -45,11 +48,7 @@
 		var keyinCode = event.keyCode;
 		$("#output").css('color', 'black');
 
-		if (answer == errorMessage) {
-			/** 錯誤處理* */
-			$("#output").val("");
-			answer = "";
-		}
+		exceptionHandlerBegin(); // 前置錯誤處理
 
 		if (keyinCode >= 96 && keyinCode <= 105) {
 			// 讀取 0 ~ 9
@@ -82,7 +81,7 @@
 					$("#output").css('color', 'blue');
 				}
 			} catch (e) {
-				$("#output").val(errorMessage);
+				$("#output").val(errorExpression);
 				$("#output").css('color', 'red');
 				answer = "";
 			}
@@ -91,7 +90,24 @@
 			$("#output").val(answer);
 		}
 
+		exceptionHandlerEnd();// 後置錯誤處理
 		console.log("answer =\t" + answer);
 	});
+
+	function exceptionHandlerBegin() {
+		/** 前置錯誤處理 */
+		answer = $("#output").val();
+		if (answer == errorExpression) {
+			$("#output").val("");
+			answer = "";
+		}
+	}
+
+	function exceptionHandlerEnd() {
+		/** 後置錯誤處理 */
+		answer = $("#output").val();
+		// console.log(answer.match(regexpLeastANumber));
+
+	}
 
 }(jQuery));
