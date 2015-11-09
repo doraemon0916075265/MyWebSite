@@ -6,7 +6,7 @@ import java.util.Stack;
 
 import globalService.GlobalValue;
 
-public class CalculatorFix {
+public class CalculatorFix2 {
 
 	private final static String ERROR_LEAST_A_NUMBER = "！\t至少要有一個數字\t！";
 	private final static String ERROR_PARENTHESIS_NEED_PAIR = "！\t括號必須成對出現\t！";
@@ -76,54 +76,41 @@ public class CalculatorFix {
 			unitChar = expression.charAt(i);
 			endIndex = i;
 			if (unitChar != '*' && unitChar != '+' && unitChar != '-' && unitChar != '/' && unitChar != '(' && unitChar != ')') {
-
-				System.out.println(i + "\t" + beginIndex + "\t" + endIndex + "\t" + expressionSize);
-
-			} else {
-
-				if (endIndex < expressionSize) {
-					unitString = expression.substring(beginIndex, endIndex);
-					beginIndex = endIndex + 1;
-					if (!unitString.equals("")) {
-						list.add(unitString);
-					}
-				}
-
 				if (endIndex == expressionSize - 1) {
 					endIndex = expressionSize - 1;
 					unitString = expression.substring(beginIndex, expressionSize);
-					System.out.println("haha");
 					if (!unitString.equals("")) {
 						list.add(unitString);
 					}
 				}
+			} else {
 				switch (unitChar) {
 				case '+':
 				case '-':
 				case '*':
 				case '/':
 					lastChar = stack.peek().charAt(0);
-					if (lastChar != '(' && operatorPriority(lastChar) >= operatorPriority(unitChar)) {
+					if (lastChar != '(' && operatorPriority(lastChar) >= operatorPriority(unitChar))
 						list.add(stack.pop());
-					}
 					stack.push("" + unitChar);
-					// System.out.println(unitChar + "\t" + lastChar);
+					System.out.println(unitChar + "\t" + lastChar);
 					break;
 				case '(':
-					stack.push("" + unitChar);
+					stack.push("(");
 					break;
 				case ')':
-					lastChar = stack.peek().charAt(0);
-					if (!stack.isEmpty() && lastChar != '(') {
+					while (!stack.isEmpty() && stack.peek().charAt(0) != '(')
 						list.add(stack.pop());
-					}
-					if (stack.isEmpty() || stack.size() == 1) {
+					if (stack.isEmpty() || stack.size() == 1)
 						stack.pop();
-					}
 					break;
+				case '=':
+					while (stack.size() > 1 && stack.peek().charAt(0) != '(')
+						list.add(stack.pop());
+					if (stack.size() > 1)
+						break;
 
 				}
-
 			}
 
 		}
@@ -155,14 +142,13 @@ public class CalculatorFix {
 		while (again.toLowerCase().equals("y")) {
 			System.out.println("計算機：");
 			// input = sc.next();
-			// input = "20+(25-(7*8+24)-55)*5";
-			input = "(36+54)*(50-20)";
+			input = "20+(25-(7*8+24)-55)*5";
 
 			System.out.println("輸入：\t\t" + input);
 
 			try {
-				System.out.println("是否合法：\t" + CalculatorFix.isLegalExpression(input));
-				System.out.println("結果：\t" + CalculatorFix.expressionToFixSequence(input));
+				System.out.println("是否合法：\t" + CalculatorFix2.isLegalExpression(input));
+				System.out.println("結果：\t" + CalculatorFix2.expressionToFixSequence(input));
 
 			} catch (Exception e) {
 				e.printStackTrace();

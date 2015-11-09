@@ -5,12 +5,13 @@ import java.util.Stack;
 
 public class WinsonEval {
 
-	private final static String ERR_NOT_END_VALID = "The last character of your expression MUST be '='!";
+	// private final static String ERR_NOT_END_VALID = "The last character of your expression MUST be '='!";
 	private final static String ERR_PARENTHESE_NOT_PAIR = "'(' & ')' should be used in pair!";
 	private final static String ERR_CHAR_NOT_SUPPORT = "Not supported character";
 	private final static String ERR_OPERATION_NOT_SUPPORTED = "Not supported operation";
 	private final static String ERR_OPERATOR_NOT_VALID = " doesn't support double data!";
 	private final static String ERR_UNKNOWN = "An unknown error!";
+	private final static String EXPRESSION = "20+(25-(7*8+24)-55+5)*5=";
 
 	private static boolean flag_double;
 
@@ -40,6 +41,7 @@ public class WinsonEval {
 				String d1 = stack.pop();
 				String d2 = stack.pop();
 				String res = doCalc(d2, d1, s);
+				// System.out.println(d1 + "\t" + d2 + "\t" + s);
 				stack.push(res);
 			} else
 				stack.push(s);
@@ -107,8 +109,8 @@ public class WinsonEval {
 
 	private static ArrayList<String> toSuffixSequence(String expression) throws Exception {
 
-		if (!expression.endsWith("="))
-			throw new Exception(ERR_NOT_END_VALID);
+		// if (!expression.endsWith("="))
+		// throw new Exception(ERR_NOT_END_VALID);
 
 		ArrayList<String> list = new ArrayList<String>();
 		Stack<String> stack = new Stack<String>();
@@ -128,6 +130,7 @@ public class WinsonEval {
 				if (last != '(' && priority(last) >= priority(ch))
 					list.add(stack.pop());
 				stack.push("" + ch);
+				System.out.println(ch + "\t" + last);
 				break;
 			case '(':
 				stack.push("(");
@@ -149,6 +152,7 @@ public class WinsonEval {
 				if (Character.isDigit(ch) || '.' == ch) {
 					sb = new StringBuffer();
 					sb.append(ch);
+					// System.out.println(sb);
 					while (Character.isDigit(expression.charAt(i + 1)) || expression.charAt(i + 1) == '.')
 						sb.append(expression.charAt(++i));
 
@@ -179,7 +183,9 @@ public class WinsonEval {
 	}
 
 	public static void main(String[] args) {
-		String expression = "2+((7)*2)*9+80=";
+		// String expression = "2+((7)*2)*9+80=";
+		// String expression = "20+(25-(7*8+24)-55+5)*5=";
+		String expression = WinsonEval.EXPRESSION;
 		try {
 			System.out.println(WinsonEval.toSuffixSequence(expression).toString());
 			System.out.println(WinsonEval.eval(expression));
