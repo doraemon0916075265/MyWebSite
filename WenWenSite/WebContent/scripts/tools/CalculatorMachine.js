@@ -1,31 +1,40 @@
 (function($) {
 
 	var errorExpression = "算式錯誤";
+	var errorDivisorZero = "Infinity";
 	// var errorMessage = "沒輸入數字";
 	var regexpLeastANumber = "/^(?=.*\\d).+$/";// 至少要有一個數字
 	var answer;
 
+	/** Web Keyboard 網站鍵盤 */
 	$("#calculatorMachine tbody tr td input[type='button']").click(function() {
 		answer = $("#output").val();
 		var input = $(this).val();
 		$("#output").css('color', 'black');
 
-		exceptionHandlerBegin(); // 前置錯誤處理
-
-		// console.log(answer.match(regexpLeastANumber));
+		/** 錯誤處理 Start */
+		if (answer == errorExpression || answer == errorDivisorZero) {
+			$("#output").val("");
+			answer = "";
+		}
+		/** 錯誤處理 End */
 
 		if (input == "=") {
 			try {
 				var output = eval(answer);
 				if (!isNaN(output)) {
-					answer = "" + output;
+					answer = output;
 					$("#output").val(output);
-					$("#output").css('color', 'blue');
+					if (output == errorDivisorZero) {
+						$("#output").css('color', 'red');
+					} else {
+						$("#output").css('color', 'blue');
+					}
 				}
 			} catch (e) {
+				answer = "";
 				$("#output").val(errorExpression);
 				$("#output").css('color', 'red');
-				answer = "";
 			}
 		} else if (input == "清除") {
 			answer = "";
@@ -38,17 +47,23 @@
 			$("#output").val(answer);
 		}
 
-		exceptionHandlerEnd();// 後置錯誤處理
-
 		console.log("answer =\t" + answer);
 	});
 
+	/** Real Keyboard 數字鍵盤 */
 	$("body").keydown(function keyboardEvent(event) {
 		var answer = $("#output").val();
 		var keyinCode = event.keyCode;
 		$("#output").css('color', 'black');
 
-		exceptionHandlerBegin(); // 前置錯誤處理
+		/** 錯誤處理 Start */
+		answer = $("#output").val();
+		console.log("begin answer" + answer);
+		if (answer == errorExpression) {
+			$("#output").val("");
+			answer = "";
+		}
+		/** 錯誤處理 End */
 
 		if (keyinCode >= 96 && keyinCode <= 105) {
 			// 讀取 0 ~ 9
@@ -81,33 +96,16 @@
 					$("#output").css('color', 'blue');
 				}
 			} catch (e) {
+				answer = "";
 				$("#output").val(errorExpression);
 				$("#output").css('color', 'red');
-				answer = "";
 			}
 		} else if (keyinCode == 27) {// esc => 清除
 			answer = "";
 			$("#output").val(answer);
 		}
 
-		exceptionHandlerEnd();// 後置錯誤處理
 		console.log("answer =\t" + answer);
 	});
-
-	function exceptionHandlerBegin() {
-		/** 前置錯誤處理 */
-		answer = $("#output").val();
-		if (answer == errorExpression) {
-			$("#output").val("");
-			answer = "";
-		}
-	}
-
-	function exceptionHandlerEnd() {
-		/** 後置錯誤處理 */
-		answer = $("#output").val();
-		// console.log(answer.match(regexpLeastANumber));
-
-	}
 
 }(jQuery));
