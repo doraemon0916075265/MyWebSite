@@ -3,11 +3,20 @@ package web.model.bean;
 import java.util.Date;
 
 public class CompanyCRUBean {
+	private int id;
 	private String name;
 	private int age;
 	private String cellphone;
 	private String email;
 	private Date hiredate;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;
@@ -51,7 +60,7 @@ public class CompanyCRUBean {
 
 	@Override
 	public String toString() {
-		return "CompanyCRUBean [name=" + name + ", age=" + age + ", cellphone=" + cellphone + ", email=" + email + ", hiredate=" + hiredate + "]";
+		return "CompanyCRUBean [id=" + id + ", name=" + name + ", age=" + age + ", cellphone=" + cellphone + ", email=" + email + ", hiredate=" + hiredate + "]";
 	}
 
 }
