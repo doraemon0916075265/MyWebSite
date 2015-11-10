@@ -5,7 +5,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import globalService.GlobalValue;
@@ -146,7 +149,53 @@ public class CompanyCRUDdaoJDBC implements CompanyCRUDdao {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		return null;
+		CompanyCRUBean result = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			conn = DriverManager.getConnection(CONNURL, USER, PASSWORD);
+			// INSERT = "insert into company.employeeinfo (name,age,cellphone,email,hiredate) values (?,?,?,?,?)";
+			pstmt = conn.prepareStatement(INSERT);
+			if (bean != null) {
+				pstmt.setString(1, bean.getName());
+				pstmt.setInt(2, bean.getAge());
+				pstmt.setString(3, bean.getCellphone());
+				pstmt.setString(4, bean.getEmail());
+				Date hiredate = bean.getHiredate();
+				if (hiredate != null) {
+					long time = hiredate.getTime();
+					pstmt.setDate(5, new java.sql.Date(time));
+				} else {
+					pstmt.setDate(5, null);
+				}
+			}
+
+			int count = pstmt.executeUpdate();
+			if (count == 1) {
+				result = bean;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return result;
 	}
 
 	public CompanyCRUBean update(CompanyCRUBean bean) {
@@ -169,20 +218,35 @@ public class CompanyCRUDdaoJDBC implements CompanyCRUDdao {
 		return false;
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Throwable {
 		GlobalValue USE = new GlobalValue();
 		CompanyCRUDdaoJDBC output = new CompanyCRUDdaoJDBC();
-		List<CompanyCRUBean> beans = new ArrayList<CompanyCRUBean>();
-		CompanyCRUBean bean = new CompanyCRUBean();
+		List<CompanyCRUBean> beansSelectAll = new ArrayList<CompanyCRUBean>();
+		CompanyCRUBean beanSelectId = new CompanyCRUBean();
+		CompanyCRUBean beanInsert = new CompanyCRUBean();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		Date time = new Date();
+		String now = sdf.format(time);
+		System.out.println(now);
 
-		beans = output.select();
+		beansSelectAll = output.select();
 		System.out.println("全部查詢");
-		for (CompanyCRUBean selectBean : beans) {
+		for (CompanyCRUBean selectBean : beansSelectAll) {
 			System.out.println(selectBean);
 		}
 		USE.Demarcation();
-		bean = output.select(1);
+		beanSelectId = output.select(1);
 		System.out.println("id查詢");
-		System.out.println(bean);
+		System.out.println(beanSelectId);
+		USE.Demarcation();
+
+		System.out.println("新增資料");
+		beanInsert.setName("killer");
+		beanInsert.setAge(18);
+		beanInsert.setCellphone("0911111111");
+		beanInsert.setEmail("killer@gamil.com");
+		// beanInsert.setHiredate(now);
+		// beanInsert = output.insert(beanInsert);
+		System.out.println(beanInsert);
 	}
 }
