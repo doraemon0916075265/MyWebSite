@@ -1,4 +1,4 @@
-package web.modelBean;
+package web.model.bean;
 
 public class MemberBean {
 

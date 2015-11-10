@@ -1,4 +1,4 @@
-package web.modelDAO;
+package web.model.dao;
 
 public class CompanyCRUDdaoJDBC {
 
