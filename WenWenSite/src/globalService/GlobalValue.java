@@ -9,6 +9,11 @@ public class GlobalValue {
 	private static final String LOGINTITLE = "登入";
 	private static final String APPNAME = "Learn On-Line";
 	private static final String MATHPLACE = "數學專區";
+	private static final String COMPANYNAME = "Company";
+
+	public String getCompanyName() {
+		return COMPANYNAME;
+	}
 
 	public String getLoginTitle() {
 		return LOGINTITLE;

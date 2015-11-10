@@ -5,6 +5,7 @@
 <c:set var="AppName" value="${SYSTEM.appName}" scope="application" />
 <c:set var="LoginTitle" value="${SYSTEM.loginTitle}" scope="application" />
 <c:set var="MathPlace" value="${SYSTEM.mathPlace}" scope="application" />
+<c:set var="CompanyName" value="${SYSTEM.companyName}" scope="application" />
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -20,6 +21,9 @@
 		</h4>
 		<h4>
 			<a href="<%=request.getContextPath()%>/pages/subject/subject.jsp">${AppName}</a>
+		</h4>
+		<h4>
+			<a href="<%=request.getContextPath()%>/pages/company/CRUD.jsp">${CompanyName}</a>
 		</h4>
 	</center>
 </body>
