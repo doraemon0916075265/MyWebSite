@@ -2,6 +2,7 @@ package web.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -84,6 +85,19 @@ public class CompanyCRUDServlet extends HttpServlet {
 		bean.setEmail(email);
 
 		// 根據Model執行結果導向View
+		if (acitonSelector != null && acitonSelector.equals("全部查詢")) {
+//			List<CompanyCRUBean> result=service;
+		} else if (acitonSelector != null && acitonSelector.equals("單筆查詢")) {
+
+		} else if (acitonSelector != null && acitonSelector.equals("新增")) {
+
+		} else if (acitonSelector != null && acitonSelector.equals("修改")) {
+
+		} else if (acitonSelector != null && acitonSelector.equals("刪除")) {
+
+		} else {
+
+		}
 
 	}
 

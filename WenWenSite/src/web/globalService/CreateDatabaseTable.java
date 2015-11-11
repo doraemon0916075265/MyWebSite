@@ -140,6 +140,7 @@ public class CreateDatabaseTable {
 					System.out.println("創建失敗");
 				}
 			} else if (input.trim().toLowerCase().equals("dropdb")) {
+				/** 刪除database **/
 				System.out.println("欲刪除資料庫名稱：");
 				inputName = sc.next();
 				boolean isDropDB = init.dropDatabase(inputName);
