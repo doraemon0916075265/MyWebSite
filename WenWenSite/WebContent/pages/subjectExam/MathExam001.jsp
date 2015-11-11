@@ -5,6 +5,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>${AppName}-${MathExam001}</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/style/MathExam.css">
+<link href="<%=request.getContextPath()%>/style/Application.css" rel="stylesheet">
+
 </head>
 <body>
 

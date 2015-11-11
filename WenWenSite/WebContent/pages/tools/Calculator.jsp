@@ -5,6 +5,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>計算機</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/style/MathExam.css">
+<link href="<%=request.getContextPath()%>/style/Application.css" rel="stylesheet">
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 </head>
 <body>

@@ -1,0 +1,5 @@
+@CHARSET "UTF-8";
+
+#companyCRUDtable tbody tr td:nth-child(3), .errorMessage {
+	color: red;
+}

@@ -5,6 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>${LoginTitle}</title>
+<link href="<%=request.getContextPath()%>/style/Application.css" rel="stylesheet">
+
 </head>
 <body>
 	<center>

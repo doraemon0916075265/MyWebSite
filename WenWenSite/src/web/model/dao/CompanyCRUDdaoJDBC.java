@@ -5,12 +5,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import globalService.GlobalValue;
 import web.model.bean.CompanyCRUBean;
 import web.model.dao.interfaces.CompanyCRUDdao;
 
@@ -161,13 +159,8 @@ public class CompanyCRUDdaoJDBC implements CompanyCRUDdao {
 				pstmt.setInt(2, bean.getAge());
 				pstmt.setString(3, bean.getCellphone());
 				pstmt.setString(4, bean.getEmail());
-				Date hiredate = bean.getHiredate();
-				if (hiredate != null) {
-					long time = hiredate.getTime();
-					pstmt.setDate(5, new java.sql.Date(time));
-				} else {
-					pstmt.setDate(5, null);
-				}
+				pstmt.setTimestamp(5, new java.sql.Timestamp(System.currentTimeMillis()));
+
 			}
 
 			int count = pstmt.executeUpdate();
@@ -222,8 +215,7 @@ public class CompanyCRUDdaoJDBC implements CompanyCRUDdao {
 			Date hiredate = bean.getHiredate();
 
 			if (hiredate != null) {
-				long time = hiredate.getTime();
-				pstmt.setDate(5, new java.sql.Date(time));
+				pstmt.setTimestamp(5, new java.sql.Timestamp(bean.getHiredate().getTime()));
 			} else {
 				pstmt.setDate(5, null);
 			}
@@ -301,55 +293,55 @@ public class CompanyCRUDdaoJDBC implements CompanyCRUDdao {
 	}
 
 	public static void main(String[] args) throws Throwable {
-		GlobalValue USE = new GlobalValue();
-		CompanyCRUDdaoJDBC output = new CompanyCRUDdaoJDBC();
-		List<CompanyCRUBean> beansSelectAll = new ArrayList<CompanyCRUBean>();
-		CompanyCRUBean beanSelectId = new CompanyCRUBean();
-		CompanyCRUBean beanInsert = new CompanyCRUBean();
-		CompanyCRUBean beanUpdate = new CompanyCRUBean();
-		boolean dataDelete = false;
-		java.sql.Timestamp sqlTimestamp = new java.sql.Timestamp(System.currentTimeMillis());
-		System.out.println(sqlTimestamp);
-
-		beansSelectAll = output.select();
-		System.out.println("全部查詢");
-		for (CompanyCRUBean selectBean : beansSelectAll) {
-			System.out.println(selectBean);
-		}
-		USE.Demarcation();
-
-		beanSelectId = output.select(1);
-		System.out.println("id查詢");
-		System.out.println(beanSelectId);
-
-		USE.Demarcation();
-
-		System.out.println("Insert");
-		beanInsert.setName("boss");
-		beanInsert.setAge(18);
-		beanInsert.setCellphone("092222222");
-		beanInsert.setEmail("boss@gamil.com");
-		beanInsert.setHiredate(sqlTimestamp);
-		beanInsert = output.insert(beanInsert);
-		System.out.println(beanInsert);
-
-		USE.Demarcation();
-
-		System.out.println("Update");
-		beanUpdate.setName("snoopy");
-		beanUpdate.setAge(18);
-		beanUpdate.setCellphone("0955555555");
-		beanUpdate.setEmail("snoopy@gamil.com");
-		beanUpdate.setHiredate(sqlTimestamp);
-		beanUpdate.setId(7);
+		/** 測試程式 **/
+		// GlobalValue USE = new GlobalValue();
+		// CompanyCRUDdaoJDBC output = new CompanyCRUDdaoJDBC();
+		// List<CompanyCRUBean> beansSelectAll = new ArrayList<CompanyCRUBean>();
+		// CompanyCRUBean beanSelectId = new CompanyCRUBean();
+		// CompanyCRUBean beanInsert = new CompanyCRUBean();
+		// CompanyCRUBean beanUpdate = new CompanyCRUBean();
+		// boolean dataDelete = false;
+		//
+		// beansSelectAll = output.select();
+		// System.out.println("全部查詢");
+		// for (CompanyCRUBean selectBean : beansSelectAll) {
+		// System.out.println(selectBean);
+		// }
+		// USE.Demarcation();
+		//
+		// beanSelectId = output.select(1);
+		// System.out.println("id查詢");
+		// System.out.println(beanSelectId);
+		//
+		// USE.Demarcation();
+		//
+		// System.out.println("Insert");
+		// beanInsert.setName("boss");
+		// beanInsert.setAge(18);
+		// beanInsert.setCellphone("092222222");
+		// beanInsert.setEmail("boss@gamil.com");
+		// // beanInsert = output.insert(beanInsert);
+		// System.out.println(beanInsert);
+		//
+		// USE.Demarcation();
+		//
+		// Date now = new Date();
+		// System.out.println(now);
+		// System.out.println("Update");
+		// beanUpdate.setName("snoopy");
+		// beanUpdate.setAge(18);
+		// beanUpdate.setCellphone("0955555555");
+		// beanUpdate.setEmail("snoopy@gamil.com");
+		// beanUpdate.setHiredate(now);
+		// beanUpdate.setId(10);
 		// beanUpdate = output.update(beanUpdate);
-		System.out.println(beanUpdate);
-
-		USE.Demarcation();
-
-		System.out.println("Delete");
+		// System.out.println(beanUpdate);
+		//
+		// USE.Demarcation();
+		//
+		// System.out.println("Delete");
 		// dataDelete = output.delete(9);
-		System.out.println(dataDelete);
+		// System.out.println(dataDelete);
 
 	}
 }
