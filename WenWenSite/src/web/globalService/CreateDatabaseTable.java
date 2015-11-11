@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 import globalService.GlobalValue;
 
-public class CompanyDatabase {
+public class CreateDatabaseTable {
 	/** 驅動字串 **/
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
 	/** 連線字串 **/
@@ -44,7 +44,7 @@ public class CompanyDatabase {
 					result = true;
 				}
 			} catch (Exception e) {
-				System.out.print("創建失敗\t");
+				System.out.print("無法執行操作，");
 			}
 
 		} catch (SQLException e) {
@@ -91,7 +91,7 @@ public class CompanyDatabase {
 				pstmt.executeUpdate();
 				result = true;
 			} catch (Exception e) {
-				System.out.print("刪除失敗\t");
+				System.out.print("無法執行操作，");
 			}
 
 		} catch (SQLException e) {
@@ -117,7 +117,7 @@ public class CompanyDatabase {
 	}
 
 	public static void main(String[] args) {
-		CompanyDatabase init = new CompanyDatabase();
+		CreateDatabaseTable init = new CreateDatabaseTable();
 		GlobalValue USE = new GlobalValue();
 
 		String input;
@@ -137,7 +137,7 @@ public class CompanyDatabase {
 				if (isCreateDB) {
 					System.out.println("創建成功：" + isCreateDB);
 				} else {
-					System.out.println("就是失敗");
+					System.out.println("創建失敗");
 				}
 			} else if (input.trim().toLowerCase().equals("dropdb")) {
 				System.out.println("欲刪除資料庫名稱：");
@@ -146,16 +146,16 @@ public class CompanyDatabase {
 				if (isDropDB) {
 					System.out.println("刪除成功：" + isDropDB);
 				} else {
-					System.out.println("就是失敗");
+					System.out.println("刪除失敗");
 				}
 			}
 
 			System.out.println("輸入 y 繼續，任意鍵結束...");
 			continueAction = sc.next();
+			USE.Demarcation();
 			if (!continueAction.trim().toLowerCase().equals("y")) {
 				System.out.println("結束");
 			}
-			USE.Demarcation();
 		}
 	}
 
