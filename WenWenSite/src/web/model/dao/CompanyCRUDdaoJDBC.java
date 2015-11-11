@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -307,7 +308,8 @@ public class CompanyCRUDdaoJDBC implements CompanyCRUDdao {
 		CompanyCRUBean beanInsert = new CompanyCRUBean();
 		CompanyCRUBean beanUpdate = new CompanyCRUBean();
 		boolean dataDelete = false;
-		Date time = new Date();
+		java.sql.Timestamp sqlTimestamp = new java.sql.Timestamp(System.currentTimeMillis());
+		System.out.println(sqlTimestamp);
 
 		beansSelectAll = output.select();
 		System.out.println("全部查詢");
@@ -316,7 +318,7 @@ public class CompanyCRUDdaoJDBC implements CompanyCRUDdao {
 		}
 		USE.Demarcation();
 
-		// beanSelectId = output.select(1);
+		beanSelectId = output.select(1);
 		System.out.println("id查詢");
 		System.out.println(beanSelectId);
 
@@ -325,10 +327,10 @@ public class CompanyCRUDdaoJDBC implements CompanyCRUDdao {
 		System.out.println("Insert");
 		beanInsert.setName("boss");
 		beanInsert.setAge(18);
-		beanInsert.setCellphone("0911111111");
+		beanInsert.setCellphone("092222222");
 		beanInsert.setEmail("boss@gamil.com");
-		beanInsert.setHiredate(time);
-		// beanInsert = output.insert(beanInsert);
+		beanInsert.setHiredate(sqlTimestamp);
+		beanInsert = output.insert(beanInsert);
 		System.out.println(beanInsert);
 
 		USE.Demarcation();
@@ -338,7 +340,7 @@ public class CompanyCRUDdaoJDBC implements CompanyCRUDdao {
 		beanUpdate.setAge(18);
 		beanUpdate.setCellphone("0955555555");
 		beanUpdate.setEmail("snoopy@gamil.com");
-		beanUpdate.setHiredate(time);
+		beanUpdate.setHiredate(sqlTimestamp);
 		beanUpdate.setId(7);
 		// beanUpdate = output.update(beanUpdate);
 		System.out.println(beanUpdate);
@@ -346,7 +348,7 @@ public class CompanyCRUDdaoJDBC implements CompanyCRUDdao {
 		USE.Demarcation();
 
 		System.out.println("Delete");
-		// dataDelete = output.delete(8);
+		// dataDelete = output.delete(9);
 		System.out.println(dataDelete);
 
 	}
