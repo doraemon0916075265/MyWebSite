@@ -10,6 +10,11 @@ public class GlobalValue {
 	private static final String APPNAME = "Learn On-Line";
 	private static final String MATHPLACE = "數學專區";
 	private static final String COMPANYNAME = "Company";
+	private static final String HOMEPAGE = "首頁";
+
+	public String getHomePage() {
+		return HOMEPAGE;
+	}
 
 	public String getCompanyName() {
 		return COMPANYNAME;

@@ -12,13 +12,9 @@
 </head>
 <body>
 	<center>
+		<h2>${CompanyName}&nbsp;CRUD</h2>
 		<form action="CompanyCRUD.do">
 			<table id="companyCRUDtable">
-				<thead>
-					<tr>
-						<th colspan="3"><h2>${CompanyName}&nbsp;CRUD</h2></th>
-					</tr>
-				</thead>
 				<tbody>
 					<tr>
 						<td>編號</td>
