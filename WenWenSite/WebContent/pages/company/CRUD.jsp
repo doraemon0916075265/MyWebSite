@@ -47,7 +47,7 @@
 					</tr>
 					<tr>
 						<td>到職日</td>
-						<td><input type="text" name="hiredate"></td>
+						<td><input type="text" name="hiredate" value="${param.hiredate}" readonly="readonly"></td>
 						<td>${error.hiredate}</td>
 					</tr>
 				</tbody>
@@ -55,7 +55,7 @@
 			<table>
 				<tbody>
 					<tr>
-						<td><input type="submit" value="查詢" name="actionSelector"></td>
+						<td><input type="submit" value="查詢" name="actionSelector" id="selectData"></td>
 						<td><input type="submit" value="新增" name="actionSelector"></td>
 						<td><input type="submit" value="修改" name="actionSelector"></td>
 						<td><input type="submit" value="刪除" name="actionSelector"></td>

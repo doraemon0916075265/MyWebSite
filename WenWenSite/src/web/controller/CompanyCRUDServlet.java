@@ -39,31 +39,9 @@ public class CompanyCRUDServlet extends HttpServlet {
 		String hiredate = request.getParameter("hiredate");
 		String acitonSelector = request.getParameter("actionSelector");
 
-		// 驗證資料
+		// 轉換資料
 		Map<String, String> errors = new HashMap<String, String>();
 		request.setAttribute("error", errors);
-
-		if (acitonSelector != null) {
-			System.out.println("操作：" + acitonSelector + "\t編號：" + tempid + "\t姓名：" + name + "\t年齡：" + tempage + "\t手機：" + cellphone + "\tE-mail：" + email + "\t到職日：" + hiredate);
-			if (acitonSelector.equals("新增") || acitonSelector.equals("修改") || acitonSelector.equals("刪除")) {
-				if (acitonSelector.equals("新增")) {
-					if (name.trim().length() == 0 || name == null) {
-						errors.put("fail", "如果要進行 <b>" + acitonSelector + "</b> 請輸入姓名");
-					} else if (tempage.trim().length() == 0 || tempage == null) {
-						errors.put("fail", "如果要進行 <b>" + acitonSelector + "</b> 請輸入年齡");
-					} else if (cellphone.trim().length() == 0 || cellphone == null) {
-						errors.put("fail", "如果要進行 <b>" + acitonSelector + "</b> 請輸入手機");
-					} else if (email.trim().length() == 0 || email == null) {
-						errors.put("fail", "如果要進行 <b>" + acitonSelector + "</b> 請輸入 E-mail");
-					}
-				}
-				// if (tempid.trim().length() == 0 || tempid == null) {
-				// errors.put("fail", "如果要進行 <b>" + acitonSelector + "</b> 請輸入編號");
-				// }
-			}
-		}
-
-		// 轉換資料
 		int id = 0;
 		if (tempid != null && tempid.trim().length() != 0) {
 			id = GlobalValue.convertInt(tempid);
@@ -76,7 +54,37 @@ public class CompanyCRUDServlet extends HttpServlet {
 		if (tempage != null && tempage.trim().length() != 0) {
 			age = GlobalValue.convertInt(tempage);
 			if (age == -1000) {
-				errors.put("id", "請輸入整數");
+				errors.put("age", "請輸入整數");
+			}
+		}
+
+		if (errors != null && !errors.isEmpty()) {
+			request.getRequestDispatcher(GO_TO_COMPANYCRUD).forward(request, response);
+			return;
+		}
+
+		// 驗證資料
+		if (acitonSelector != null) {
+			System.out.println("操作：" + acitonSelector + "\t編號：" + tempid + "\t姓名：" + name + "\t年齡：" + tempage + "\t手機：" + cellphone + "\tE-mail：" + email + "\t到職日：" + hiredate);
+			if (acitonSelector.equals("新增") || acitonSelector.equals("修改") || acitonSelector.equals("刪除")) {
+				if (acitonSelector.equals("新增") || acitonSelector.equals("修改")) {
+					/** 新增跟修改，需要name age cellphone email **/
+					if (name.trim().length() == 0 || name == null) {
+						errors.put("fail", "如果要進行 <b>" + acitonSelector + "</b> 請輸入姓名");
+					} else if (tempage.trim().length() == 0 || tempage == null) {
+						errors.put("fail", "如果要進行 <b>" + acitonSelector + "</b> 請輸入年齡");
+					} else if (cellphone.trim().length() == 0 || cellphone == null) {
+						errors.put("fail", "如果要進行 <b>" + acitonSelector + "</b> 請輸入手機");
+					} else if (email.trim().length() == 0 || email == null) {
+						errors.put("fail", "如果要進行 <b>" + acitonSelector + "</b> 請輸入 E-mail");
+					}
+				}
+				/** 修改跟刪除，需要id **/
+				if (acitonSelector.equals("修改") || acitonSelector.equals("刪除")) {
+					if (tempid.trim().length() == 0 || tempid == null) {
+						errors.put("fail", "如果要進行 <b>" + acitonSelector + "</b> 請輸入姓名");
+					}
+				}
 			}
 		}
 
