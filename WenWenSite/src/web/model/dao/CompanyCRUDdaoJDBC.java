@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import web.model.bean.CompanyCRUBean;
+import web.model.bean.CompanyCRUDBean;
 import web.model.dao.interfaces.CompanyCRUDdao;
 
 public class CompanyCRUDdaoJDBC implements CompanyCRUDdao {
@@ -26,7 +26,7 @@ public class CompanyCRUDdaoJDBC implements CompanyCRUDdao {
 	private static final String UPDATE = "update company.employeeinfo set name=?,age=?,cellphone=?,email=?,hiredate=? where id=?;";
 	private static final String DELETE = "delete from company.employeeinfo where id=?";
 
-	public List<CompanyCRUBean> select() {
+	public List<CompanyCRUDBean> select() {
 		try {
 			// 找驅動程式
 			Class.forName(DRIVER);
@@ -34,8 +34,8 @@ public class CompanyCRUDdaoJDBC implements CompanyCRUDdao {
 			e.printStackTrace();
 		}
 
-		List<CompanyCRUBean> result = new ArrayList<CompanyCRUBean>();
-		CompanyCRUBean bean = null;
+		List<CompanyCRUDBean> result = new ArrayList<CompanyCRUDBean>();
+		CompanyCRUDBean bean = null;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -46,7 +46,7 @@ public class CompanyCRUDdaoJDBC implements CompanyCRUDdao {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				bean = new CompanyCRUBean();
+				bean = new CompanyCRUDBean();
 				bean.setId(rs.getInt("id"));
 				bean.setName(rs.getString("name"));
 				bean.setAge(rs.getInt("age"));
@@ -84,14 +84,14 @@ public class CompanyCRUDdaoJDBC implements CompanyCRUDdao {
 		return result;
 	}
 
-	public CompanyCRUBean select(int id) {
+	public CompanyCRUDBean select(int id) {
 		try {
 			// 找驅動程式
 			Class.forName(DRIVER);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		CompanyCRUBean result = null;
+		CompanyCRUDBean result = null;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -103,7 +103,7 @@ public class CompanyCRUDdaoJDBC implements CompanyCRUDdao {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				result = new CompanyCRUBean();
+				result = new CompanyCRUDBean();
 				result.setId(rs.getInt("id"));
 				result.setName(rs.getString("name"));
 				result.setAge(rs.getInt("age"));
@@ -139,14 +139,14 @@ public class CompanyCRUDdaoJDBC implements CompanyCRUDdao {
 		return result;
 	}
 
-	public CompanyCRUBean insert(CompanyCRUBean bean) {
+	public CompanyCRUDBean insert(CompanyCRUDBean bean) {
 		try {
 			// 找驅動程式
 			Class.forName(DRIVER);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		CompanyCRUBean result = null;
+		CompanyCRUDBean result = null;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 
@@ -191,7 +191,7 @@ public class CompanyCRUDdaoJDBC implements CompanyCRUDdao {
 		return result;
 	}
 
-	public CompanyCRUBean update(CompanyCRUBean bean) {
+	public CompanyCRUDBean update(CompanyCRUDBean bean) {
 		try {
 			// 找驅動程式
 			Class.forName(DRIVER);
@@ -199,7 +199,7 @@ public class CompanyCRUDdaoJDBC implements CompanyCRUDdao {
 			e.printStackTrace();
 		}
 
-		CompanyCRUBean result = null;
+		CompanyCRUDBean result = null;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 

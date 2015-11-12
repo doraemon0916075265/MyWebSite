@@ -3,3 +3,17 @@
 #companyCRUDtable tbody tr td:nth-child(3), .errorMessage {
 	color: red;
 }
+
+.resultTable, .resultTable tr {
+	border-collapse: collapse;
+	cursor: default;
+}
+
+.resultTable tbody tr:HOVER {
+	cursor: pointer;
+	background-color: #E8CCFF;
+}
+
+.resultTable td {
+	padding: 1px 10px;
+}

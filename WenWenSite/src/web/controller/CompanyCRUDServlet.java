@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import web.globalService.GlobalValue;
-import web.model.bean.CompanyCRUBean;
+import web.model.bean.CompanyCRUDBean;
 import web.model.service.CompanyService;
 
 @WebServlet("/pages/company/CompanyCRUD.do")
@@ -69,15 +69,13 @@ public class CompanyCRUDServlet extends HttpServlet {
 			}
 		}
 
-		System.out.println(id);
-
 		if (errors != null && !errors.isEmpty()) {
 			request.getRequestDispatcher(GO_TO_COMPANYDRUD_CRUD).forward(request, response);
 			return;
 		}
 
 		// 呼叫model
-		CompanyCRUBean bean = new CompanyCRUBean();
+		CompanyCRUDBean bean = new CompanyCRUDBean();
 		bean.setId(id);
 		bean.setName(name);
 		bean.setAge(age);
@@ -85,10 +83,15 @@ public class CompanyCRUDServlet extends HttpServlet {
 		bean.setEmail(email);
 
 		// 根據Model執行結果導向View
-		if (acitonSelector != null && acitonSelector.equals("全部查詢")) {
-//			List<CompanyCRUBean> result=service;
-		} else if (acitonSelector != null && acitonSelector.equals("單筆查詢")) {
-
+		if (acitonSelector != null && (acitonSelector.equals("全部查詢") || acitonSelector.equals("單筆查詢"))) {
+			List<CompanyCRUDBean> result = service.select(bean);
+			request.setAttribute("select", result);
+			if (result == null) {
+				errors.put("action", "查詢無資料");
+				request.getRequestDispatcher(GO_TO_COMPANYDRUD_CRUD).forward(request, response);
+			} else {
+				request.getRequestDispatcher(GO_TO_COMPANYDRUD_CRUD).forward(request, response);
+			}
 		} else if (acitonSelector != null && acitonSelector.equals("新增")) {
 
 		} else if (acitonSelector != null && acitonSelector.equals("修改")) {

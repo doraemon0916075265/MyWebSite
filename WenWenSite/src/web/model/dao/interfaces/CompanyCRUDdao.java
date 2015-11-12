@@ -2,17 +2,17 @@ package web.model.dao.interfaces;
 
 import java.util.List;
 
-import web.model.bean.CompanyCRUBean;
+import web.model.bean.CompanyCRUDBean;
 
 public interface CompanyCRUDdao {
 
-	public abstract CompanyCRUBean select(int id);
+	public abstract CompanyCRUDBean select(int id);
 
-	public abstract List<CompanyCRUBean> select();
+	public abstract List<CompanyCRUDBean> select();
 
-	public abstract CompanyCRUBean insert(CompanyCRUBean bean);
+	public abstract CompanyCRUDBean insert(CompanyCRUDBean bean);
 
-	public abstract CompanyCRUBean update(CompanyCRUBean bean);
+	public abstract CompanyCRUDBean update(CompanyCRUDBean bean);
 
 	public abstract boolean delete(int id);
 

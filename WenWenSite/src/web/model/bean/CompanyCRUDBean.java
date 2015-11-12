@@ -2,7 +2,7 @@ package web.model.bean;
 
 import java.util.Date;
 
-public class CompanyCRUBean {
+public class CompanyCRUDBean {
 	private int id;
 	private String name;
 	private int age;

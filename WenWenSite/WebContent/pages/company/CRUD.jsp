@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -6,7 +8,7 @@
 <title>${CompanyName}&nbsp;CRUD</title>
 <link href="<%=request.getContextPath()%>/style/Application.css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/style/Company.css" rel="stylesheet">
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 </head>
 <body>
 	<center>
@@ -66,8 +68,44 @@
 			<br>
 			<div class="errorMessage">${error.fail}</div>
 		</form>
+		<hr>
+		<c:if test="${not empty error}">
+			<h3>${error.action}</h3>
+		</c:if>
+
+		<c:if test="${not empty select}">
+			<h4>總共有&nbsp;${fn:length(select)}&nbsp;筆資料</h4>
+			<table class="resultTable">
+				<thead>
+					<tr>
+						<th>編號</th>
+						<th>姓名</th>
+						<th>年齡</th>
+						<th>手機</th>
+						<th>E-mail</th>
+						<th>到職日</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="row" items="${select}">
+						<tr>
+							<td>${row.id}</td>
+							<td>${row.name}</td>
+							<td>${row.age}</td>
+							<td>${row.cellphone}</td>
+							<td>${row.email}</td>
+							<td>${row.hiredate}</td>
+						</tr>
+					</c:forEach>
+					<tr></tr>
+				</tbody>
+			</table>
+			<div>${select}</div>
+
+		</c:if>
 
 	</center>
-	<!-- 	name,age,cellphone,email,hiredate -->
+	<script type="text/javascript" src="<%=request.getContextPath()%>/scripts/company/companyCRUD.js"></script>
+	<!-- name,age,cellphone,email,hiredate -->
 </body>
 </html>
