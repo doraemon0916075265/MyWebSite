@@ -1,6 +1,7 @@
 package web.controller;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +19,7 @@ import web.model.service.CompanyService;
 @WebServlet("/pages/company/CompanyCRUD.do")
 public class CompanyCRUDServlet extends HttpServlet {
 
-	public static final String GO_TO_COMPANYDRUD_CRUD = "/pages/company/CRUD.jsp";
+	public static final String GO_TO_COMPANYCRUD = "/pages/company/CRUD.jsp";
 
 	private CompanyService service;
 
@@ -31,10 +32,10 @@ public class CompanyCRUDServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 接收資料
 		String tempid = request.getParameter("id");
-		String name = request.getParameter("name");
+		String name = request.getParameter("name").toLowerCase();
 		String tempage = request.getParameter("age");
 		String cellphone = request.getParameter("cellphone");
-		String email = request.getParameter("email");
+		String email = request.getParameter("email").toLowerCase();
 		String hiredate = request.getParameter("hiredate");
 		String acitonSelector = request.getParameter("actionSelector");
 
@@ -44,12 +45,22 @@ public class CompanyCRUDServlet extends HttpServlet {
 
 		if (acitonSelector != null) {
 			System.out.println("操作：" + acitonSelector + "\t編號：" + tempid + "\t姓名：" + name + "\t年齡：" + tempage + "\t手機：" + cellphone + "\tE-mail：" + email + "\t到職日：" + hiredate);
-			if (acitonSelector.equals("單筆查詢") || acitonSelector.equals("新增") || acitonSelector.equals("修改") || acitonSelector.equals("刪除")) {
-				if (tempid.trim().length() == 0 || tempid == null) {
-					errors.put("fail", "如果要進行 <b>" + acitonSelector + "</b> 請輸入編號");
+			if (acitonSelector.equals("新增") || acitonSelector.equals("修改") || acitonSelector.equals("刪除")) {
+				if (acitonSelector.equals("新增")) {
+					if (name.trim().length() == 0 || name == null) {
+						errors.put("fail", "如果要進行 <b>" + acitonSelector + "</b> 請輸入姓名");
+					} else if (tempage.trim().length() == 0 || tempage == null) {
+						errors.put("fail", "如果要進行 <b>" + acitonSelector + "</b> 請輸入年齡");
+					} else if (cellphone.trim().length() == 0 || cellphone == null) {
+						errors.put("fail", "如果要進行 <b>" + acitonSelector + "</b> 請輸入手機");
+					} else if (email.trim().length() == 0 || email == null) {
+						errors.put("fail", "如果要進行 <b>" + acitonSelector + "</b> 請輸入 E-mail");
+					}
 				}
+				// if (tempid.trim().length() == 0 || tempid == null) {
+				// errors.put("fail", "如果要進行 <b>" + acitonSelector + "</b> 請輸入編號");
+				// }
 			}
-
 		}
 
 		// 轉換資料
@@ -70,7 +81,7 @@ public class CompanyCRUDServlet extends HttpServlet {
 		}
 
 		if (errors != null && !errors.isEmpty()) {
-			request.getRequestDispatcher(GO_TO_COMPANYDRUD_CRUD).forward(request, response);
+			request.getRequestDispatcher(GO_TO_COMPANYCRUD).forward(request, response);
 			return;
 		}
 
@@ -81,19 +92,26 @@ public class CompanyCRUDServlet extends HttpServlet {
 		bean.setAge(age);
 		bean.setCellphone(cellphone);
 		bean.setEmail(email);
+		bean.setHiredate(new java.sql.Timestamp(new Date().getTime()));
 
 		// 根據Model執行結果導向View
-		if (acitonSelector != null && (acitonSelector.equals("全部查詢") || acitonSelector.equals("單筆查詢"))) {
+		if (acitonSelector != null && acitonSelector.equals("查詢")) {
 			List<CompanyCRUDBean> result = service.select(bean);
 			request.setAttribute("select", result);
 			if (result == null) {
 				errors.put("action", "查詢無資料");
-				request.getRequestDispatcher(GO_TO_COMPANYDRUD_CRUD).forward(request, response);
+				request.getRequestDispatcher(GO_TO_COMPANYCRUD).forward(request, response);
 			} else {
-				request.getRequestDispatcher(GO_TO_COMPANYDRUD_CRUD).forward(request, response);
+				request.getRequestDispatcher(GO_TO_COMPANYCRUD).forward(request, response);
 			}
 		} else if (acitonSelector != null && acitonSelector.equals("新增")) {
-
+			CompanyCRUDBean result = service.insert(bean);
+			if (result == null) {
+				errors.put("action", "新增失敗");
+			} else {
+				request.setAttribute("insert", result);
+			}
+			request.getRequestDispatcher(GO_TO_COMPANYCRUD).forward(request, response);
 		} else if (acitonSelector != null && acitonSelector.equals("修改")) {
 
 		} else if (acitonSelector != null && acitonSelector.equals("刪除")) {

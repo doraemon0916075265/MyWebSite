@@ -1,5 +1,5 @@
 (function($) {
-	$("input[type='submit']").click(function() {
-		$("input[type='submit']").text("");
+	$("#cleanInput").click(function() {
+		$("input[type='text']").val("");
 	});
 }(jQuery));

@@ -22,27 +22,27 @@
 				<tbody>
 					<tr>
 						<td>編號</td>
-						<td><input type="text" name="id"></td>
+						<td><input type="text" name="id" value="${param.id}"></td>
 						<td>${error.id}</td>
 					</tr>
 					<tr>
 						<td>姓名</td>
-						<td><input type="text" name="name"></td>
+						<td><input type="text" name="name" value="${param.name}"></td>
 						<td>${error.name}</td>
 					</tr>
 					<tr>
 						<td>年齡</td>
-						<td><input type="text" name="age"></td>
+						<td><input type="text" name="age" value="${param.age}"></td>
 						<td>${error.age}</td>
 					</tr>
 					<tr>
 						<td>手機</td>
-						<td><input type="text" name="cellphone"></td>
+						<td><input type="text" name="cellphone" value="${param.cellphone}"></td>
 						<td>${error.cellphone}</td>
 					</tr>
 					<tr>
 						<td>E-mail</td>
-						<td><input type="text" name="email"></td>
+						<td><input type="text" name="email" value="${param.email}"></td>
 						<td>${error.email}</td>
 					</tr>
 					<tr>
@@ -51,17 +51,16 @@
 						<td>${error.hiredate}</td>
 					</tr>
 				</tbody>
-
-
 			</table>
 			<table>
 				<tbody>
 					<tr>
-						<td><input type="submit" value="全部查詢" name="actionSelector"></td>
-						<td><input type="submit" value="單筆查詢" name="actionSelector"></td>
+						<td><input type="submit" value="查詢" name="actionSelector"></td>
 						<td><input type="submit" value="新增" name="actionSelector"></td>
 						<td><input type="submit" value="修改" name="actionSelector"></td>
 						<td><input type="submit" value="刪除" name="actionSelector"></td>
+						<td><input type="button" value="清除" id="cleanInput"></td>
+
 					</tr>
 				</tbody>
 			</table>
@@ -88,9 +87,17 @@
 				</thead>
 				<tbody>
 					<c:forEach var="row" items="${select}">
+						<c:url value="/pages/company/CRUD.jsp" var="linkPath">
+							<c:param name="id" value="${row.id}" />
+							<c:param name="name" value="${row.name}" />
+							<c:param name="age" value="${row.age}" />
+							<c:param name="cellphone" value="${row.cellphone}" />
+							<c:param name="email" value="${row.email}" />
+							<c:param name="hiredate" value="${row.hiredate}" />
+						</c:url>
 						<tr>
 							<td>${row.id}</td>
-							<td>${row.name}</td>
+							<td><a href="${linkPath}">${row.name}</a></td>
 							<td>${row.age}</td>
 							<td>${row.cellphone}</td>
 							<td>${row.email}</td>
@@ -100,12 +107,10 @@
 					<tr></tr>
 				</tbody>
 			</table>
-			<div>${select}</div>
-
+			<%-- <div>${select}</div> --%>
 		</c:if>
 
 	</center>
 	<script type="text/javascript" src="<%=request.getContextPath()%>/scripts/company/companyCRUD.js"></script>
-	<!-- name,age,cellphone,email,hiredate -->
 </body>
 </html>

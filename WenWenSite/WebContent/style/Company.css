@@ -2,6 +2,12 @@
 
 #companyCRUDtable tbody tr td:nth-child(3), .errorMessage {
 	color: red;
+	min-width: 100px;
+}
+
+#companyCRUDtable tbody tr td:nth-child(1) {
+	padding-right: 5px;
+	text-align: right;
 }
 
 .resultTable, .resultTable tr {
