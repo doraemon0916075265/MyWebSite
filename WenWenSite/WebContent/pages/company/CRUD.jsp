@@ -41,11 +41,11 @@
 						<td><input type="text" name="email" value="${param.email}"></td>
 						<td>${error.email}</td>
 					</tr>
-					<tr>
-						<td>到職日</td>
-						<td><input type="text" name="hiredate" value="${param.hiredate}" readonly="readonly"></td>
-						<td>${error.hiredate}</td>
-					</tr>
+					<!-- <tr> -->
+					<!-- 	<td>到職日</td> -->
+					<%-- 	<td><input type="text" name="hiredate" value="${param.hiredate}" readonly="readonly"></td> --%>
+					<%-- 	<td>${error.hiredate}</td> --%>
+					<!-- </tr> -->
 				</tbody>
 			</table>
 			<table>
@@ -69,6 +69,7 @@
 		</c:if>
 
 		<c:if test="${not empty select}">
+			<!-- 是否查詢成功 -->
 			<h4>總共有&nbsp;${fn:length(select)}&nbsp;筆資料</h4>
 			<table class="resultTable">
 				<thead>
@@ -92,7 +93,7 @@
 							<c:param name="hiredate" value="${row.hiredate}" />
 						</c:url>
 						<tr>
-							<td>${row.id}</td>
+							<td><a href="${linkPath}">${row.id}</a></td>
 							<td><a href="${linkPath}">${row.name}</a></td>
 							<td>${row.age}</td>
 							<td>${row.cellphone}</td>
@@ -106,6 +107,19 @@
 			<%-- <div>${select}</div> --%>
 		</c:if>
 
+		<c:if test="${not empty insert}">
+			<!-- 是否新增成功 -->
+			<%-- <div>${insert}</div> --%>
+		</c:if>
+		<c:if test="${not empty update}">
+			<!-- 是否更新成功 -->
+			<div>${update}</div>
+		</c:if>
+		<c:if test="${not empty delete}">
+			<!-- 是否刪除成功 -->
+			<h4>刪除&nbsp;${delete}&nbsp;筆資料</h4>
+			<%-- <div>${delete}</div> --%>
+		</c:if>
 	</center>
 	<script type="text/javascript" src="<%=request.getContextPath()%>/scripts/company/companyCRUD.js"></script>
 </body>

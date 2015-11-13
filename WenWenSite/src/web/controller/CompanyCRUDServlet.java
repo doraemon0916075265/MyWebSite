@@ -77,6 +77,8 @@ public class CompanyCRUDServlet extends HttpServlet {
 						errors.put("fail", "如果要進行 <b>" + acitonSelector + "</b> 請輸入手機");
 					} else if (email.trim().length() == 0 || email == null) {
 						errors.put("fail", "如果要進行 <b>" + acitonSelector + "</b> 請輸入 E-mail");
+					} else if (tempid.trim().length() > 0) {
+						errors.put("fail", "如果要進行 <b>" + acitonSelector + "</b> 不能輸入編號");
 					}
 				}
 				/** 修改跟刪除，需要id **/
@@ -129,8 +131,10 @@ public class CompanyCRUDServlet extends HttpServlet {
 			} else {
 				request.setAttribute("delete", 1);
 			}
+			request.getRequestDispatcher(GO_TO_COMPANYCRUD).forward(request, response);
 		} else {
-			errors.put("action", "");
+			errors.put("action", "未知的操作");
+			request.getRequestDispatcher(GO_TO_COMPANYCRUD).forward(request, response);
 		}
 
 	}
