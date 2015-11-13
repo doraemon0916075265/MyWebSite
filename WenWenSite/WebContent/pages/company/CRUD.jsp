@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>${CompanyName}&nbsp;CRUD</title>
-<link href="<%=request.getContextPath()%>/style/Application.css" rel="stylesheet">
+<c:import url="/pages/application/ApplicationPage.jsp" context="${pageContext.request.contextPath}" />
 <link href="<%=request.getContextPath()%>/style/Company.css" rel="stylesheet">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 </head>
 <body>
 	<center>
@@ -52,9 +51,9 @@
 				<tbody>
 					<tr>
 						<td><input type="submit" value="查詢" name="actionSelector" id="selectData"></td>
-						<td><input type="submit" value="新增" name="actionSelector"></td>
-						<td><input type="submit" value="修改" name="actionSelector"></td>
-						<td><input type="submit" value="刪除" name="actionSelector"></td>
+						<td><input type="submit" value="新增" name="actionSelector" id="insertData"></td>
+						<td><input type="submit" value="修改" name="actionSelector" id="updateData"></td>
+						<td><input type="submit" value="刪除" name="actionSelector" id="deleteData"></td>
 						<td><input type="button" value="清除" id="cleanInput"></td>
 
 					</tr>
@@ -109,6 +108,37 @@
 
 		<c:if test="${not empty insert}">
 			<!-- 是否新增成功 -->
+			<table class="resultTable">
+				<thead>
+					<tr>
+						<th>編號</th>
+						<th>姓名</th>
+						<th>年齡</th>
+						<th>手機</th>
+						<th>E-mail</th>
+						<th>到職日</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:url value="/pages/company/CRUD.jsp" var="linkPath">
+						<c:param name="id" value="${row.id}" />
+						<c:param name="name" value="${row.name}" />
+						<c:param name="age" value="${row.age}" />
+						<c:param name="cellphone" value="${row.cellphone}" />
+						<c:param name="email" value="${row.email}" />
+						<c:param name="hiredate" value="${row.hiredate}" />
+					</c:url>
+					<tr>
+						<td><a href="${linkPath}">${insert.id}</a></td>
+						<td><a href="${linkPath}">${insert.name}</a></td>
+						<td>${insert.age}</td>
+						<td>${insert.cellphone}</td>
+						<td>${insert.email}</td>
+						<td>${insert.hiredate}</td>
+					</tr>
+					<tr></tr>
+				</tbody>
+			</table>
 			<%-- <div>${insert}</div> --%>
 		</c:if>
 		<c:if test="${not empty update}">

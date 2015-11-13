@@ -9,7 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>${AppName}-題目單元</title>
-<link href="<%=request.getContextPath()%>/style/Application.css" rel="stylesheet">
+<c:import url="/pages/application/ApplicationPage.jsp" context="${pageContext.request.contextPath}" />
 
 </head>
 <body>

@@ -77,7 +77,8 @@ public class CompanyCRUDServlet extends HttpServlet {
 						errors.put("fail", "如果要進行 <b>" + acitonSelector + "</b> 請輸入手機");
 					} else if (email.trim().length() == 0 || email == null) {
 						errors.put("fail", "如果要進行 <b>" + acitonSelector + "</b> 請輸入 E-mail");
-					} else if (tempid.trim().length() > 0) {
+					} else if (acitonSelector.equals("新增") && tempid.trim().length() > 0) {
+						/** 新增不用編號 **/
 						errors.put("fail", "如果要進行 <b>" + acitonSelector + "</b> 不能輸入編號");
 					}
 				}
@@ -123,7 +124,13 @@ public class CompanyCRUDServlet extends HttpServlet {
 			}
 			request.getRequestDispatcher(GO_TO_COMPANYCRUD).forward(request, response);
 		} else if (acitonSelector != null && acitonSelector.equals("修改")) {
-
+			CompanyCRUDBean result = service.update(bean);
+			if (result == null) {
+				errors.put("action", "修改失敗");
+			} else {
+				request.setAttribute("update", result);
+			}
+			request.getRequestDispatcher(GO_TO_COMPANYCRUD).forward(request, response);
 		} else if (acitonSelector != null && acitonSelector.equals("刪除")) {
 			boolean result = service.delete(bean);
 			if (!result) {
