@@ -50,11 +50,26 @@ public class CompanyCRUDServlet extends HttpServlet {
 			}
 		}
 
+		if (name != null && name.trim().length() != 0) {
+			boolean isLegalname = name.trim().matches("^[\u4e00-\u9fa5|a-zA-Z]+$");// 只能輸入漢字或英文
+			if (!isLegalname) {
+				errors.put("name", "請輸入漢字或英文");
+			}
+		}
+
 		int age = 0;
 		if (tempage != null && tempage.trim().length() != 0) {
 			age = GlobalValue.convertInt(tempage);
 			if (age == -1000) {
 				errors.put("age", "請輸入整數");
+			}
+		}
+
+		if (cellphone != null && cellphone.trim().length() != 0) {
+			boolean isLegaCellphone = cellphone.matches("^[09]{2}[0-9]{8}$");// 手機號碼
+			System.out.println(cellphone + "\t" + isLegaCellphone);
+			if (!isLegaCellphone) {
+				errors.put("cellphone", "請輸入合法號碼");
 			}
 		}
 

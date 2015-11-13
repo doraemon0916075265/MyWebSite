@@ -166,7 +166,9 @@ public class CompanyCRUDdaoJDBC implements CompanyCRUDdao {
 			int count = pstmt.executeUpdate();
 			if (count == 1) {
 				System.out.println("～～～新增成功～～～");
-				result = bean;
+				int dataSize = select().size();
+				CompanyCRUDBean selectBean = select().get(dataSize - 1);
+				result = selectBean;
 			}
 
 		} catch (SQLException e) {
@@ -225,7 +227,9 @@ public class CompanyCRUDdaoJDBC implements CompanyCRUDdao {
 			int count = pstmt.executeUpdate();
 			if (count == 1) {
 				System.out.println("～～～更新成功～～～");
-				result = bean;
+				CompanyCRUDBean updateBean = select(bean.getId());
+				System.out.println();
+				result = updateBean;
 			}
 
 		} catch (SQLException e) {
