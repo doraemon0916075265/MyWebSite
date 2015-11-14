@@ -51,7 +51,7 @@ public class CompanyCRUDServlet extends HttpServlet {
 		}
 
 		if (name != null && name.trim().length() != 0) {
-			boolean isLegalname = name.trim().matches("^[\u4e00-\u9fa5|a-zA-Z]+$");// 只能輸入漢字或英文
+			boolean isLegalname = name.trim().matches("^[\u4e00-\u9fa5|a-zA-Z| ]+$");// 只能輸入漢字或英文或空白
 			if (!isLegalname) {
 				errors.put("name", "請輸入漢字或英文");
 			}

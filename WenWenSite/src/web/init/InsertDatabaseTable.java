@@ -7,16 +7,17 @@ import java.sql.SQLException;
 
 public class InsertDatabaseTable {
 	static InitGlobalValue GV = new InitGlobalValue();
-
+	/** 連線字串 **/
 	private static String DRIVER = GV.getDRIVER();
+	private static String DRIVER_NOT_FOUND = GV.getDRIVER_NOT_FOUND();
 	private static String CONNURL = GV.getCONNURL();
 	private static String USER = GV.getUSER();
 	private static String PASSWORD = GV.getPASSWORD();
-
+	/** 資料庫字串 **/
 	private static String DATABASE_NAME = GV.getDATABASE01();
 	private static String TABLE_NAME = GV.getTABLE01();
 	private static String FULL_TABLE_NAME = DATABASE_NAME + "." + TABLE_NAME;
-
+	/** SQL字串 **/
 	private static String DROP_DATABASE = GV.getDROP_DATABASE();
 	private static String CREATE_DATABASE = GV.getCREATE_DATABASE();
 	private static String CREATE_TABLE = GV.getCREATE_TABLE();
@@ -26,11 +27,12 @@ public class InsertDatabaseTable {
 	private static String ERROR_WORD = "無法";
 	private static String SUCCESS_WORD = GV.getSUCCESS_WORD();
 	private static String FAIL_WORD = GV.getFAIL_WORD();
-	private static String DO_DROP_DATABASE = "刪除資料庫";
-	private static String DO_CREATE_DATABASE = "創建資料庫";
-	private static String DO_CREATE_TABLE = "建立表格　";
+	private static String CAN_DROP_DATABASE = "刪除資料庫";
+	private static String CAN_CREATE_DATABASE = "創建資料庫";
+	private static String CAN_CREATE_TABLE = "建立表格　";
 
 	public static void start() {
+		System.out.println(InsertDatabaseTable.class.getName());
 		dropDatabase();
 		createDatabase();
 		createTable();
@@ -41,6 +43,7 @@ public class InsertDatabaseTable {
 			/** 找驅動程式 **/
 			Class.forName(DRIVER);
 		} catch (ClassNotFoundException e) {
+			System.out.println(DRIVER_NOT_FOUND);
 			e.printStackTrace();
 		}
 		Connection conn = null;
@@ -51,9 +54,9 @@ public class InsertDatabaseTable {
 			pstmt = conn.prepareStatement(DROP_DATABASE);
 			try {
 				pstmt.executeUpdate();
-				System.out.printf(PRINT_STYLE, SUCCESS_WORD, DO_DROP_DATABASE, DATABASE_NAME);
+				System.out.printf(PRINT_STYLE, SUCCESS_WORD, CAN_DROP_DATABASE, DATABASE_NAME);
 			} catch (Exception e) {
-				System.out.printf(PRINT_STYLE, FAIL_WORD, ERROR_WORD + DO_DROP_DATABASE, DATABASE_NAME);
+				System.out.printf(PRINT_STYLE, FAIL_WORD, ERROR_WORD + CAN_DROP_DATABASE, DATABASE_NAME);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -81,6 +84,7 @@ public class InsertDatabaseTable {
 			/** 找驅動程式 **/
 			Class.forName(DRIVER);
 		} catch (ClassNotFoundException e) {
+			System.out.println(DRIVER_NOT_FOUND);
 			e.printStackTrace();
 		}
 		Connection conn = null;
@@ -92,9 +96,9 @@ public class InsertDatabaseTable {
 			pstmt = conn.prepareStatement(CREATE_DATABASE);
 			try {
 				pstmt.executeUpdate();
-				System.out.printf(PRINT_STYLE, SUCCESS_WORD, DO_CREATE_DATABASE, FULL_TABLE_NAME);
+				System.out.printf(PRINT_STYLE, SUCCESS_WORD, CAN_CREATE_DATABASE, FULL_TABLE_NAME);
 			} catch (Exception e) {
-				System.out.printf(PRINT_STYLE, FAIL_WORD, DO_CREATE_DATABASE, FULL_TABLE_NAME);
+				System.out.printf(PRINT_STYLE, FAIL_WORD, CAN_CREATE_DATABASE, FULL_TABLE_NAME);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -121,6 +125,7 @@ public class InsertDatabaseTable {
 			/** 找驅動程式 **/
 			Class.forName(DRIVER);
 		} catch (ClassNotFoundException e) {
+			System.out.println(DRIVER_NOT_FOUND);
 			e.printStackTrace();
 		}
 		Connection conn = null;
@@ -132,9 +137,9 @@ public class InsertDatabaseTable {
 			pstmt = conn.prepareStatement(CREATE_TABLE);
 			try {
 				pstmt.executeUpdate();
-				System.out.printf(PRINT_STYLE, SUCCESS_WORD, DO_CREATE_TABLE, FULL_TABLE_NAME);
+				System.out.printf(PRINT_STYLE, SUCCESS_WORD, CAN_CREATE_TABLE, FULL_TABLE_NAME);
 			} catch (Exception e) {
-				System.out.printf(PRINT_STYLE, FAIL_WORD, ERROR_WORD + DO_CREATE_TABLE, FULL_TABLE_NAME);
+				System.out.printf(PRINT_STYLE, FAIL_WORD, ERROR_WORD + CAN_CREATE_TABLE, FULL_TABLE_NAME);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

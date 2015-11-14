@@ -8,9 +8,10 @@ public class Init {
 		Date start = new Date(System.currentTimeMillis());
 
 		InsertDatabaseTable.start();
+		InsertTemplateData.start();
 
 		Date end = new Date(System.currentTimeMillis());
-		System.out.println("費時:" + (end.getTime() - start.getTime()) + "ms");
+		System.out.println("費時：" + (end.getTime() - start.getTime()) + "毫秒");
 	}
 
 }

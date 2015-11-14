@@ -6,7 +6,7 @@ body {
 
 #companyCRUDtable tbody tr td:nth-child(3), .errorMessage {
 	color: red;
-	min-width: 100px;
+	min-width: 150px;
 }
 
 #companyCRUDtable tbody tr td:nth-child(1) {

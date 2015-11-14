@@ -6,12 +6,13 @@ public class InitGlobalValue {
 	private String FAIL_WORD = "✗";
 	/** 驅動字串 **/
 	private final String DRIVER = "com.mysql.jdbc.Driver";
+	private final String DRIVER_NOT_FOUND = "找不到 Driver";
 	/** 連線字串 **/
 	private final String CONNURL = "jdbc:mysql://localhost:3306/student";
 	private final String USER = "root";
 	private final String PASSWORD = "root";
 	/** SQL指令 **/
-	private final String DATABASE01 = "company1";// 資料庫名稱
+	private final String DATABASE01 = "company";// 資料庫名稱
 	private final String CREATE_DATABASE = "create database " + DATABASE01;
 	private final String DROP_DATABASE = "drop database " + DATABASE01;
 
@@ -37,6 +38,10 @@ public class InitGlobalValue {
 
 	public String getDRIVER() {
 		return DRIVER;
+	}
+
+	public String getDRIVER_NOT_FOUND() {
+		return DRIVER_NOT_FOUND;
 	}
 
 	public String getCONNURL() {
