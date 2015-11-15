@@ -17,7 +17,6 @@
 </head>
 <body>
 	<center>
-		<h2>${AppName}</h2>
 		<h4>
 			<a href="<%=request.getContextPath()%>/pages/login/loginPage.jsp">會員登入</a>
 		</h4>
