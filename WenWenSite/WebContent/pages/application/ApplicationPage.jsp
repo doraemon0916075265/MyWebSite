@@ -23,8 +23,8 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<!-- 選項 -->
-				<li><a href="#" data-toggle="modal" data-target="#calculatorModal">buttonL2</a><span class="sr-only">(current)</span></li>
-				<li><a href="https://tw.yahoo.com/" target="_blank">buttonL2</a></li>
+				<li><a href="#" data-toggle="modal" data-target="#calculatorModal">qqqqq</a><span class="sr-only">(current)</span></li>
+				<li><a href="https://tw.yahoo.com/" target="_blank"><span class="glyphicon glyphicon-flash"></span></a></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">下拉1&nbsp;<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="#">Action1</a></li>
