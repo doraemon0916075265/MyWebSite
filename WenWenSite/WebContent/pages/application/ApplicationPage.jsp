@@ -9,7 +9,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
 <!-- nav-bar 上方導覽列 -->
-
 <nav class="navbar navbar-default" role="navigation">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -38,7 +37,7 @@
 			<!-- 搜尋 -->
 			<form class="navbar-form navbar-left" role="search">
 				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Search">
+					<input type="text" class="form-control" placeholder="搜尋">
 				</div>
 				<button type="submit" class="btn btn-default">
 					<span class="glyphicon glyphicon-search"></span>
@@ -47,7 +46,6 @@
 			<ul class="nav navbar-nav navbar-right">
 				<!-- 選項 -->
 				<li><a href="https://tw.yahoo.com/" target="_blank">buttonR1</a></li>
-				<li><a href="https://tw.yahoo.com/" target="_blank">buttonR2</a></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">下拉2&nbsp;<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="#">Action1</a></li>
@@ -61,6 +59,30 @@
 		</div>
 	</div>
 </nav>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Launch demo modal</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+			</div>
+			<div class="modal-body">...</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
 
 <!-- css -->
 <link href="<%=request.getContextPath()%>/pages/application/Application.css" rel="stylesheet">
