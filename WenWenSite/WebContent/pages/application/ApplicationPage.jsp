@@ -22,7 +22,7 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<!-- 選項 -->
-					<li><a href="#" data-toggle="modal" data-target="#calculatorModal">計算機</a><span class="sr-only">(current)</span></li>
+					<li><a href="#" data-toggle="modal" data-target="#modalCalculator"><span class="glyphicon glyphicon-calendar"></span></a><span class="sr-only">(current)</span></li>
 					<li><a href="https://tw.yahoo.com/" target="_blank"><span class="glyphicon glyphicon-flash"></span></a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">下拉1&nbsp;<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
@@ -61,8 +61,8 @@
 	</nav>
 
 
-	<!-- Modal -->
-	<div class="modal fade" id="calculatorModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<!-- Modal_計算機 -->
+	<div class="modal fade" id="modalCalculator" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -75,13 +75,13 @@
 					<c:import url="/pages/tools/Calculator.jsp" context="${pageContext.request.contextPath}" />
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
+					<button type="button" class="close" data-dismiss="modal">
+						<span class="glyphicon glyphicon-ok"></span>
+					</button>
 				</div>
 			</div>
 		</div>
 	</div>
-
 
 </center>
 <!-- css -->
