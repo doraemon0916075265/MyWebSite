@@ -12,28 +12,24 @@ public class GlobalValue {
 	private static final String COMPANYNAME = "Company";
 	private static final String HOMEPAGE = "首頁";
 
-	public static String getDemarcation() {
-		return DEMARCATION;
+	public String getHomePage() {
+		return HOMEPAGE;
 	}
 
-	public static String getLogintitle() {
-		return LOGINTITLE;
-	}
-
-	public static String getAppname() {
-		return APPNAME;
-	}
-
-	public static String getMathplace() {
-		return MATHPLACE;
-	}
-
-	public static String getCompanyname() {
+	public String getCompanyName() {
 		return COMPANYNAME;
 	}
 
-	public static String getHomepage() {
-		return HOMEPAGE;
+	public String getLoginTitle() {
+		return LOGINTITLE;
+	}
+
+	public String getAppName() {
+		return APPNAME;
+	}
+
+	public String getMathPlace() {
+		return MATHPLACE;
 	}
 
 	public void Demarcation() {
@@ -72,6 +68,19 @@ public class GlobalValue {
 	}
 
 	public GlobalValue() {
+	}
+
+	public static void main(String[] args) {
+		GlobalValue gv = new GlobalValue();
+		System.out.println(gv.getLoginTitle());
+		System.out.println(gv.getAppName());
+
+		List<Integer> array = new ArrayList<Integer>();
+		array = gv.RandomIntegerArray(2, 4, 5);
+
+		for (Integer output : array) {
+			System.out.print(output + "\t");
+		}
 	}
 
 }
