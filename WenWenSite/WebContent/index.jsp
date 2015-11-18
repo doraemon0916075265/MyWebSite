@@ -17,6 +17,7 @@
 </head>
 <body>
 	<center>
+		EE
 		<h4>
 			<a href="<%=request.getContextPath()%>/pages/login/loginPage.jsp">會員登入</a>
 		</h4>
