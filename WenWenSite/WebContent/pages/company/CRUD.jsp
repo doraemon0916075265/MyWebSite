@@ -34,8 +34,7 @@
 								</c:if>
 
 						</select></td>
-
-						<td><c:out value="${data.database}"></c:out></td>
+						<td></td>
 					</tr>
 					<tr>
 						<td>編號</td>
@@ -69,7 +68,7 @@
 					<!-- </tr> -->
 				</tbody>
 			</table>
-			<table class="table table-responsive">
+			<table id="companyBTNtable" class="table table-responsive">
 				<tbody>
 					<tr>
 						<td><input type="submit" value="查詢" name="actionSelector" id="selectData"></td>
@@ -81,7 +80,6 @@
 					</tr>
 				</tbody>
 			</table>
-			<br>
 			<div class="errorMessage">${error.fail}</div>
 		</form>
 		<hr>

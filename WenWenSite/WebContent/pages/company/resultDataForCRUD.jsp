@@ -5,7 +5,12 @@
 	<!-- 其他錯誤 -->
 	<h3>${error.action}</h3>
 </c:if>
-<c:out value="資料庫：${data.database}"></c:out>
+
+<c:if test="${not empty data}">
+	<!-- 秀出資料庫 -->
+	<c:out value="資料庫：${data.database}"></c:out>
+</c:if>
+
 <c:if test="${not empty select}">
 	<!-- 是否查詢成功 -->
 	<h4>總共有&nbsp;${fn:length(select)}&nbsp;筆資料</h4>

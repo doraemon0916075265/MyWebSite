@@ -12,10 +12,10 @@ import java.util.List;
 import web.model.bean.CompanyCRUDBean;
 import web.model.dao.interfaces.CompanyCRUDdao;
 
-public class CompanyCRUDdaoJDBC implements CompanyCRUDdao {
-	/** 驅動字串 **/
+public class CompanyCRUDoracleJDBC implements CompanyCRUDdao {
+	/** Oracle 驅動字串 **/
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
-	/** 連線字串 **/
+	/** Oracle 連線字串 **/
 	private static final String CONNURL = "jdbc:mysql://localhost:3306/student";
 	private static final String USER = "root";
 	private static final String PASSWORD = "root";
@@ -152,7 +152,8 @@ public class CompanyCRUDdaoJDBC implements CompanyCRUDdao {
 
 		try {
 			conn = DriverManager.getConnection(CONNURL, USER, PASSWORD);
-			// INSERT = "insert into company.employeeinfo (name,age,cellphone,email,hiredate) values (?,?,?,?,?)";
+			// INSERT = "insert into company.employeeinfo
+			// (name,age,cellphone,email,hiredate) values (?,?,?,?,?)";
 			pstmt = conn.prepareStatement(INSERT);
 			if (bean != null) {
 				pstmt.setString(1, bean.getName());
@@ -207,7 +208,8 @@ public class CompanyCRUDdaoJDBC implements CompanyCRUDdao {
 
 		try {
 			conn = DriverManager.getConnection(CONNURL, USER, PASSWORD);
-			// UPDATE = "update company.employeeinfo set name=?,age=?,cellphone=?,email=?,hiredate=? where id=?;";
+			// UPDATE = "update company.employeeinfo set
+			// name=?,age=?,cellphone=?,email=?,hiredate=? where id=?;";
 			pstmt = conn.prepareStatement(UPDATE);
 			pstmt.setString(1, bean.getName());
 			pstmt.setInt(2, bean.getAge());
@@ -300,7 +302,8 @@ public class CompanyCRUDdaoJDBC implements CompanyCRUDdao {
 		/** 測試程式 **/
 		// GlobalValue USE = new GlobalValue();
 		// CompanyCRUDdaoJDBC output = new CompanyCRUDdaoJDBC();
-		// List<CompanyCRUBean> beansSelectAll = new ArrayList<CompanyCRUBean>();
+		// List<CompanyCRUBean> beansSelectAll = new
+		// ArrayList<CompanyCRUBean>();
 		// CompanyCRUBean beanSelectId = new CompanyCRUBean();
 		// CompanyCRUBean beanInsert = new CompanyCRUBean();
 		// CompanyCRUBean beanUpdate = new CompanyCRUBean();

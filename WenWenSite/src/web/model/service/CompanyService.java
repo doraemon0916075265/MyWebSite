@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import web.model.bean.CompanyCRUDBean;
-import web.model.dao.CompanyCRUDdaoJDBC;
+import web.model.dao.CompanyCRUDmysqlJDBC;
 import web.model.dao.interfaces.CompanyCRUDdao;
 
 public class CompanyService {
 
-	private CompanyCRUDdao companyCRUDdao = new CompanyCRUDdaoJDBC();
+	private CompanyCRUDdao companyCRUDdao = new CompanyCRUDmysqlJDBC();
 
 	public List<CompanyCRUDBean> select(CompanyCRUDBean bean) {
 		List<CompanyCRUDBean> result = null;
