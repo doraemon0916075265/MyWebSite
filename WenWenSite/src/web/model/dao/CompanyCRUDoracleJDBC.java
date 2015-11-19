@@ -23,16 +23,16 @@ public class CompanyCRUDoracleJDBC implements CompanyCRUDdao {
 	private static final String PASSWORD = "doraemon";
 	/** SQL指令 **/
 	private static final String SELECT_ALL = "select * from employeeinfo";
-	private static final String SELECT_BY_ID = "select * from company.employeeinfo where id=?";
-	private static final String INSERT = "insert into company.employeeinfo (name,age,cellphone,email,hiredate) values (?,?,?,?,?)";
-	private static final String UPDATE = "update company.employeeinfo set name=?,age=?,cellphone=?,email=?,hiredate=? where id=?;";
-	private static final String DELETE = "delete from company.employeeinfo where id=?";
+	private static final String SELECT_BY_ID = "select * from employeeinfo where id=?";
+
+	private static final String INSERT = "insert into employeeinfo (id,name,age,cellphone,email,hiredate) values (?,?,?,?,?,?)";
+	private static final String UPDATE = "update employeeinfo set name=?,age=?,cellphone=?,email=?,hiredate=? where id=?";
+	private static final String DELETE = "delete from employeeinfo where id=?";
 
 	public List<CompanyCRUDBean> select() {
 		try {
 			// 找驅動程式
 			Class.forName(DRIVER);
-			System.out.println("ok");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -48,13 +48,7 @@ public class CompanyCRUDoracleJDBC implements CompanyCRUDdao {
 			pstmt = conn.prepareStatement(SELECT_ALL);
 			rs = pstmt.executeQuery(SELECT_ALL);
 
-			System.out.println("pstmt\t" + pstmt);
-			System.out.println("rs\t" + rs);
-			System.out.println(rs.next());
-
 			while (rs.next()) {
-
-				System.out.println("while");
 				bean = new CompanyCRUDBean();
 				bean.setId(rs.getInt("id"));
 				bean.setName(rs.getString("name"));
@@ -164,19 +158,24 @@ public class CompanyCRUDoracleJDBC implements CompanyCRUDdao {
 			// INSERT = "insert into company.employeeinfo
 			// (name,age,cellphone,email,hiredate) values (?,?,?,?,?)";
 			pstmt = conn.prepareStatement(INSERT);
+
+			int dataSize = select().size();
+			int maxid = select().get(dataSize - 1).getId();
+
 			if (bean != null) {
-				pstmt.setString(1, bean.getName());
-				pstmt.setInt(2, bean.getAge());
-				pstmt.setString(3, bean.getCellphone());
-				pstmt.setString(4, bean.getEmail());
-				pstmt.setTimestamp(5, new java.sql.Timestamp(System.currentTimeMillis()));
+				pstmt.setInt(1, maxid + 1);
+				pstmt.setString(2, bean.getName());
+				pstmt.setInt(3, bean.getAge());
+				pstmt.setString(4, bean.getCellphone());
+				pstmt.setString(5, bean.getEmail());
+				pstmt.setTimestamp(6, new java.sql.Timestamp(System.currentTimeMillis()));
 
 			}
 
 			int count = pstmt.executeUpdate();
 			if (count == 1) {
 				System.out.println("～～～新增成功～～～");
-				int dataSize = select().size();
+				dataSize = select().size();
 				CompanyCRUDBean selectBean = select().get(dataSize - 1);
 				result = selectBean;
 			}
@@ -309,21 +308,22 @@ public class CompanyCRUDoracleJDBC implements CompanyCRUDdao {
 
 	public static void main(String[] args) throws Throwable {
 		/** 測試程式 **/
-		GlobalValue USE = new GlobalValue();
-		CompanyCRUDoracleJDBC output = new CompanyCRUDoracleJDBC();
-		List<CompanyCRUDBean> beansSelectAll = new ArrayList<CompanyCRUDBean>();
-		CompanyCRUDBean beanSelectId = new CompanyCRUDBean();
-		CompanyCRUDBean beanInsert = new CompanyCRUDBean();
-		CompanyCRUDBean beanUpdate = new CompanyCRUDBean();
-		boolean dataDelete = false;
-
-		beansSelectAll = output.select();
-		System.out.println("全部查詢");
-		for (CompanyCRUDBean selectBean : beansSelectAll) {
-			System.out.println(selectBean);
-		}
-		USE.Demarcation();
-
+		// GlobalValue USE = new GlobalValue();
+		// CompanyCRUDoracleJDBC output = new CompanyCRUDoracleJDBC();
+		// List<CompanyCRUDBean> beansSelectAll = new
+		// ArrayList<CompanyCRUDBean>();
+		// CompanyCRUDBean beanSelectId = new CompanyCRUDBean();
+		// CompanyCRUDBean beanInsert = new CompanyCRUDBean();
+		// CompanyCRUDBean beanUpdate = new CompanyCRUDBean();
+		// boolean dataDelete = false;
+		//
+		// beansSelectAll = output.select();
+		// System.out.println("全部查詢");
+		// for (CompanyCRUDBean selectBean : beansSelectAll) {
+		// System.out.println(selectBean);
+		// }
+		// USE.Demarcation();
+		//
 		// beanSelectId = output.select(1);
 		// System.out.println("id查詢");
 		// System.out.println(beanSelectId);
@@ -335,7 +335,7 @@ public class CompanyCRUDoracleJDBC implements CompanyCRUDdao {
 		// beanInsert.setAge(18);
 		// beanInsert.setCellphone("092222222");
 		// beanInsert.setEmail("boss@gamil.com");
-		// // beanInsert = output.insert(beanInsert);
+		// beanInsert = output.insert(beanInsert);
 		// System.out.println(beanInsert);
 		//
 		// USE.Demarcation();
@@ -348,7 +348,7 @@ public class CompanyCRUDoracleJDBC implements CompanyCRUDdao {
 		// beanUpdate.setCellphone("0955555555");
 		// beanUpdate.setEmail("snoopy@gamil.com");
 		// beanUpdate.setHiredate(now);
-		// beanUpdate.setId(10);
+		// beanUpdate.setId(4);
 		// beanUpdate = output.update(beanUpdate);
 		// System.out.println(beanUpdate);
 		//

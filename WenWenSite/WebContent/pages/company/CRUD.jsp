@@ -20,12 +20,12 @@
 						<td><select name="database" id="database">
 								<option value="MySQL" id="MySQL">MySQL</option>
 								<option value="Oracle" id="Oracle">Oracle</option>
-								<c:if test="${data.database=='MySQL'}">
+								<c:if test="${data.database=='mysql'}">
 									<script type="text/javascript">
 										$("#MySQL").attr("selected", "selected");
 									</script>
 								</c:if>
-								<c:if test="${data.database=='Oracle'}">
+								<c:if test="${data.database=='oracle'}">
 									<script type="text/javascript">
 										(function($) {
 											$("#Oracle").attr("selected", "selected");

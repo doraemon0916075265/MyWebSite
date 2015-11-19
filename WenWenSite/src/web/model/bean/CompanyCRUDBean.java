@@ -9,6 +9,7 @@ public class CompanyCRUDBean {
 	private String cellphone;
 	private String email;
 	private Date hiredate;
+	private String database;
 
 	public int getId() {
 		return id;
@@ -58,9 +59,17 @@ public class CompanyCRUDBean {
 		this.hiredate = hiredate;
 	}
 
+	public String getDatabase() {
+		return database;
+	}
+
+	public void setDatabase(String database) {
+		this.database = database;
+	}
+
 	@Override
 	public String toString() {
-		return "CompanyCRUBean [id=" + id + ", name=" + name + ", age=" + age + ", cellphone=" + cellphone + ", email=" + email + ", hiredate=" + hiredate + "]";
+		return "CompanyCRUDBean [id=" + id + ", name=" + name + ", age=" + age + ", cellphone=" + cellphone + ", email=" + email + ", hiredate=" + hiredate + ", database=" + database + "]";
 	}
 
 }

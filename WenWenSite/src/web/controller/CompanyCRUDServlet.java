@@ -39,7 +39,7 @@ public class CompanyCRUDServlet extends HttpServlet {
 		String hiredate = request.getParameter("hiredate");
 		String acitonSelector = request.getParameter("actionSelector");
 
-		String database = request.getParameter("database");
+		String database = request.getParameter("database").trim().toLowerCase();
 		Map<String, String> datas = new HashMap<String, String>();
 		request.setAttribute("data", datas);
 		datas.put("database", database);
@@ -124,6 +124,7 @@ public class CompanyCRUDServlet extends HttpServlet {
 		bean.setCellphone(cellphone);
 		bean.setEmail(email);
 		bean.setHiredate(new java.sql.Timestamp(new Date().getTime()));
+		bean.setDatabase(database);
 
 		// 根據Model執行結果導向View
 		if (acitonSelector != null && acitonSelector.equals("查詢")) {
