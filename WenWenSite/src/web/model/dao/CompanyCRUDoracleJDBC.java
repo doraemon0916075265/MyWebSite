@@ -9,18 +9,20 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import globalService.GlobalValue;
 import web.model.bean.CompanyCRUDBean;
 import web.model.dao.interfaces.CompanyCRUDdao;
 
 public class CompanyCRUDoracleJDBC implements CompanyCRUDdao {
 	/** Oracle 驅動字串 **/
-	private static final String DRIVER = "com.mysql.jdbc.Driver";
+	private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
 	/** Oracle 連線字串 **/
-	private static final String CONNURL = "jdbc:mysql://localhost:3306/student";
-	private static final String USER = "root";
-	private static final String PASSWORD = "root";
+	// jdbc:oracle:thin:[USER/PASSWORD]@[HOST][:PORT]:SID
+	private static final String CONNURL = "jdbc:oracle:thin:@localhost:1521:orcl";
+	private static final String USER = "doraemon";
+	private static final String PASSWORD = "doraemon";
 	/** SQL指令 **/
-	private static final String SELECT_ALL = "select * from company.employeeinfo";
+	private static final String SELECT_ALL = "select * from employeeinfo";
 	private static final String SELECT_BY_ID = "select * from company.employeeinfo where id=?";
 	private static final String INSERT = "insert into company.employeeinfo (name,age,cellphone,email,hiredate) values (?,?,?,?,?)";
 	private static final String UPDATE = "update company.employeeinfo set name=?,age=?,cellphone=?,email=?,hiredate=? where id=?;";
@@ -30,6 +32,7 @@ public class CompanyCRUDoracleJDBC implements CompanyCRUDdao {
 		try {
 			// 找驅動程式
 			Class.forName(DRIVER);
+			System.out.println("ok");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -43,9 +46,15 @@ public class CompanyCRUDoracleJDBC implements CompanyCRUDdao {
 		try {
 			conn = DriverManager.getConnection(CONNURL, USER, PASSWORD);
 			pstmt = conn.prepareStatement(SELECT_ALL);
-			rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery(SELECT_ALL);
+
+			System.out.println("pstmt\t" + pstmt);
+			System.out.println("rs\t" + rs);
+			System.out.println(rs.next());
 
 			while (rs.next()) {
+
+				System.out.println("while");
 				bean = new CompanyCRUDBean();
 				bean.setId(rs.getInt("id"));
 				bean.setName(rs.getString("name"));
@@ -300,22 +309,21 @@ public class CompanyCRUDoracleJDBC implements CompanyCRUDdao {
 
 	public static void main(String[] args) throws Throwable {
 		/** 測試程式 **/
-		// GlobalValue USE = new GlobalValue();
-		// CompanyCRUDdaoJDBC output = new CompanyCRUDdaoJDBC();
-		// List<CompanyCRUBean> beansSelectAll = new
-		// ArrayList<CompanyCRUBean>();
-		// CompanyCRUBean beanSelectId = new CompanyCRUBean();
-		// CompanyCRUBean beanInsert = new CompanyCRUBean();
-		// CompanyCRUBean beanUpdate = new CompanyCRUBean();
-		// boolean dataDelete = false;
-		//
-		// beansSelectAll = output.select();
-		// System.out.println("全部查詢");
-		// for (CompanyCRUBean selectBean : beansSelectAll) {
-		// System.out.println(selectBean);
-		// }
-		// USE.Demarcation();
-		//
+		GlobalValue USE = new GlobalValue();
+		CompanyCRUDoracleJDBC output = new CompanyCRUDoracleJDBC();
+		List<CompanyCRUDBean> beansSelectAll = new ArrayList<CompanyCRUDBean>();
+		CompanyCRUDBean beanSelectId = new CompanyCRUDBean();
+		CompanyCRUDBean beanInsert = new CompanyCRUDBean();
+		CompanyCRUDBean beanUpdate = new CompanyCRUDBean();
+		boolean dataDelete = false;
+
+		beansSelectAll = output.select();
+		System.out.println("全部查詢");
+		for (CompanyCRUDBean selectBean : beansSelectAll) {
+			System.out.println(selectBean);
+		}
+		USE.Demarcation();
+
 		// beanSelectId = output.select(1);
 		// System.out.println("id查詢");
 		// System.out.println(beanSelectId);
