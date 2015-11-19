@@ -17,11 +17,25 @@
 				<tbody>
 					<tr>
 						<td>資料庫</td>
-						<td><select name="database">
-								<option value="MySQL">MySQL</option>
-								<option value="Oracle">Oracle</option>
+						<td><select name="database" id="database">
+								<option value="MySQL" id="MySQL">MySQL</option>
+								<option value="Oracle" id="Oracle">Oracle</option>
+								<c:if test="${data.database=='MySQL'}">
+									<script type="text/javascript">
+										$("#MySQL").attr("selected", "selected");
+									</script>
+								</c:if>
+								<c:if test="${data.database=='Oracle'}">
+									<script type="text/javascript">
+										(function($) {
+											$("#Oracle").attr("selected", "selected");
+										}(jQuery));
+									</script>
+								</c:if>
+
 						</select></td>
-						<td>${error.database}</td>
+
+						<td><c:out value="${data.database}"></c:out></td>
 					</tr>
 					<tr>
 						<td>編號</td>
@@ -62,7 +76,7 @@
 						<td><input type="submit" value="新增" name="actionSelector" id="insertData"></td>
 						<td><input type="submit" value="修改" name="actionSelector" id="updateData"></td>
 						<td><input type="submit" value="刪除" name="actionSelector" id="deleteData"></td>
-						<td><input type="button" value="清除" id="cleanInput"></td>
+						<td><input type="button" value="清除" name="actionSelector" id="cleanInput"></td>
 
 					</tr>
 				</tbody>

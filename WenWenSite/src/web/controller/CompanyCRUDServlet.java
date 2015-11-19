@@ -39,6 +39,11 @@ public class CompanyCRUDServlet extends HttpServlet {
 		String hiredate = request.getParameter("hiredate");
 		String acitonSelector = request.getParameter("actionSelector");
 
+		String database = request.getParameter("database");
+		Map<String, String> datas = new HashMap<String, String>();
+		request.setAttribute("data", datas);
+		datas.put("database", database);
+
 		// 轉換資料
 		Map<String, String> errors = new HashMap<String, String>();
 		request.setAttribute("error", errors);
@@ -80,7 +85,7 @@ public class CompanyCRUDServlet extends HttpServlet {
 
 		// 驗證資料
 		if (acitonSelector != null) {
-			System.out.println("操作：" + acitonSelector + "\t編號：" + tempid + "\t姓名：" + name + "\t年齡：" + tempage + "\t手機：" + cellphone + "\tE-mail：" + email + "\t到職日：" + hiredate);
+			System.out.println("操作：" + acitonSelector + "\t編號：" + tempid + "\t姓名：" + name + "\t年齡：" + tempage + "\t手機：" + cellphone + "\tE-mail：" + email + "\t到職日：" + hiredate + "\t資料庫：" + database);
 			if (acitonSelector.equals("新增") || acitonSelector.equals("修改") || acitonSelector.equals("刪除")) {
 				if (acitonSelector.equals("新增") || acitonSelector.equals("修改")) {
 					/** 新增跟修改，需要name age cellphone email **/
@@ -158,7 +163,6 @@ public class CompanyCRUDServlet extends HttpServlet {
 			errors.put("action", "未知的操作");
 			request.getRequestDispatcher(GO_TO_COMPANYCRUD).forward(request, response);
 		}
-
 	}
 
 	@Override

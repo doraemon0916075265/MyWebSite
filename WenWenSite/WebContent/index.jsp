@@ -7,6 +7,8 @@
 <c:set var="MathPlace" value="${SYSTEM.mathPlace}" scope="application" />
 <c:set var="CompanyName" value="${SYSTEM.companyName}" scope="application" />
 <c:set var="HomePage" value="${SYSTEM.homePage}" scope="application" />
+<c:set var="MySQL" value="${SYSTEM.mysql}" scope="application" />
+<c:set var="Oracle" value="${SYSTEM.oracle}" scope="application" />
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>

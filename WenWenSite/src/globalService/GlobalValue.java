@@ -11,6 +11,17 @@ public class GlobalValue {
 	private static final String MATHPLACE = "數學專區";
 	private static final String COMPANYNAME = "Company";
 	private static final String HOMEPAGE = "首頁";
+	private static final String MYSQL = "MySQL";
+	private static final String ORACLE = "Oracle";
+
+	
+	public String getMysql() {
+		return MYSQL;
+	}
+
+	public String getOracle() {
+		return ORACLE;
+	}
 
 	public String getHomePage() {
 		return HOMEPAGE;
@@ -68,19 +79,6 @@ public class GlobalValue {
 	}
 
 	public GlobalValue() {
-	}
-
-	public static void main(String[] args) {
-		GlobalValue gv = new GlobalValue();
-		System.out.println(gv.getLoginTitle());
-		System.out.println(gv.getAppName());
-
-		List<Integer> array = new ArrayList<Integer>();
-		array = gv.RandomIntegerArray(2, 4, 5);
-
-		for (Integer output : array) {
-			System.out.print(output + "\t");
-		}
 	}
 
 }
