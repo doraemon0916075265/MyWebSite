@@ -13,8 +13,16 @@
 	<center>
 		<h2>${CompanyName}&nbsp;CRUD</h2>
 		<form action="CompanyCRUD.do">
-			<table id="companyCRUDtable">
+			<table id="companyCRUDtable" class="table table-responsive">
 				<tbody>
+					<tr>
+						<td>資料庫</td>
+						<td><select name="database">
+								<option value="MySQL">MySQL</option>
+								<option value="Oracle">Oracle</option>
+						</select></td>
+						<td>${error.database}</td>
+					</tr>
 					<tr>
 						<td>編號</td>
 						<td><input type="text" name="id" value="${param.id}"></td>
@@ -47,7 +55,7 @@
 					<!-- </tr> -->
 				</tbody>
 			</table>
-			<table>
+			<table class="table table-responsive">
 				<tbody>
 					<tr>
 						<td><input type="submit" value="查詢" name="actionSelector" id="selectData"></td>
