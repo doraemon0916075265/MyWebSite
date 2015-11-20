@@ -8,14 +8,14 @@ public class GlobalValueSQL {
 	private final String CAN_NOT_WORD = "無法";
 	private final String CAN_DROP_DATABASE = "刪除資料庫";
 	private final String CAN_CREATE_DATABASE = "創建資料庫";
-	private final String CAN_CREATE_TABLE = "建立表格　";
+	private final String CAN_CREATE_TABLE = "建立表資料表";
 	private final String CAN_INSERT_FAKE_DATA = "建立假資料";
 	// -------------------------------------------------------------------
 	/** SQL 其他字串 **/
 	private final String DRIVER_NOT_FOUND = "找不到 Driver";
-	private final String DATABASE_TEMP = "company";// 資料庫名稱
-	private final String TABLE_TEMP = "employeeinfo";// 表格名稱
-	private final String FULL_TABLE_NAME = DATABASE_TEMP + "." + TABLE_TEMP;
+	private final String DATABASE_NAME = "company";// 資料庫名稱
+	private final String TABLE_NAME = "employeeinfo";// 表格名稱
+	private final String FULL_TABLE_NAME = DATABASE_NAME + "." + TABLE_NAME;
 	// -------------------------------------------------------------------
 	/** MySQL 驅動字串 **/
 	private final String MYSQL_DRIVER = "com.mysql.jdbc.Driver";
@@ -24,11 +24,11 @@ public class GlobalValueSQL {
 	private final String MYSQL_USER = "root";// MySQL 帳號
 	private final String MYSQL_PASSWORD = "root";// MySQL 密碼
 	/** MySQL SQL指令 - database **/
-	private final String MYSQL_CREATE_DATABASE = "create database " + DATABASE_TEMP;
-	private final String MYSQL_DROP_DATABASE = "drop database " + DATABASE_TEMP;
+	private final String MYSQL_CREATE_DATABASE = "create database " + DATABASE_NAME;
+	private final String MYSQL_DROP_DATABASE = "drop database " + DATABASE_NAME;
 	/** MySQL SQL指令 - table **/
 	private final String MYSQL_TABLE_TEMP_COLUMN = "id int auto_increment,primary key(id),name varchar(50),age int,cellphone varchar(10),email varchar(50),hiredate datetime";
-	private final String MYSQL_CREATE_TABLE = "create table " + DATABASE_TEMP + "." + TABLE_TEMP + "(" + MYSQL_TABLE_TEMP_COLUMN + ")";
+	private final String MYSQL_CREATE_TABLE = "create table " + DATABASE_NAME + "." + TABLE_NAME + "(" + MYSQL_TABLE_TEMP_COLUMN + ")";
 	/** MySQL SQL指令 - data **/
 	private final String MYSQL_INSERT_FAKE_DATA = "insert into " + FULL_TABLE_NAME + " (name,age,cellphone,email,hiredate) values (?,?,?,?,?)";
 	// -------------------------------------------------------------------
@@ -39,11 +39,11 @@ public class GlobalValueSQL {
 	private final String ORACLE_USER = "root";// Oracle 帳號
 	private final String ORACLE_PASSWORD = "root";// Oracle 密碼
 	/** Oracle SQL指令 - database **/
-	private final String ORACLE_CREATE_DATABASE = "create database " + DATABASE_TEMP;
-	private final String ORACLE_DROP_DATABASE = "drop database " + DATABASE_TEMP;
+	private final String ORACLE_CREATE_DATABASE = "create database " + DATABASE_NAME;
+	private final String ORACLE_DROP_DATABASE = "drop database " + DATABASE_NAME;
 	/** Oracle SQL指令 - table **/
 	private final String TABLE_COLUMN = "id int auto_increment,primary key(id),name varchar(50),age int,cellphone varchar(10),email varchar(50),hiredate datetime";
-	private final String ORACLE_CREATE_TABLE = "create table " + DATABASE_TEMP + "." + TABLE_TEMP + "(" + TABLE_COLUMN + ")";
+	private final String ORACLE_CREATE_TABLE = "create table " + DATABASE_NAME + "." + TABLE_NAME + "(" + TABLE_COLUMN + ")";
 	/** ORACLE SQL指令 - data **/
 	private final String ORACLE_INSERT_FAKE_DATA = "insert into " + FULL_TABLE_NAME + " (name,age,cellphone,email,hiredate) values (?,?,?,?,?)";
 
@@ -74,8 +74,6 @@ public class GlobalValueSQL {
 		}
 		return result;
 	}
-
-	// -------------------------------------------------------------------
 
 	public String getSUCCESS_WORD() {
 		return SUCCESS_WORD;
@@ -113,12 +111,12 @@ public class GlobalValueSQL {
 		return DRIVER_NOT_FOUND;
 	}
 
-	public String getDATABASE_TEMP() {
-		return DATABASE_TEMP;
+	public String getDATABASE_NAME() {
+		return DATABASE_NAME;
 	}
 
-	public String getTABLE_TEMP() {
-		return TABLE_TEMP;
+	public String getTABLE_NAME() {
+		return TABLE_NAME;
 	}
 
 	public String getFULL_TABLE_NAME() {
@@ -196,5 +194,7 @@ public class GlobalValueSQL {
 	public String getORACLE_INSERT_FAKE_DATA() {
 		return ORACLE_INSERT_FAKE_DATA;
 	}
+
+	// -------------------------------------------------------------------
 
 }
