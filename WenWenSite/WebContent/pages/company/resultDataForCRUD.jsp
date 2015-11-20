@@ -35,6 +35,7 @@
 					<c:param name="cellphone" value="${row.cellphone}" />
 					<c:param name="email" value="${row.email}" />
 					<c:param name="hiredate" value="${row.hiredate}" />
+					<c:param name="database" value="${data.database}" />
 				</c:url>
 				<tr>
 					<td><a href="${linkPath}">${row.id}</a></td>

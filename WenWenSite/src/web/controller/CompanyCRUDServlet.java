@@ -42,7 +42,7 @@ public class CompanyCRUDServlet extends HttpServlet {
 		String database = request.getParameter("database");
 		Map<String, String> datas = new HashMap<String, String>();
 		request.setAttribute("data", datas);
-		datas.put("database", database);
+		datas.put("database", database.trim().toLowerCase());
 
 		// 轉換資料
 		Map<String, String> errors = new HashMap<String, String>();
