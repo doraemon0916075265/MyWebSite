@@ -10,4 +10,6 @@
 		$("#companyCRUDtable tbody tr:gt(1) td input[type='text']").val("");
 	}
 
+	$("#companyCRUDtable input[type='text']").attr('autocomplete', 'off');
+
 }(jQuery));

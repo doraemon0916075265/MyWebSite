@@ -6,7 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import globalService.GlobalValue;
@@ -159,9 +161,16 @@ public class CompanyCRUDoracleJDBC implements CompanyCRUDdao {
 			// (name,age,cellphone,email,hiredate) values (?,?,?,?,?)";
 			pstmt = conn.prepareStatement(INSERT);
 
-			int dataSize = select().size();
-			int maxid = select().get(dataSize).getId();
+			List<CompanyCRUDBean> templist = select();
+			int dataSize = templist.size();
+			int[] tempid = new int[dataSize];
+			for (int i = 0; i < dataSize; i++) {
+				tempid[i] = templist.get(i).getId();
+			}
 
+			Arrays.sort(tempid);
+
+			int maxid = tempid[tempid.length - 1];
 			if (bean != null) {
 				pstmt.setInt(1, maxid + 1);
 				pstmt.setString(2, bean.getName());
@@ -174,8 +183,7 @@ public class CompanyCRUDoracleJDBC implements CompanyCRUDdao {
 			int count = pstmt.executeUpdate();
 			if (count == 1) {
 				System.out.println("～～～新增成功～～～");
-				dataSize = select().size();
-				CompanyCRUDBean selectBean = select().get(dataSize - 1);
+				CompanyCRUDBean selectBean = select(maxid + 1);
 				result = selectBean;
 			}
 
