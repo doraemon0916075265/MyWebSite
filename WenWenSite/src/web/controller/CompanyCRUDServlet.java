@@ -39,7 +39,7 @@ public class CompanyCRUDServlet extends HttpServlet {
 		String hiredate = request.getParameter("hiredate");
 		String acitonSelector = request.getParameter("actionSelector");
 
-		String database = request.getParameter("database").trim().toLowerCase();
+		String database = request.getParameter("database");
 		Map<String, String> datas = new HashMap<String, String>();
 		request.setAttribute("data", datas);
 		datas.put("database", database);
@@ -72,7 +72,6 @@ public class CompanyCRUDServlet extends HttpServlet {
 
 		if (cellphone != null && cellphone.trim().length() != 0) {
 			boolean isLegaCellphone = cellphone.matches("^[09]{2}[0-9]{8}$");// 手機號碼
-			System.out.println(cellphone + "\t" + isLegaCellphone);
 			if (!isLegaCellphone) {
 				errors.put("cellphone", "請輸入合法號碼");
 			}

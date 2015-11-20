@@ -160,7 +160,7 @@ public class CompanyCRUDoracleJDBC implements CompanyCRUDdao {
 			pstmt = conn.prepareStatement(INSERT);
 
 			int dataSize = select().size();
-			int maxid = select().get(dataSize - 1).getId();
+			int maxid = select().get(dataSize).getId();
 
 			if (bean != null) {
 				pstmt.setInt(1, maxid + 1);
@@ -171,7 +171,6 @@ public class CompanyCRUDoracleJDBC implements CompanyCRUDdao {
 				pstmt.setTimestamp(6, new java.sql.Timestamp(System.currentTimeMillis()));
 
 			}
-
 			int count = pstmt.executeUpdate();
 			if (count == 1) {
 				System.out.println("～～～新增成功～～～");
@@ -238,7 +237,6 @@ public class CompanyCRUDoracleJDBC implements CompanyCRUDdao {
 			if (count == 1) {
 				System.out.println("～～～更新成功～～～");
 				CompanyCRUDBean updateBean = select(bean.getId());
-				System.out.println();
 				result = updateBean;
 			}
 

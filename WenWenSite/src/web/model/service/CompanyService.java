@@ -16,7 +16,6 @@ public class CompanyService {
 	public List<CompanyCRUDBean> select(CompanyCRUDBean bean) {
 		List<CompanyCRUDBean> result = null;
 		String database = bean.getDatabase();
-		System.out.println(database);
 		if (database.trim().toLowerCase().equals("mysql")) {
 			// MySQL
 			if (bean != null && bean.getId() != 0) {
