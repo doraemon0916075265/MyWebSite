@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Stack;
 
-import com.sun.xml.internal.ws.api.streaming.XMLStreamReaderFactory.Default;
-
 import globalService.GlobalValue;
 
 public class CalculatorSimple {
@@ -78,7 +76,8 @@ public class CalculatorSimple {
 			unitChar = expression.charAt(i);
 			endIndex = i;
 			if (unitChar != '*' && unitChar != '+' && unitChar != '-' && unitChar != '/' && unitChar != '(' && unitChar != ')') {
-				// System.out.println(i + "\t" + beginIndex + "\t" + endIndex + "\t" + expressionSize);
+				// System.out.println(i + "\t" + beginIndex + "\t" + endIndex +
+				// "\t" + expressionSize);
 
 			} else {
 

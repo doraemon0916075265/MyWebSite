@@ -9,33 +9,34 @@ import java.util.Scanner;
 import globalService.GlobalValue;
 
 public class CreateDatabaseTable {
+	/** 在 Eclipse console 建立資料庫 **/
 	/** 驅動字串 **/
-	private static final String DRIVER = "com.mysql.jdbc.Driver";
+	private static final String MYSQL_DRIVER = "com.mysql.jdbc.Driver";
 	/** 連線字串 **/
-	private static final String CONNURL = "jdbc:mysql://localhost:3306/student";
-	private static final String USER = "root";
-	private static final String PASSWORD = "root";
+	private static final String MYSQL_CONNURL = "jdbc:mysql://localhost:3306/student";
+	private static final String MYSQL_USER = "root";
+	private static final String MYSQL_PASSWORD = "root";
 
 	/** SQL指令 **/
-	private static final String CREATE_DATABASE = "create database ";
-	private static final String DROP_DATABASE = "drop database ";
+	private static final String MYSQL_CREATE_DATABASE = "create database ";
+	private static final String MYSQL_DROP_DATABASE = "drop database ";
 
 	private boolean createDatabase(String databaseName) {
 		/** 新增資料庫 **/
 		boolean result = false;
 		try {
 			// 找驅動程式
-			Class.forName(DRIVER);
+			Class.forName(MYSQL_DRIVER);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 
-		String SQLdatabaseName = CREATE_DATABASE + databaseName;
+		String SQLdatabaseName = MYSQL_CREATE_DATABASE + databaseName;
 
 		try {
-			conn = DriverManager.getConnection(CONNURL, USER, PASSWORD);
+			conn = DriverManager.getConnection(MYSQL_CONNURL, MYSQL_USER, MYSQL_PASSWORD);
 			pstmt = conn.prepareStatement(SQLdatabaseName);
 
 			try {
@@ -73,7 +74,7 @@ public class CreateDatabaseTable {
 		/** 刪除資料庫 **/
 		try {
 			// 找驅動程式
-			Class.forName(DRIVER);
+			Class.forName(MYSQL_DRIVER);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -81,10 +82,10 @@ public class CreateDatabaseTable {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 
-		String SQLdatabaseName = DROP_DATABASE + databaseName;
+		String SQLdatabaseName = MYSQL_DROP_DATABASE + databaseName;
 
 		try {
-			conn = DriverManager.getConnection(CONNURL, USER, PASSWORD);
+			conn = DriverManager.getConnection(MYSQL_CONNURL, MYSQL_USER, MYSQL_PASSWORD);
 			pstmt = conn.prepareStatement(SQLdatabaseName);
 
 			try {

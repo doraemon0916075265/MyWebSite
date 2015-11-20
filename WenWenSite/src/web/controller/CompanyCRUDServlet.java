@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import web.globalService.GlobalValue;
+import web.globalService.GlobalDataParse;
 import web.model.bean.CompanyCRUDBean;
 import web.model.service.CompanyService;
 
@@ -49,7 +49,7 @@ public class CompanyCRUDServlet extends HttpServlet {
 		request.setAttribute("error", errors);
 		int id = 0;
 		if (tempid != null && tempid.trim().length() != 0) {
-			id = GlobalValue.convertInt(tempid);
+			id = GlobalDataParse.convertInt(tempid);
 			if (id == -1000) {
 				errors.put("id", "請輸入整數");
 			}
@@ -64,7 +64,7 @@ public class CompanyCRUDServlet extends HttpServlet {
 
 		int age = 0;
 		if (tempage != null && tempage.trim().length() != 0) {
-			age = GlobalValue.convertInt(tempage);
+			age = GlobalDataParse.convertInt(tempage);
 			if (age == -1000) {
 				errors.put("age", "請輸入整數");
 			}

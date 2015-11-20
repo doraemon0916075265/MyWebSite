@@ -1,6 +1,6 @@
 package web.globalService;
 
-public class GlobalValue {
+public class GlobalDataParse {
 
 	// 判斷輸入資料轉成數字有無錯誤
 	public static int convertInt(String data) {

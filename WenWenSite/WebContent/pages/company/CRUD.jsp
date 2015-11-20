@@ -48,7 +48,7 @@
 					</tr>
 					<tr>
 						<td>年齡</td>
-						<td><input type="text" name="age" value="${param.age}"></td>
+						<td><input type="text" name="age" value="${param.age}" maxlength="3"></td>
 						<td>${error.age}</td>
 					</tr>
 					<tr>
