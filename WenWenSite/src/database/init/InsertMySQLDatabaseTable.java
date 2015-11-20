@@ -1,3 +1,4 @@
+package database.init;
 //package web.init;
 //
 //import java.sql.Connection;

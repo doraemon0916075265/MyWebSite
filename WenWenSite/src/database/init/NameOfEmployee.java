@@ -1,4 +1,4 @@
-package web.init;
+package database.init;
 
 import java.util.ArrayList;
 import java.util.List;
