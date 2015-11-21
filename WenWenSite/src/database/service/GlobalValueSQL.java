@@ -12,7 +12,7 @@ public class GlobalValueSQL {
 	private final String CAN_INSERT_FAKE_DATA = "建立假資料";
 	// -------------------------------------------------------------------
 	/** SQL 其他字串 **/
-	private final String DRIVER_NOT_FOUND = "找不到 Driver";
+	private final String DRIVER_NOT_FOUND = "無效的 Driver";
 	private final String DATABASE_NAME = "company";// 資料庫名稱
 	private final String TABLE_NAME = "employeeinfo";// 表格名稱
 	private final String FULL_TABLE_NAME = DATABASE_NAME + "." + TABLE_NAME;
@@ -56,7 +56,6 @@ public class GlobalValueSQL {
 			result = true;
 		} catch (ClassNotFoundException e) {
 			System.out.println(DRIVER_NOT_FOUND);
-			e.printStackTrace();
 		}
 		return result;
 	}
@@ -70,7 +69,6 @@ public class GlobalValueSQL {
 			result = true;
 		} catch (ClassNotFoundException e) {
 			System.out.println(DRIVER_NOT_FOUND);
-			e.printStackTrace();
 		}
 		return result;
 	}
