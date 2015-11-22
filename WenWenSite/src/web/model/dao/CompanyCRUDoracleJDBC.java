@@ -8,10 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
-import globalService.GlobalValue;
 import web.model.bean.CompanyCRUDBean;
 import web.model.dao.interfaces.CompanyCRUDdao;
 

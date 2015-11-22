@@ -120,7 +120,7 @@ public class InsertMySQLDatabaseTable {
 			PreparedStatement pstmt = null;
 
 			try {
-				/** 建立表格 **/
+				/** 建立資料表 **/
 				conn = DriverManager.getConnection(MYSQL_CONNURL, MYSQL_USER, MYSQL_PASSWORD);
 				pstmt = conn.prepareStatement(MYSQL_CREATE_TABLE);
 				try {

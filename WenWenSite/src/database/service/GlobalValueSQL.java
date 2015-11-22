@@ -8,6 +8,7 @@ public class GlobalValueSQL {
 	private final String CAN_NOT_WORD = "無法";
 	private final String CAN_DROP_DATABASE = "刪除資料庫";
 	private final String CAN_CREATE_DATABASE = "創建資料庫";
+	private final String CAN_DROP_TABLE = "刪除資料表";
 	private final String CAN_CREATE_TABLE = "建立表資料表";
 	private final String CAN_INSERT_FAKE_DATA = "建立假資料";
 	// -------------------------------------------------------------------
@@ -33,17 +34,20 @@ public class GlobalValueSQL {
 	private final String MYSQL_INSERT_FAKE_DATA = "insert into " + FULL_TABLE_NAME + " (name,age,cellphone,email,hiredate) values (?,?,?,?,?)";
 	// -------------------------------------------------------------------
 	/** Oracle 驅動字串 **/
-	private final String ORACLE_DRIVER = "com.mysql.jdbc.Driver";
+	private final String ORACLE_DRIVER = "oracle.jdbc.driver.OracleDriver";
 	/** Oracle 連線字串 **/
-	private final String ORACLE_CONNURL = "jdbc:mysql://localhost:3306/student";
-	private final String ORACLE_USER = "root";// Oracle 帳號
-	private final String ORACLE_PASSWORD = "root";// Oracle 密碼
-	/** Oracle SQL指令 - database **/
-	private final String ORACLE_CREATE_DATABASE = "create database " + DATABASE_NAME;
-	private final String ORACLE_DROP_DATABASE = "drop database " + DATABASE_NAME;
+	private final String ORACLE_CONNURL = "jdbc:oracle:thin:@localhost:1521:orcl";
+	private final String ORACLE_USER = "doraemon";// Oracle 帳號
+	private final String ORACLE_PASSWORD = "doraemon";// Oracle 密碼
+	/** Oracle 流水號 **/
+	private final String IDENTITY_VARIABLE = "seq_employeeid";
+	private final String DROP_IDENTITY = "drop sequence " + IDENTITY_VARIABLE + ";";
+	private final String CREATE_IDENTITY = "CREATE SEQUENCE " + IDENTITY_VARIABLE + " MINVALUE 1 MAXVALUE 999999999 INCREMENT BY 1 START WITH 1;";
+	private final String ORACLE_INCREASE_SEQUSNCE = DROP_IDENTITY + CREATE_IDENTITY;
 	/** Oracle SQL指令 - table **/
-	private final String TABLE_COLUMN = "id int auto_increment,primary key(id),name varchar(50),age int,cellphone varchar(10),email varchar(50),hiredate datetime";
-	private final String ORACLE_CREATE_TABLE = "create table " + DATABASE_NAME + "." + TABLE_NAME + "(" + TABLE_COLUMN + ")";
+	private final String ORACLE_DROP_TABLE = "drop table " + TABLE_NAME;
+	private final String ORACLE_TABLE_COLUMN = "ID NUMBER primary key not null, NAME NVARCHAR2(50),AGE NUMBER(5),CELLPHONE NVARCHAR2(10),EMAIL NVARCHAR2(50),HIREDATE timestamp";
+	private final String ORACLE_CREATE_TABLE = "create table " + TABLE_NAME + "(" + ORACLE_TABLE_COLUMN + ")";
 	/** ORACLE SQL指令 - data **/
 	private final String ORACLE_INSERT_FAKE_DATA = "insert into " + FULL_TABLE_NAME + " (name,age,cellphone,email,hiredate) values (?,?,?,?,?)";
 
@@ -72,6 +76,7 @@ public class GlobalValueSQL {
 		}
 		return result;
 	}
+	// -------------------------------------------------------------------
 
 	public String getSUCCESS_WORD() {
 		return SUCCESS_WORD;
@@ -95,6 +100,10 @@ public class GlobalValueSQL {
 
 	public String getCAN_CREATE_DATABASE() {
 		return CAN_CREATE_DATABASE;
+	}
+
+	public String getCAN_DROP_TABLE() {
+		return CAN_DROP_TABLE;
 	}
 
 	public String getCAN_CREATE_TABLE() {
@@ -173,16 +182,28 @@ public class GlobalValueSQL {
 		return ORACLE_PASSWORD;
 	}
 
-	public String getORACLE_CREATE_DATABASE() {
-		return ORACLE_CREATE_DATABASE;
+	public String getIDENTITY_VARIABLE() {
+		return IDENTITY_VARIABLE;
 	}
 
-	public String getORACLE_DROP_DATABASE() {
-		return ORACLE_DROP_DATABASE;
+	public String getDROP_IDENTITY() {
+		return DROP_IDENTITY;
 	}
 
-	public String getTABLE_COLUMN() {
-		return TABLE_COLUMN;
+	public String getCREATE_IDENTITY() {
+		return CREATE_IDENTITY;
+	}
+
+	public String getORACLE_INCREASE_SEQUSNCE() {
+		return ORACLE_INCREASE_SEQUSNCE;
+	}
+
+	public String getORACLE_DROP_TABLE() {
+		return ORACLE_DROP_TABLE;
+	}
+
+	public String getORACLE_TABLE_COLUMN() {
+		return ORACLE_TABLE_COLUMN;
 	}
 
 	public String getORACLE_CREATE_TABLE() {
@@ -192,7 +213,5 @@ public class GlobalValueSQL {
 	public String getORACLE_INSERT_FAKE_DATA() {
 		return ORACLE_INSERT_FAKE_DATA;
 	}
-
-	// -------------------------------------------------------------------
 
 }

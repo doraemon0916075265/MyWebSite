@@ -7,38 +7,39 @@ import java.sql.SQLException;
 
 import database.service.GlobalValueSQL;
 
-public class InsertMySQLTemplateData {
+public class InsertOracleFakeData {
 	static GlobalValueSQL GV = new GlobalValueSQL();
 	/** 輸出字串 **/
-	private static String SUCCESS_WORD = GV.getSUCCESS_WORD();
-	private static String FAIL_WORD = GV.getFAIL_WORD();
 	private static String PRINT_STYLE = GV.getPRINT_STYLE();
 	private static String CAN_NOT_WORD = GV.getCAN_NOT_WORD();
+	private static String SUCCESS_WORD = GV.getSUCCESS_WORD();
+	private static String FAIL_WORD = GV.getFAIL_WORD();
+	private static String CAN_DROP_TABLE = GV.getCAN_DROP_TABLE();
 	private static String CAN_INSERT_FAKE_DATA = GV.getCAN_INSERT_FAKE_DATA();
 	/** SQL 其他字串 **/
 	private static String DRIVER_NOT_FOUND = GV.getDRIVER_NOT_FOUND();
 	private static String FULL_TABLE_NAME = GV.getFULL_TABLE_NAME();
-	/** MySQL 連線字串 **/
-	private static String MYSQL_CONNURL = GV.getMYSQL_CONNURL();
-	private static String MYSQL_USER = GV.getMYSQL_USER();
-	private static String MYSQL_PASSWORD = GV.getMYSQL_PASSWORD();
-	/** MySQL SQL 指令 **/
-	private static String MYSQL_INSERT_FAKE_DATA = GV.getMYSQL_INSERT_FAKE_DATA();
+	/** Oracle 連線字串 **/
+	private static String ORACLE_CONNURL = GV.getORACLE_CONNURL();
+	private static String ORACLE_USER = GV.getORACLE_USER();
+	private static String ORACLE_PASSWORD = GV.getORACLE_PASSWORD();
+	/** Oracle SQL 指令 **/
+	private static String ORACLE_DROP_TABLE = GV.getORACLE_DROP_TABLE();
+	private static String ORACLE_CREATE_TABLE = GV.getORACLE_CREATE_TABLE();
+	private static String ORACLE_INSERT_FAKE_DATA = GV.getORACLE_INSERT_FAKE_DATA();
 
 	public static void start() {
-		System.out.println(InsertMySQLTemplateData.class.getName());
-		insertCompanyInfo();
+		System.out.println(InsertOracleFakeData.class.getName());
 	}
 
-	private static void insertCompanyInfo() {
-		if (GV.isUsefulMySQLDriver()) {
-
+	private static void insertTable() {
+		if (GV.isUsefulOracleDriver()) {
 			Connection conn = null;
 			PreparedStatement pstmt = null;
-
 			try {
-				conn = DriverManager.getConnection(MYSQL_CONNURL, MYSQL_USER, MYSQL_PASSWORD);
-				pstmt = conn.prepareStatement(MYSQL_INSERT_FAKE_DATA);
+				/** 建立資料表 **/
+				conn = DriverManager.getConnection(ORACLE_CONNURL, ORACLE_USER, ORACLE_PASSWORD);
+				pstmt = conn.prepareStatement(ORACLE_CREATE_TABLE);
 
 				int datasize = NameOfEmployee.allTemplateEmployee().size();
 
@@ -62,6 +63,7 @@ public class InsertMySQLTemplateData {
 					System.out.printf(PRINT_STYLE, SUCCESS_WORD, CAN_INSERT_FAKE_DATA, FULL_TABLE_NAME);
 				} catch (Exception e) {
 					System.out.printf(PRINT_STYLE, FAIL_WORD, CAN_NOT_WORD + CAN_INSERT_FAKE_DATA, FULL_TABLE_NAME);
+					e.printStackTrace();
 				}
 
 			} catch (SQLException e) {
@@ -82,9 +84,7 @@ public class InsertMySQLTemplateData {
 					}
 				}
 			}
-		} else {
-			System.out.println(DRIVER_NOT_FOUND);
+
 		}
 	}
-
 }
