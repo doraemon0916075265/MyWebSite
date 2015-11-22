@@ -16,6 +16,7 @@ public class InsertMySQLFakeData {
 	private static String CAN_NOT_WORD = GV.getCAN_NOT_WORD();
 	private static String CAN_INSERT_FAKE_DATA = GV.getCAN_INSERT_FAKE_DATA();
 	/** SQL 其他字串 **/
+	private static String DATABASE_NAME_MYSQL = GV.getDATABASE_NAME_MYSQL();
 	private static String DRIVER_NOT_FOUND = GV.getDRIVER_NOT_FOUND();
 	private static String FULL_TABLE_NAME = GV.getFULL_TABLE_NAME();
 	/** MySQL 連線字串 **/
@@ -39,12 +40,12 @@ public class InsertMySQLFakeData {
 			try {
 				conn = DriverManager.getConnection(MYSQL_CONNURL, MYSQL_USER, MYSQL_PASSWORD);
 				pstmt = conn.prepareStatement(MYSQL_INSERT_FAKE_DATA);
-
-				int datasize = NameOfEmployee.allTemplateEmployee().size();
+				InsertFakeData data = new InsertFakeData();
+				int datasize = data.allFakeEmployee(DATABASE_NAME_MYSQL).size();
 
 				try {
 					for (int i = 0; i < datasize; i++) {
-						String name = NameOfEmployee.allTemplateEmployee().get(i);
+						String name = data.allFakeEmployee(DATABASE_NAME_MYSQL).get(i);
 						int age = (int) (Math.random() * 119) + 1;
 						String cellphone = "09" + (int) (Math.random() * 100000000);
 						pstmt.setString(1, name);

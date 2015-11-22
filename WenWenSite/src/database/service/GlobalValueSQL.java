@@ -16,8 +16,8 @@ public class GlobalValueSQL {
 	private final String CAN_INSERT_FAKE_DATA = "建立假資料";
 	// -------------------------------------------------------------------
 	/** SQL 其他字串 **/
-	private final String DATABASE_NAME_ORACLE = "Oracle";
 	private final String DATABASE_NAME_MYSQL = "MySQL";
+	private final String DATABASE_NAME_ORACLE = "Oracle";
 	private final String DRIVER_NOT_FOUND = "無效的 Driver";
 	private final String DATABASE_NAME = "company";// 資料庫名稱
 	private final String TABLE_NAME = "employeeinfo";// 表格名稱

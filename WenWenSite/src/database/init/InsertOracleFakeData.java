@@ -19,6 +19,7 @@ public class InsertOracleFakeData {
 	private static String CAN_CREATE_IDENTITY = GV.getCAN_CREATE_IDENTITY();
 	private static String CAN_INSERT_FAKE_DATA = GV.getCAN_INSERT_FAKE_DATA();
 	/** SQL 其他字串 **/
+	private static String DATABASE_NAME_ORACLE = GV.getDATABASE_NAME_ORACLE();
 	private static String DRIVER_NOT_FOUND = GV.getDRIVER_NOT_FOUND();
 	private static String FULL_TABLE_NAME = GV.getFULL_TABLE_NAME();
 	/** Oracle 連線字串 **/
@@ -122,12 +123,12 @@ public class InsertOracleFakeData {
 				/** 建立資料表 **/
 				conn = DriverManager.getConnection(ORACLE_CONNURL, ORACLE_USER, ORACLE_PASSWORD);
 				pstmt = conn.prepareStatement(ORACLE_INSERT_FAKE_DATA);
-
-				int datasize = NameOfEmployee.allTemplateEmployee().size();
+				InsertFakeData data = new InsertFakeData();
+				int datasize = data.allFakeEmployee(DATABASE_NAME_ORACLE).size();
 
 				try {
 					for (int i = 0; i < datasize; i++) {
-						String name = NameOfEmployee.allTemplateEmployee().get(i);
+						String name = data.allFakeEmployee(DATABASE_NAME_ORACLE).get(i);
 						int age = (int) (Math.random() * 119) + 1;
 						String cellphone = "09" + (int) (Math.random() * 100000000);
 						pstmt.setString(1, name);
