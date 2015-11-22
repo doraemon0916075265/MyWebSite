@@ -1,21 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>${LoginTitle}</title>
-<c:import url="/pages/application/ApplicationPage.jsp" context="${pageContext.request.contextPath}" />
 </head>
 <body>
 	<center>
+		<br>
 		<form action="Login.do">
-			<table>
-				<thead>
-					<tr>
-						<th colspan="3"><h3>${LoginTitle}</h3></th>
-					</tr>
-				</thead>
+			<table id="loginMember">
 				<tbody>
 					<tr>
 						<td>帳號：</td>
@@ -35,9 +28,7 @@
 				</tbody>
 			</table>
 		</form>
-		<h3>
-			<a href="<%=request.getContextPath()%>/index.jsp">首頁</a>
-		</h3>
+
 	</center>
 </body>
 </html>

@@ -2,7 +2,7 @@ package database.init;
 
 import java.util.Date;
 
-import database.service.GlobalValueSQL;
+import global.value.database.GlobalValueSQL;
 
 public class Init {
 	static GlobalValueSQL GV = new GlobalValueSQL();

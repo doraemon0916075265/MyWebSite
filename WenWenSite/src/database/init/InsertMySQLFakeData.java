@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import database.service.GlobalValueSQL;
+import global.value.database.GlobalValueSQL;
 
 public class InsertMySQLFakeData {
 	static GlobalValueSQL GV = new GlobalValueSQL();

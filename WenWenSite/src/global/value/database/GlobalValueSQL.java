@@ -1,4 +1,4 @@
-package database.service;
+package global.value.database;
 
 public class GlobalValueSQL {
 	/** 輸出字串 **/

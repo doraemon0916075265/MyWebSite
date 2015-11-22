@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Stack;
 
-import globalService.GlobalValue;
+import global.value.service.GlobalValue;
 
 public class CalculatorSimple {
 

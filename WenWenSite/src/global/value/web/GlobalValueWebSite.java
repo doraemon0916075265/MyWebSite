@@ -1,0 +1,45 @@
+package global.value.web;
+
+public class GlobalValueWebSite {
+	private static final String LOGINTITLE = "登入";
+	private static final String APPNAME = "Learn On-Line";
+	private static final String MATHPLACE = "數學專區";
+	private static final String COMPANYNAME = "Company";
+	private static final String HOMEPAGE = "首頁";
+	private static final String BULLETINBOARD = "佈告欄";
+	private static final String MYSQL = "MySQL";
+	private static final String ORACLE = "Oracle";
+
+	public String getBulletinBoard() {
+		return BULLETINBOARD;
+	}
+
+	public String getLoginTitle() {
+		return LOGINTITLE;
+	}
+
+	public String getAppName() {
+		return APPNAME;
+	}
+
+	public String getMathPlace() {
+		return MATHPLACE;
+	}
+
+	public String getCompanyName() {
+		return COMPANYNAME;
+	}
+
+	public String getHomePage() {
+		return HOMEPAGE;
+	}
+
+	public String getMysql() {
+		return MYSQL;
+	}
+
+	public String getOracle() {
+		return ORACLE;
+	}
+
+}

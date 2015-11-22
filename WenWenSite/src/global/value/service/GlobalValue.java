@@ -1,46 +1,11 @@
-package globalService;
+package global.value.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GlobalValue {
 
-	private final String DEMARCATION = "-----------------------------------------------------------------";
-	private final String LOGINTITLE = "登入";
-	private final String APPNAME = "Learn On-Line";
-	private final String MATHPLACE = "數學專區";
-	private final String COMPANYNAME = "Company";
-	private final String HOMEPAGE = "首頁";
-	private final String MYSQL = "MySQL";
-	private final String ORACLE = "Oracle";
-
-	public String getMysql() {
-		return MYSQL;
-	}
-
-	public String getOracle() {
-		return ORACLE;
-	}
-
-	public String getHomePage() {
-		return HOMEPAGE;
-	}
-
-	public String getCompanyName() {
-		return COMPANYNAME;
-	}
-
-	public String getLoginTitle() {
-		return LOGINTITLE;
-	}
-
-	public String getAppName() {
-		return APPNAME;
-	}
-
-	public String getMathPlace() {
-		return MATHPLACE;
-	}
+	private static final String DEMARCATION = "-----------------------------------------------------------------";
 
 	public void Demarcation() {
 		// 分隔線

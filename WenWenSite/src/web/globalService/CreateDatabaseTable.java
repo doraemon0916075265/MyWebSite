@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import globalService.GlobalValue;
+import global.value.service.GlobalValue;
 
 public class CreateDatabaseTable {
 	/** 在 Eclipse console 建立資料庫 **/

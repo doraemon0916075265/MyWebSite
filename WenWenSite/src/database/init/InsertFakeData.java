@@ -8,9 +8,9 @@ public class InsertFakeData {
 	public List<String> allFakeEmployee(String database) {
 		List<String> result = new ArrayList<String>();
 		String databaseFix = database.trim().toLowerCase();
-		if (databaseFix == "mysql") {
+		if (databaseFix.equals("mysql")) {
 			result.add("Mysql");
-		} else if (database == "oracle") {
+		} else if (databaseFix.equals("oracle")) {
 			result.add("Orcle");
 		} else {
 			result.add("other database");

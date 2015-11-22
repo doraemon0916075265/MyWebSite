@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<jsp:useBean id="SYSTEM" class="globalService.GlobalValue" scope="application" />
-
+<jsp:useBean id="SYSTEM" class="global.value.web.GlobalValueWebSite" scope="application" />
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="AppName" value="${SYSTEM.appName}" scope="application" />
 <c:set var="LoginTitle" value="${SYSTEM.loginTitle}" scope="application" />
+<c:set var="AppName" value="${SYSTEM.appName}" scope="application" />
 <c:set var="MathPlace" value="${SYSTEM.mathPlace}" scope="application" />
 <c:set var="CompanyName" value="${SYSTEM.companyName}" scope="application" />
 <c:set var="HomePage" value="${SYSTEM.homePage}" scope="application" />
+<c:set var="BulletinBoard" value="${SYSTEM.bulletinBoard}" scope="application" />
 <c:set var="MySQL" value="${SYSTEM.mysql}" scope="application" />
 <c:set var="Oracle" value="${SYSTEM.oracle}" scope="application" />
 
@@ -16,18 +16,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>${AppName}</title>
 <c:import url="/pages/application/ApplicationPage.jsp" context="${pageContext.request.contextPath}" />
+<link href="<%=request.getContextPath()%>/style/Index.css" rel="stylesheet">
 </head>
 <body>
-	<center>
-		<h4>
-			<a href="<%=request.getContextPath()%>/pages/login/loginPage.jsp">會員登入</a>
-		</h4>
-		<h4>
-			<a href="<%=request.getContextPath()%>/pages/subject/subject.jsp">${AppName}</a>
-		</h4>
-		<h4>
-			<a href="<%=request.getContextPath()%>/pages/company/CRUD.jsp">${CompanyName}</a>
-		</h4>
-	</center>
+	<c:import url="/pages/application/TabBar.jsp" context="${pageContext.request.contextPath}" />
 </body>
 </html>

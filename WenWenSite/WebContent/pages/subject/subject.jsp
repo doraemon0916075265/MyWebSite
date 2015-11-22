@@ -5,8 +5,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>${AppName}-科目</title>
-<c:import url="/pages/application/ApplicationPage.jsp" context="${pageContext.request.contextPath}" />
-
 </head>
 <body>
 	<center>
