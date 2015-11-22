@@ -2,6 +2,7 @@ package database.service;
 
 public class GlobalValueSQL {
 	/** 輸出字串 **/
+	private final String EMPTY_WORD = "";
 	private final String SUCCESS_WORD = "✓";
 	private final String FAIL_WORD = "✗";
 	private final String PRINT_STYLE = "%s\t%s\t%s\n";
@@ -9,10 +10,14 @@ public class GlobalValueSQL {
 	private final String CAN_DROP_DATABASE = "刪除資料庫";
 	private final String CAN_CREATE_DATABASE = "創建資料庫";
 	private final String CAN_DROP_TABLE = "刪除資料表";
-	private final String CAN_CREATE_TABLE = "建立表資料表";
+	private final String CAN_CREATE_TABLE = "建立資料表";
+	private final String CAN_DROP_IDENTITY = "刪除流水號";
+	private final String CAN_CREATE_IDENTITY = "建立流水號";
 	private final String CAN_INSERT_FAKE_DATA = "建立假資料";
 	// -------------------------------------------------------------------
 	/** SQL 其他字串 **/
+	private final String DATABASE_NAME_ORACLE = "Oracle";
+	private final String DATABASE_NAME_MYSQL = "MySQL";
 	private final String DRIVER_NOT_FOUND = "無效的 Driver";
 	private final String DATABASE_NAME = "company";// 資料庫名稱
 	private final String TABLE_NAME = "employeeinfo";// 表格名稱
@@ -41,15 +46,14 @@ public class GlobalValueSQL {
 	private final String ORACLE_PASSWORD = "doraemon";// Oracle 密碼
 	/** Oracle 流水號 **/
 	private final String IDENTITY_VARIABLE = "seq_employeeid";
-	private final String DROP_IDENTITY = "drop sequence " + IDENTITY_VARIABLE + ";";
-	private final String CREATE_IDENTITY = "CREATE SEQUENCE " + IDENTITY_VARIABLE + " MINVALUE 1 MAXVALUE 999999999 INCREMENT BY 1 START WITH 1;";
-	private final String ORACLE_INCREASE_SEQUSNCE = DROP_IDENTITY + CREATE_IDENTITY;
+	private final String DROP_IDENTITY = "drop sequence " + IDENTITY_VARIABLE;
+	private final String CREATE_IDENTITY = "CREATE SEQUENCE " + IDENTITY_VARIABLE + " MINVALUE 1 MAXVALUE 999999999 INCREMENT BY 1 START WITH 1";
 	/** Oracle SQL指令 - table **/
 	private final String ORACLE_DROP_TABLE = "drop table " + TABLE_NAME;
 	private final String ORACLE_TABLE_COLUMN = "ID NUMBER primary key not null, NAME NVARCHAR2(50),AGE NUMBER(5),CELLPHONE NVARCHAR2(10),EMAIL NVARCHAR2(50),HIREDATE timestamp";
 	private final String ORACLE_CREATE_TABLE = "create table " + TABLE_NAME + "(" + ORACLE_TABLE_COLUMN + ")";
 	/** ORACLE SQL指令 - data **/
-	private final String ORACLE_INSERT_FAKE_DATA = "insert into " + FULL_TABLE_NAME + " (name,age,cellphone,email,hiredate) values (?,?,?,?,?)";
+	private final String ORACLE_INSERT_FAKE_DATA = "insert into " + TABLE_NAME + " (ID,NAME,AGE,CELLPHONE,EMAIL,HIREDATE) values (seq_employeeid.NEXTVAL,?,?,?,?,?)";
 
 	// -------------------------------------------------------------------
 	public boolean isUsefulMySQLDriver() {
@@ -77,6 +81,10 @@ public class GlobalValueSQL {
 		return result;
 	}
 	// -------------------------------------------------------------------
+
+	public String getEMPTY_WORD() {
+		return EMPTY_WORD;
+	}
 
 	public String getSUCCESS_WORD() {
 		return SUCCESS_WORD;
@@ -110,8 +118,24 @@ public class GlobalValueSQL {
 		return CAN_CREATE_TABLE;
 	}
 
+	public String getCAN_DROP_IDENTITY() {
+		return CAN_DROP_IDENTITY;
+	}
+
+	public String getCAN_CREATE_IDENTITY() {
+		return CAN_CREATE_IDENTITY;
+	}
+
 	public String getCAN_INSERT_FAKE_DATA() {
 		return CAN_INSERT_FAKE_DATA;
+	}
+
+	public String getDATABASE_NAME_ORACLE() {
+		return DATABASE_NAME_ORACLE;
+	}
+
+	public String getDATABASE_NAME_MYSQL() {
+		return DATABASE_NAME_MYSQL;
 	}
 
 	public String getDRIVER_NOT_FOUND() {
@@ -192,10 +216,6 @@ public class GlobalValueSQL {
 
 	public String getCREATE_IDENTITY() {
 		return CREATE_IDENTITY;
-	}
-
-	public String getORACLE_INCREASE_SEQUSNCE() {
-		return ORACLE_INCREASE_SEQUSNCE;
 	}
 
 	public String getORACLE_DROP_TABLE() {

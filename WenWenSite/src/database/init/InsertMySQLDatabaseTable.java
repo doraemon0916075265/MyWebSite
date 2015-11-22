@@ -31,7 +31,7 @@ public class InsertMySQLDatabaseTable {
 	private static String MYSQL_CREATE_TABLE = GV.getMYSQL_CREATE_TABLE();
 
 	public static void start() {
-		System.out.println(InsertMySQLDatabaseTable.class.getName());
+		System.out.println(InsertMySQLDatabaseTable.class.getSimpleName());
 		dropDatabase();
 		createDatabase();
 		createTable();

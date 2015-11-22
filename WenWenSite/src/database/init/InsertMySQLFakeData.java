@@ -26,7 +26,7 @@ public class InsertMySQLFakeData {
 	private static String MYSQL_INSERT_FAKE_DATA = GV.getMYSQL_INSERT_FAKE_DATA();
 
 	public static void start() {
-		System.out.println(InsertMySQLFakeData.class.getName());
+		System.out.println(InsertMySQLFakeData.class.getSimpleName());
 		insertFakeData();
 	}
 

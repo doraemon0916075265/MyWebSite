@@ -28,7 +28,7 @@ public class InsertOracleTable {
 	private static String ORACLE_CREATE_TABLE = GV.getORACLE_CREATE_TABLE();
 
 	public static void start() {
-		System.out.println(InsertOracleTable.class.getName());
+		System.out.println(InsertOracleTable.class.getSimpleName());
 		dropTable();
 		createTable();
 	}

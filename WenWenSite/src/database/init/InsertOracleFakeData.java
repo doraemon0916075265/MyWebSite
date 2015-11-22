@@ -10,11 +10,13 @@ import database.service.GlobalValueSQL;
 public class InsertOracleFakeData {
 	static GlobalValueSQL GV = new GlobalValueSQL();
 	/** 輸出字串 **/
+	private static String EMPTY_WORD = GV.getEMPTY_WORD();
 	private static String PRINT_STYLE = GV.getPRINT_STYLE();
 	private static String CAN_NOT_WORD = GV.getCAN_NOT_WORD();
 	private static String SUCCESS_WORD = GV.getSUCCESS_WORD();
 	private static String FAIL_WORD = GV.getFAIL_WORD();
-	private static String CAN_DROP_TABLE = GV.getCAN_DROP_TABLE();
+	private static String CAN_DROP_IDENTITY = GV.getCAN_DROP_IDENTITY();
+	private static String CAN_CREATE_IDENTITY = GV.getCAN_CREATE_IDENTITY();
 	private static String CAN_INSERT_FAKE_DATA = GV.getCAN_INSERT_FAKE_DATA();
 	/** SQL 其他字串 **/
 	private static String DRIVER_NOT_FOUND = GV.getDRIVER_NOT_FOUND();
@@ -23,23 +25,103 @@ public class InsertOracleFakeData {
 	private static String ORACLE_CONNURL = GV.getORACLE_CONNURL();
 	private static String ORACLE_USER = GV.getORACLE_USER();
 	private static String ORACLE_PASSWORD = GV.getORACLE_PASSWORD();
+	/** Oracle 流水號 **/
+	private static String DROP_IDENTITY = GV.getDROP_IDENTITY();
+	private static String CREATE_IDENTITY = GV.getCREATE_IDENTITY();
 	/** Oracle SQL 指令 **/
-	private static String ORACLE_DROP_TABLE = GV.getORACLE_DROP_TABLE();
-	private static String ORACLE_CREATE_TABLE = GV.getORACLE_CREATE_TABLE();
 	private static String ORACLE_INSERT_FAKE_DATA = GV.getORACLE_INSERT_FAKE_DATA();
 
 	public static void start() {
-		System.out.println(InsertOracleFakeData.class.getName());
+		System.out.println(InsertOracleFakeData.class.getSimpleName());
+		dropIdentity();
+		createIdentity();
+		insertFakeData();
 	}
 
-	private static void insertTable() {
+	private static void dropIdentity() {
+		if (GV.isUsefulMySQLDriver()) {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			try {
+				/** 刪除流水號 **/
+				conn = DriverManager.getConnection(ORACLE_CONNURL, ORACLE_USER, ORACLE_PASSWORD);
+				pstmt = conn.prepareStatement(DROP_IDENTITY);
+				try {
+					pstmt.executeUpdate();
+					System.out.printf(PRINT_STYLE, SUCCESS_WORD, CAN_DROP_IDENTITY, EMPTY_WORD);
+				} catch (Exception e) {
+					System.out.printf(PRINT_STYLE, FAIL_WORD, CAN_NOT_WORD + CAN_DROP_IDENTITY, EMPTY_WORD);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		} else {
+			System.out.println(DRIVER_NOT_FOUND);
+		}
+
+	}
+
+	private static void createIdentity() {
+		if (GV.isUsefulMySQLDriver()) {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			try {
+				/** 建立流水號 **/
+				conn = DriverManager.getConnection(ORACLE_CONNURL, ORACLE_USER, ORACLE_PASSWORD);
+				pstmt = conn.prepareStatement(CREATE_IDENTITY);
+				try {
+					pstmt.executeUpdate();
+					System.out.printf(PRINT_STYLE, SUCCESS_WORD, CAN_CREATE_IDENTITY, EMPTY_WORD);
+				} catch (Exception e) {
+					System.out.printf(PRINT_STYLE, FAIL_WORD, CAN_NOT_WORD + CAN_CREATE_IDENTITY, EMPTY_WORD);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		} else {
+			System.out.println(DRIVER_NOT_FOUND);
+		}
+
+	}
+
+	private static void insertFakeData() {
 		if (GV.isUsefulOracleDriver()) {
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			try {
 				/** 建立資料表 **/
 				conn = DriverManager.getConnection(ORACLE_CONNURL, ORACLE_USER, ORACLE_PASSWORD);
-				pstmt = conn.prepareStatement(ORACLE_CREATE_TABLE);
+				pstmt = conn.prepareStatement(ORACLE_INSERT_FAKE_DATA);
 
 				int datasize = NameOfEmployee.allTemplateEmployee().size();
 
@@ -85,6 +167,8 @@ public class InsertOracleFakeData {
 				}
 			}
 
+		} else {
+			System.out.println(DRIVER_NOT_FOUND);
 		}
 	}
 }

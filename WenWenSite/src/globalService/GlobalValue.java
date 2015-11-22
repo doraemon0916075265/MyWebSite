@@ -5,16 +5,15 @@ import java.util.List;
 
 public class GlobalValue {
 
-	private static final String DEMARCATION = "-----------------------------------------------------------------";
-	private static final String LOGINTITLE = "登入";
-	private static final String APPNAME = "Learn On-Line";
-	private static final String MATHPLACE = "數學專區";
-	private static final String COMPANYNAME = "Company";
-	private static final String HOMEPAGE = "首頁";
-	private static final String MYSQL = "MySQL";
-	private static final String ORACLE = "Oracle";
+	private final String DEMARCATION = "-----------------------------------------------------------------";
+	private final String LOGINTITLE = "登入";
+	private final String APPNAME = "Learn On-Line";
+	private final String MATHPLACE = "數學專區";
+	private final String COMPANYNAME = "Company";
+	private final String HOMEPAGE = "首頁";
+	private final String MYSQL = "MySQL";
+	private final String ORACLE = "Oracle";
 
-	
 	public String getMysql() {
 		return MYSQL;
 	}
