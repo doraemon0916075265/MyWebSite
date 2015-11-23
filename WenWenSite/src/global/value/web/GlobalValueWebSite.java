@@ -1,6 +1,8 @@
 package global.value.web;
 
 public class GlobalValueWebSite {
+	private static final String GO_TO_COMPANYCRUD_PAGE = "/pages/company/CRUD.jsp";
+	private static final String GO_TO_INDEX_PAGE = "/index.jsp";
 	private static final String LOGINTITLE = "登入";
 	private static final String APPNAME = "Learn On-Line";
 	private static final String MATHPLACE = "數學專區";
@@ -9,6 +11,14 @@ public class GlobalValueWebSite {
 	private static final String BULLETINBOARD = "佈告欄";
 	private static final String MYSQL = "MySQL";
 	private static final String ORACLE = "Oracle";
+
+	public String getGoToCompanycrudPage() {
+		return GO_TO_COMPANYCRUD_PAGE;
+	}
+
+	public String getGoToIndexPage() {
+		return GO_TO_INDEX_PAGE;
+	}
 
 	public String getBulletinBoard() {
 		return BULLETINBOARD;

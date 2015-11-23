@@ -12,7 +12,9 @@
 		</ul>
 		<!-- 導覽列內容 -->
 		<div class="tab-content">
-			<div role="tabpanel" class="tab-pane active" id="bulletinBoard">佈告欄</div>
+			<div role="tabpanel" class="tab-pane active" id="bulletinBoard">
+				<c:import url="/pages/application/BulletinBoard.jsp" context="${pageContext.request.contextPath}" />
+			</div>
 			<div role="tabpanel" class="tab-pane" id="appName">
 				<c:import url="/pages/subject/subject.jsp" context="${pageContext.request.contextPath}" />
 			</div>

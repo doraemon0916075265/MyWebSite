@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import global.value.web.GlobalValueWebSite;
 import web.globalService.GlobalDataParse;
 import web.model.bean.CompanyCRUDBean;
 import web.model.service.CompanyService;
@@ -19,7 +20,8 @@ import web.model.service.CompanyService;
 @WebServlet("/pages/company/CompanyCRUD.do")
 public class CompanyCRUDServlet extends HttpServlet {
 
-	public static final String GO_TO_COMPANYCRUD = "/pages/company/CRUD.jsp";
+	static GlobalValueWebSite GVW = new GlobalValueWebSite();
+	private static String GO_TO_COMPANYCRUD_PAGE = GVW.getGoToCompanycrudPage();
 
 	private CompanyService service;
 
@@ -78,7 +80,7 @@ public class CompanyCRUDServlet extends HttpServlet {
 		}
 
 		if (errors != null && !errors.isEmpty()) {
-			request.getRequestDispatcher(GO_TO_COMPANYCRUD).forward(request, response);
+			request.getRequestDispatcher(GO_TO_COMPANYCRUD_PAGE).forward(request, response);
 			return;
 		}
 
@@ -111,7 +113,7 @@ public class CompanyCRUDServlet extends HttpServlet {
 		}
 
 		if (errors != null && !errors.isEmpty()) {
-			request.getRequestDispatcher(GO_TO_COMPANYCRUD).forward(request, response);
+			request.getRequestDispatcher(GO_TO_COMPANYCRUD_PAGE).forward(request, response);
 			return;
 		}
 
@@ -131,9 +133,9 @@ public class CompanyCRUDServlet extends HttpServlet {
 			request.setAttribute("select", result);
 			if (result == null) {
 				errors.put("action", "查詢無資料");
-				request.getRequestDispatcher(GO_TO_COMPANYCRUD).forward(request, response);
+				request.getRequestDispatcher(GO_TO_COMPANYCRUD_PAGE).forward(request, response);
 			} else {
-				request.getRequestDispatcher(GO_TO_COMPANYCRUD).forward(request, response);
+				request.getRequestDispatcher(GO_TO_COMPANYCRUD_PAGE).forward(request, response);
 			}
 		} else if (acitonSelector != null && acitonSelector.equals("新增")) {
 			CompanyCRUDBean result = service.insert(bean);
@@ -142,7 +144,7 @@ public class CompanyCRUDServlet extends HttpServlet {
 			} else {
 				request.setAttribute("insert", result);
 			}
-			request.getRequestDispatcher(GO_TO_COMPANYCRUD).forward(request, response);
+			request.getRequestDispatcher(GO_TO_COMPANYCRUD_PAGE).forward(request, response);
 		} else if (acitonSelector != null && acitonSelector.equals("修改")) {
 			CompanyCRUDBean result = service.update(bean);
 			if (result == null) {
@@ -150,7 +152,7 @@ public class CompanyCRUDServlet extends HttpServlet {
 			} else {
 				request.setAttribute("update", result);
 			}
-			request.getRequestDispatcher(GO_TO_COMPANYCRUD).forward(request, response);
+			request.getRequestDispatcher(GO_TO_COMPANYCRUD_PAGE).forward(request, response);
 		} else if (acitonSelector != null && acitonSelector.equals("刪除")) {
 			boolean result = service.delete(bean);
 			if (!result) {
@@ -158,10 +160,10 @@ public class CompanyCRUDServlet extends HttpServlet {
 			} else {
 				request.setAttribute("delete", 1);
 			}
-			request.getRequestDispatcher(GO_TO_COMPANYCRUD).forward(request, response);
+			request.getRequestDispatcher(GO_TO_COMPANYCRUD_PAGE).forward(request, response);
 		} else {
 			errors.put("action", "未知的操作");
-			request.getRequestDispatcher(GO_TO_COMPANYCRUD).forward(request, response);
+			request.getRequestDispatcher(GO_TO_COMPANYCRUD_PAGE).forward(request, response);
 		}
 	}
 

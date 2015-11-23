@@ -25,9 +25,9 @@
 				<!-- 選項 -->
 				<li><a href="#" data-toggle="modal" data-target="#calculatorModal"><span class="glyphicon glyphicon-calendar"></span></a><span class="sr-only">(current)</span></li>
 				<li><a href="https://tw.yahoo.com/" target="_blank"><span class="glyphicon glyphicon-flash"></span></a></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">下拉1&nbsp;<span class="caret"></span></a>
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">初始化&nbsp;<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="#">Action1</a></li>
+						<li><a href="InitDatabase.do" type="submit">資料庫</a></li>
 						<li><a href="#">Action2</a></li>
 						<li><a href="#">Action3</a></li>
 						<li class="divider"></li>
