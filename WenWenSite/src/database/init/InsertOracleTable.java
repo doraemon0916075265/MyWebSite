@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import global.value.database.GlobalValueSQL;
 
@@ -26,10 +28,15 @@ public class InsertOracleTable {
 	private static String ORACLE_DROP_TABLE = GV.getORACLE_DROP_TABLE();
 	private static String ORACLE_CREATE_TABLE = GV.getORACLE_CREATE_TABLE();
 
-	public static void start() {
+	/** 結果 **/
+	static List<String> result = new ArrayList<String>();
+
+	public static List<String> start() {
 		System.out.println(InsertOracleTable.class.getSimpleName());
+		result.clear();
 		dropTable();
 		createTable();
+		return result;
 	}
 
 	private static void dropTable() {
@@ -43,8 +50,10 @@ public class InsertOracleTable {
 				try {
 					pstmt.executeUpdate();
 					System.out.printf(PRINT_STYLE, SUCCESS_WORD, CAN_DROP_TABLE, FULL_TABLE_NAME);
+					result.add(SUCCESS_WORD + "\t" + CAN_DROP_TABLE);
 				} catch (Exception e) {
 					System.out.printf(PRINT_STYLE, FAIL_WORD, CAN_NOT_WORD + CAN_DROP_TABLE, FULL_TABLE_NAME);
+					result.add(FAIL_WORD + "\t" + CAN_NOT_WORD + CAN_DROP_TABLE);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -78,8 +87,10 @@ public class InsertOracleTable {
 				try {
 					pstmt.executeUpdate();
 					System.out.printf(PRINT_STYLE, SUCCESS_WORD, CAN_CREATE_TABLE, FULL_TABLE_NAME);
+					result.add(SUCCESS_WORD + "\t" + CAN_CREATE_TABLE);
 				} catch (Exception e) {
 					System.out.printf(PRINT_STYLE, FAIL_WORD, CAN_NOT_WORD + CAN_CREATE_TABLE, FULL_TABLE_NAME);
+					result.add(FAIL_WORD + "\t" + CAN_NOT_WORD + CAN_CREATE_TABLE);
 				}
 
 			} catch (SQLException e) {

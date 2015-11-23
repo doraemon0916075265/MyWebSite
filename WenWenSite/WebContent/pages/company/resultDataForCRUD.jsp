@@ -49,7 +49,7 @@
 			<tr></tr>
 		</tbody>
 	</table>
-	<%-- <div>${select}</div> --%>
+	<div>${select}</div>
 </c:if>
 
 <c:if test="${not empty insert}">

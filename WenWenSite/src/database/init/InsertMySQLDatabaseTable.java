@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import global.value.database.GlobalValueSQL;
 
@@ -30,14 +32,19 @@ public class InsertMySQLDatabaseTable {
 	private static String MYSQL_DROP_DATABASE = GV.getMYSQL_DROP_DATABASE();
 	private static String MYSQL_CREATE_TABLE = GV.getMYSQL_CREATE_TABLE();
 
-	public static void start() {
+	/** 結果 **/
+	static List<String> result = new ArrayList<String>();
+
+	public static List<String> start() {
 		System.out.println(InsertMySQLDatabaseTable.class.getSimpleName());
+		result.clear();
 		dropDatabase();
 		createDatabase();
 		createTable();
+		return result;
 	}
 
-	private static void dropDatabase() {
+	private static List<String> dropDatabase() {
 		if (GV.isUsefulMySQLDriver()) {
 			Connection conn = null;
 			PreparedStatement pstmt = null;
@@ -48,8 +55,10 @@ public class InsertMySQLDatabaseTable {
 				try {
 					pstmt.executeUpdate();
 					System.out.printf(PRINT_STYLE, SUCCESS_WORD, CAN_DROP_DATABASE, DATABASE_NAME);
+					result.add(SUCCESS_WORD + "\t" + CAN_DROP_DATABASE);
 				} catch (Exception e) {
 					System.out.printf(PRINT_STYLE, FAIL_WORD, CAN_NOT_WORD + CAN_DROP_DATABASE, DATABASE_NAME);
+					result.add(FAIL_WORD + "\t" + CAN_NOT_WORD + CAN_DROP_DATABASE);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -70,6 +79,7 @@ public class InsertMySQLDatabaseTable {
 				}
 			}
 		}
+		return result;
 
 	}
 
@@ -85,8 +95,10 @@ public class InsertMySQLDatabaseTable {
 				try {
 					pstmt.executeUpdate();
 					System.out.printf(PRINT_STYLE, SUCCESS_WORD, CAN_CREATE_DATABASE, FULL_TABLE_NAME);
+					result.add(SUCCESS_WORD + "\t" + CAN_CREATE_DATABASE);
 				} catch (Exception e) {
 					System.out.printf(PRINT_STYLE, FAIL_WORD, CAN_CREATE_DATABASE, FULL_TABLE_NAME);
+					result.add(FAIL_WORD + "\t" + CAN_NOT_WORD + CAN_CREATE_DATABASE);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -122,8 +134,10 @@ public class InsertMySQLDatabaseTable {
 				try {
 					pstmt.executeUpdate();
 					System.out.printf(PRINT_STYLE, SUCCESS_WORD, CAN_CREATE_TABLE, FULL_TABLE_NAME);
+					result.add(SUCCESS_WORD + "\t" + CAN_CREATE_TABLE);
 				} catch (Exception e) {
 					System.out.printf(PRINT_STYLE, FAIL_WORD, CAN_NOT_WORD + CAN_CREATE_TABLE, FULL_TABLE_NAME);
+					result.add(FAIL_WORD + "\t" + CAN_NOT_WORD + CAN_CREATE_TABLE);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();

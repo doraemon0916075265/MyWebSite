@@ -82,7 +82,5 @@
 	</div>
 </div>
 
-
-
 <!-- css -->
 <link href="<%=request.getContextPath()%>/pages/application/Application.css" rel="stylesheet">

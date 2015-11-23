@@ -1,6 +1,11 @@
 package web.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,7 +23,18 @@ public class InitDatabaseServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		InitDB.runInit();
+		Date startInit = new Date(System.currentTimeMillis());
+
+		List<String> resultList = new ArrayList<String>();
+		resultList.clear();
+		resultList = InitDB.runInit();
+
+		request.setAttribute("initDB", resultList);
+
+		Date endInit = new Date(System.currentTimeMillis());
+		long costTime = endInit.getTime() - startInit.getTime();
+		resultList.add("費時：" + costTime + "毫秒");
+
 		request.getRequestDispatcher(GO_TO_INDEX_PAGE).forward(request, response);
 	}
 

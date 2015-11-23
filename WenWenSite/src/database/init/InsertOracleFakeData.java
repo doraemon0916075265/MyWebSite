@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import global.value.database.GlobalValueSQL;
 
@@ -31,11 +33,16 @@ public class InsertOracleFakeData {
 	/** Oracle SQL 指令 **/
 	private static String ORACLE_INSERT_FAKE_DATA = GV.getORACLE_INSERT_FAKE_DATA();
 
-	public static void start() {
+	/** 結果 **/
+	static List<String> result = new ArrayList<String>();
+
+	public static List<String> start() {
 		System.out.println(InsertOracleFakeData.class.getSimpleName());
+		result.clear();
 		dropIdentity();
 		createIdentity();
 		insertFakeData();
+		return result;
 	}
 
 	private static void dropIdentity() {
@@ -49,8 +56,10 @@ public class InsertOracleFakeData {
 				try {
 					pstmt.executeUpdate();
 					System.out.printf(PRINT_STYLE, SUCCESS_WORD, CAN_DROP_IDENTITY, EMPTY_WORD);
+					result.add(SUCCESS_WORD + "\t" + CAN_DROP_IDENTITY);
 				} catch (Exception e) {
 					System.out.printf(PRINT_STYLE, FAIL_WORD, CAN_NOT_WORD + CAN_DROP_IDENTITY, EMPTY_WORD);
+					result.add(FAIL_WORD + "\t" + CAN_NOT_WORD + CAN_DROP_IDENTITY);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -85,8 +94,10 @@ public class InsertOracleFakeData {
 				try {
 					pstmt.executeUpdate();
 					System.out.printf(PRINT_STYLE, SUCCESS_WORD, CAN_CREATE_IDENTITY, EMPTY_WORD);
+					result.add(SUCCESS_WORD + "\t" + CAN_CREATE_IDENTITY);
 				} catch (Exception e) {
 					System.out.printf(PRINT_STYLE, FAIL_WORD, CAN_NOT_WORD + CAN_CREATE_IDENTITY, EMPTY_WORD);
+					result.add(FAIL_WORD + "\t" + CAN_NOT_WORD + CAN_CREATE_IDENTITY);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -139,9 +150,10 @@ public class InsertOracleFakeData {
 						}
 					}
 					System.out.printf(PRINT_STYLE, SUCCESS_WORD, CAN_INSERT_FAKE_DATA, FULL_TABLE_NAME);
+					result.add(SUCCESS_WORD + "\t" + CAN_INSERT_FAKE_DATA);
 				} catch (Exception e) {
 					System.out.printf(PRINT_STYLE, FAIL_WORD, CAN_NOT_WORD + CAN_INSERT_FAKE_DATA, FULL_TABLE_NAME);
-					e.printStackTrace();
+					result.add(FAIL_WORD + "\t" + CAN_NOT_WORD + CAN_INSERT_FAKE_DATA);
 				}
 
 			} catch (SQLException e) {

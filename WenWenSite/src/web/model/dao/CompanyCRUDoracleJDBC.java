@@ -10,132 +10,120 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import global.value.database.GlobalValueSQL;
 import web.model.bean.CompanyCRUDBean;
 import web.model.dao.interfaces.CompanyCRUDdao;
 
 public class CompanyCRUDoracleJDBC implements CompanyCRUDdao {
-	/** Oracle 驅動字串 **/
-	private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
+	static GlobalValueSQL GV = new GlobalValueSQL();
 	/** Oracle 連線字串 **/
-	// jdbc:oracle:thin:[USER/PASSWORD]@[HOST][:PORT]:SID
-	private static final String CONNURL = "jdbc:oracle:thin:@localhost:1521:orcl";
-	private static final String USER = "doraemon";
-	private static final String PASSWORD = "doraemon";
+	private static String ORACLE_CONNURL = GV.getORACLE_CONNURL();
+	private static String ORACLE_USER = GV.getORACLE_USER();
+	private static String ORACLE_PASSWORD = GV.getORACLE_PASSWORD();
 	/** SQL指令 **/
 	private static final String SELECT_ALL = "select * from employeeinfo";
 	private static final String SELECT_BY_ID = "select * from employeeinfo where id=?";
-
 	private static final String INSERT = "insert into employeeinfo (id,name,age,cellphone,email,hiredate) values (?,?,?,?,?,?)";
 	private static final String UPDATE = "update employeeinfo set name=?,age=?,cellphone=?,email=?,hiredate=? where id=?";
 	private static final String DELETE = "delete from employeeinfo where id=?";
 
 	public List<CompanyCRUDBean> select() {
-		try {
-			// 找驅動程式
-			Class.forName(DRIVER);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-
 		List<CompanyCRUDBean> result = new ArrayList<CompanyCRUDBean>();
-		CompanyCRUDBean bean = null;
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+		if (GV.isUsefulOracleDriver()) {
+			CompanyCRUDBean bean = null;
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
 
-		try {
-			conn = DriverManager.getConnection(CONNURL, USER, PASSWORD);
-			pstmt = conn.prepareStatement(SELECT_ALL);
-			rs = pstmt.executeQuery(SELECT_ALL);
+			try {
+				conn = DriverManager.getConnection(ORACLE_CONNURL, ORACLE_USER, ORACLE_PASSWORD);
+				pstmt = conn.prepareStatement(SELECT_ALL);
+				rs = pstmt.executeQuery(SELECT_ALL);
 
-			while (rs.next()) {
-				bean = new CompanyCRUDBean();
-				bean.setId(rs.getInt("id"));
-				bean.setName(rs.getString("name"));
-				bean.setAge(rs.getInt("age"));
-				bean.setCellphone(rs.getString("cellphone"));
-				bean.setEmail(rs.getString("email"));
-				bean.setHiredate(rs.getDate("hiredate"));
-				result.add(bean);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
+				while (rs.next()) {
+					bean = new CompanyCRUDBean();
+					bean.setId(rs.getInt("id"));
+					bean.setName(rs.getString("name"));
+					bean.setAge(rs.getInt("age"));
+					bean.setCellphone(rs.getString("cellphone"));
+					bean.setEmail(rs.getString("email"));
+					bean.setHiredate(rs.getDate("hiredate"));
+					result.add(bean);
 				}
-			}
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				if (rs != null) {
+					try {
+						rs.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
 				}
-			}
-			if (conn != null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		}
-
 		return result;
 	}
 
 	public CompanyCRUDBean select(int id) {
-		try {
-			// 找驅動程式
-			Class.forName(DRIVER);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
 		CompanyCRUDBean result = null;
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+		if (GV.isUsefulOracleDriver()) {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
 
-		try {
-			conn = DriverManager.getConnection(CONNURL, USER, PASSWORD);
-			pstmt = conn.prepareStatement(SELECT_BY_ID);
-			pstmt.setInt(1, id);
-			rs = pstmt.executeQuery();
+			try {
+				conn = DriverManager.getConnection(ORACLE_CONNURL, ORACLE_USER, ORACLE_PASSWORD);
+				pstmt = conn.prepareStatement(SELECT_BY_ID);
+				pstmt.setInt(1, id);
+				rs = pstmt.executeQuery();
 
-			if (rs.next()) {
-				result = new CompanyCRUDBean();
-				result.setId(rs.getInt("id"));
-				result.setName(rs.getString("name"));
-				result.setAge(rs.getInt("age"));
-				result.setCellphone(rs.getString("cellphone"));
-				result.setEmail(rs.getString("email"));
-				result.setHiredate(rs.getDate("hiredate"));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
+				if (rs.next()) {
+					result = new CompanyCRUDBean();
+					result.setId(rs.getInt("id"));
+					result.setName(rs.getString("name"));
+					result.setAge(rs.getInt("age"));
+					result.setCellphone(rs.getString("cellphone"));
+					result.setEmail(rs.getString("email"));
+					result.setHiredate(rs.getDate("hiredate"));
 				}
-			}
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				if (rs != null) {
+					try {
+						rs.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
 				}
-			}
-			if (conn != null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		}
@@ -143,124 +131,114 @@ public class CompanyCRUDoracleJDBC implements CompanyCRUDdao {
 	}
 
 	public CompanyCRUDBean insert(CompanyCRUDBean bean) {
-		try {
-			// 找驅動程式
-			Class.forName(DRIVER);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
 		CompanyCRUDBean result = null;
-		Connection conn = null;
-		PreparedStatement pstmt = null;
+		if (GV.isUsefulOracleDriver()) {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
 
-		try {
-			conn = DriverManager.getConnection(CONNURL, USER, PASSWORD);
-			// INSERT = "insert into company.employeeinfo
-			// (name,age,cellphone,email,hiredate) values (?,?,?,?,?)";
-			pstmt = conn.prepareStatement(INSERT);
+			try {
+				conn = DriverManager.getConnection(ORACLE_CONNURL, ORACLE_USER, ORACLE_PASSWORD);
+				// INSERT = "insert into company.employeeinfo
+				// (name,age,cellphone,email,hiredate) values (?,?,?,?,?)";
+				pstmt = conn.prepareStatement(INSERT);
 
-			List<CompanyCRUDBean> templist = select();
-			int dataSize = templist.size();
-			int[] tempid = new int[dataSize];
-			for (int i = 0; i < dataSize; i++) {
-				tempid[i] = templist.get(i).getId();
-			}
-
-			Arrays.sort(tempid);
-
-			int maxid = tempid[tempid.length - 1];
-			if (bean != null) {
-				pstmt.setInt(1, maxid + 1);
-				pstmt.setString(2, bean.getName());
-				pstmt.setInt(3, bean.getAge());
-				pstmt.setString(4, bean.getCellphone());
-				pstmt.setString(5, bean.getEmail());
-				pstmt.setTimestamp(6, new java.sql.Timestamp(System.currentTimeMillis()));
-
-			}
-			int count = pstmt.executeUpdate();
-			if (count == 1) {
-				System.out.println("～～～新增成功～～～");
-				CompanyCRUDBean selectBean = select(maxid + 1);
-				result = selectBean;
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
+				List<CompanyCRUDBean> templist = select();
+				int dataSize = templist.size();
+				int[] tempid = new int[dataSize];
+				for (int i = 0; i < dataSize; i++) {
+					tempid[i] = templist.get(i).getId();
 				}
-			}
-			if (conn != null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
+
+				Arrays.sort(tempid);
+
+				int maxid = tempid[tempid.length - 1];
+				if (bean != null) {
+					pstmt.setInt(1, maxid + 1);
+					pstmt.setString(2, bean.getName());
+					pstmt.setInt(3, bean.getAge());
+					pstmt.setString(4, bean.getCellphone());
+					pstmt.setString(5, bean.getEmail());
+					pstmt.setTimestamp(6, new java.sql.Timestamp(System.currentTimeMillis()));
+
+				}
+				int count = pstmt.executeUpdate();
+				if (count == 1) {
+					System.out.println("～～～新增成功～～～");
+					CompanyCRUDBean selectBean = select(maxid + 1);
+					result = selectBean;
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		}
-
 		return result;
 	}
 
 	public CompanyCRUDBean update(CompanyCRUDBean bean) {
-		try {
-			// 找驅動程式
-			Class.forName(DRIVER);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-
 		CompanyCRUDBean result = null;
-		Connection conn = null;
-		PreparedStatement pstmt = null;
+		if (GV.isUsefulOracleDriver()) {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
 
-		try {
-			conn = DriverManager.getConnection(CONNURL, USER, PASSWORD);
-			// UPDATE = "update company.employeeinfo set
-			// name=?,age=?,cellphone=?,email=?,hiredate=? where id=?;";
-			pstmt = conn.prepareStatement(UPDATE);
-			pstmt.setString(1, bean.getName());
-			pstmt.setInt(2, bean.getAge());
-			pstmt.setString(3, bean.getCellphone());
-			pstmt.setString(4, bean.getEmail());
+			try {
+				conn = DriverManager.getConnection(ORACLE_CONNURL, ORACLE_USER, ORACLE_PASSWORD);
+				// UPDATE = "update company.employeeinfo set
+				// name=?,age=?,cellphone=?,email=?,hiredate=? where id=?;";
+				pstmt = conn.prepareStatement(UPDATE);
+				pstmt.setString(1, bean.getName());
+				pstmt.setInt(2, bean.getAge());
+				pstmt.setString(3, bean.getCellphone());
+				pstmt.setString(4, bean.getEmail());
 
-			Date hiredate = bean.getHiredate();
+				Date hiredate = bean.getHiredate();
 
-			if (hiredate != null) {
-				pstmt.setTimestamp(5, new java.sql.Timestamp(bean.getHiredate().getTime()));
-			} else {
-				pstmt.setDate(5, null);
-			}
-
-			pstmt.setInt(6, bean.getId());
-
-			int count = pstmt.executeUpdate();
-			if (count == 1) {
-				System.out.println("～～～更新成功～～～");
-				CompanyCRUDBean updateBean = select(bean.getId());
-				result = updateBean;
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
+				if (hiredate != null) {
+					pstmt.setTimestamp(5, new java.sql.Timestamp(bean.getHiredate().getTime()));
+				} else {
+					pstmt.setDate(5, null);
 				}
-			}
-			if (conn != null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
+
+				pstmt.setInt(6, bean.getId());
+
+				int count = pstmt.executeUpdate();
+				if (count == 1) {
+					System.out.println("～～～更新成功～～～");
+					CompanyCRUDBean updateBean = select(bean.getId());
+					result = updateBean;
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		}
@@ -269,45 +247,41 @@ public class CompanyCRUDoracleJDBC implements CompanyCRUDdao {
 	}
 
 	public boolean delete(int id) {
-		try {
-			// 找驅動程式
-			Class.forName(DRIVER);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		Connection conn = null;
-		PreparedStatement pstmt = null;
+		boolean result = false;
+		if (GV.isUsefulOracleDriver()) {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
 
-		try {
-			conn = DriverManager.getConnection(CONNURL, USER, PASSWORD);
-			pstmt = conn.prepareStatement(DELETE);
-			pstmt.setInt(1, id);
+			try {
+				conn = DriverManager.getConnection(ORACLE_CONNURL, ORACLE_USER, ORACLE_PASSWORD);
+				pstmt = conn.prepareStatement(DELETE);
+				pstmt.setInt(1, id);
 
-			int count = pstmt.executeUpdate();
-			if (count == 1) {
-				System.out.println("～～～刪除成功～～～");
-				return true;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
+				int count = pstmt.executeUpdate();
+				if (count == 1) {
+					System.out.println("～～～刪除成功～～～");
+					result = true;
 				}
-			}
-			if (conn != null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		}
-
-		return false;
+		return result;
 	}
 
 	public static void main(String[] args) throws Throwable {

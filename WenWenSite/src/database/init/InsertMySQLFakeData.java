@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import global.value.database.GlobalValueSQL;
 
@@ -25,9 +27,14 @@ public class InsertMySQLFakeData {
 	/** MySQL SQL 指令 **/
 	private static String MYSQL_INSERT_FAKE_DATA = GV.getMYSQL_INSERT_FAKE_DATA();
 
-	public static void start() {
+	/** 結果 **/
+	static List<String> result = new ArrayList<String>();
+
+	public static List<String> start() {
 		System.out.println(InsertMySQLFakeData.class.getSimpleName());
+		result.clear();
 		insertFakeData();
+		return result;
 	}
 
 	private static void insertFakeData() {
@@ -60,8 +67,10 @@ public class InsertMySQLFakeData {
 						}
 					}
 					System.out.printf(PRINT_STYLE, SUCCESS_WORD, CAN_INSERT_FAKE_DATA, FULL_TABLE_NAME);
+					result.add(SUCCESS_WORD + "\t" + CAN_INSERT_FAKE_DATA);
 				} catch (Exception e) {
 					System.out.printf(PRINT_STYLE, FAIL_WORD, CAN_NOT_WORD + CAN_INSERT_FAKE_DATA, FULL_TABLE_NAME);
+					result.add(FAIL_WORD + "\t" + CAN_NOT_WORD + CAN_INSERT_FAKE_DATA);
 				}
 
 			} catch (SQLException e) {
