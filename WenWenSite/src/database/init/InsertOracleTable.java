@@ -17,7 +17,6 @@ public class InsertOracleTable {
 	private static String CAN_DROP_TABLE = GV.getCAN_DROP_TABLE();
 	private static String CAN_CREATE_TABLE = GV.getCAN_CREATE_TABLE();
 	/** SQL 其他字串 **/
-	private static String DRIVER_NOT_FOUND = GV.getDRIVER_NOT_FOUND();
 	private static String FULL_TABLE_NAME = GV.getFULL_TABLE_NAME();
 	/** Oracle 連線字串 **/
 	private static String ORACLE_CONNURL = GV.getORACLE_CONNURL();
@@ -65,8 +64,6 @@ public class InsertOracleTable {
 					}
 				}
 			}
-		} else {
-			System.out.println(DRIVER_NOT_FOUND);
 		}
 	}
 

@@ -13,7 +13,7 @@ public class InsertFakeData {
 		} else if (databaseFix.equals("oracle")) {
 			result.add("Orcle");
 		} else {
-			result.add("other database");
+			result.add("Other Database");
 		}
 		result.add("Hello kitty");
 		result.add("Snoopy");

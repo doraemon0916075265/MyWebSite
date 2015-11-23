@@ -51,7 +51,7 @@
 	});
 
 	/** Real Keyboard 數字鍵盤 */
-	$("body").keydown(function keyboardEvent(event) {
+	$("#calculatorModal").keydown(function keyboardEvent(event) {
 		var answer = $("#output").val();
 		var keyinCode = event.keyCode;
 		$("#output").css('color', 'black');

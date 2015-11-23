@@ -17,7 +17,6 @@ public class InsertMySQLFakeData {
 	private static String CAN_INSERT_FAKE_DATA = GV.getCAN_INSERT_FAKE_DATA();
 	/** SQL 其他字串 **/
 	private static String DATABASE_NAME_MYSQL = GV.getDATABASE_NAME_MYSQL();
-	private static String DRIVER_NOT_FOUND = GV.getDRIVER_NOT_FOUND();
 	private static String FULL_TABLE_NAME = GV.getFULL_TABLE_NAME();
 	/** MySQL 連線字串 **/
 	private static String MYSQL_CONNURL = GV.getMYSQL_CONNURL();
@@ -83,8 +82,6 @@ public class InsertMySQLFakeData {
 					}
 				}
 			}
-		} else {
-			System.out.println(DRIVER_NOT_FOUND);
 		}
 	}
 

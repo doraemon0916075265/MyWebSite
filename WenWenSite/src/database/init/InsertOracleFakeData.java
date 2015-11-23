@@ -20,7 +20,6 @@ public class InsertOracleFakeData {
 	private static String CAN_INSERT_FAKE_DATA = GV.getCAN_INSERT_FAKE_DATA();
 	/** SQL 其他字串 **/
 	private static String DATABASE_NAME_ORACLE = GV.getDATABASE_NAME_ORACLE();
-	private static String DRIVER_NOT_FOUND = GV.getDRIVER_NOT_FOUND();
 	private static String FULL_TABLE_NAME = GV.getFULL_TABLE_NAME();
 	/** Oracle 連線字串 **/
 	private static String ORACLE_CONNURL = GV.getORACLE_CONNURL();
@@ -40,7 +39,7 @@ public class InsertOracleFakeData {
 	}
 
 	private static void dropIdentity() {
-		if (GV.isUsefulMySQLDriver()) {
+		if (GV.isUsefulOracleDriver()) {
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			try {
@@ -71,14 +70,12 @@ public class InsertOracleFakeData {
 					}
 				}
 			}
-		} else {
-			System.out.println(DRIVER_NOT_FOUND);
 		}
 
 	}
 
 	private static void createIdentity() {
-		if (GV.isUsefulMySQLDriver()) {
+		if (GV.isUsefulOracleDriver()) {
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			try {
@@ -109,8 +106,6 @@ public class InsertOracleFakeData {
 					}
 				}
 			}
-		} else {
-			System.out.println(DRIVER_NOT_FOUND);
 		}
 
 	}
@@ -167,9 +162,6 @@ public class InsertOracleFakeData {
 					}
 				}
 			}
-
-		} else {
-			System.out.println(DRIVER_NOT_FOUND);
 		}
 	}
 }

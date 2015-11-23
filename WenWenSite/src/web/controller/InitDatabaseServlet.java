@@ -18,11 +18,7 @@ public class InitDatabaseServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
-			InitDB.runInit();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		InitDB.runInit();
 		request.getRequestDispatcher(GO_TO_INDEX_PAGE).forward(request, response);
 	}
 

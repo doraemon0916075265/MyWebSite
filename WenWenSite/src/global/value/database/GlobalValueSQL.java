@@ -63,7 +63,7 @@ public class GlobalValueSQL {
 			Class.forName(MYSQL_DRIVER);
 			result = true;
 		} catch (ClassNotFoundException e) {
-			System.out.println(DRIVER_NOT_FOUND);
+			System.out.printf(PRINT_STYLE, FAIL_WORD, DRIVER_NOT_FOUND, EMPTY_WORD);
 		}
 		return result;
 	}
@@ -76,7 +76,7 @@ public class GlobalValueSQL {
 			Class.forName(ORACLE_DRIVER);
 			result = true;
 		} catch (ClassNotFoundException e) {
-			System.out.println(DRIVER_NOT_FOUND);
+			System.out.printf(PRINT_STYLE, FAIL_WORD, DRIVER_NOT_FOUND, EMPTY_WORD);
 		}
 		return result;
 	}

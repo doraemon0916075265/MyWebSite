@@ -9,6 +9,7 @@ import global.value.database.GlobalValueSQL;
 
 public class InsertMySQLDatabaseTable {
 	static GlobalValueSQL GV = new GlobalValueSQL();
+
 	/** 輸出字串 **/
 	private static String SUCCESS_WORD = GV.getSUCCESS_WORD();
 	private static String FAIL_WORD = GV.getFAIL_WORD();
@@ -18,7 +19,6 @@ public class InsertMySQLDatabaseTable {
 	private static String CAN_CREATE_DATABASE = GV.getCAN_CREATE_DATABASE();
 	private static String CAN_CREATE_TABLE = GV.getCAN_CREATE_TABLE();
 	/** SQL 其他字串 **/
-	private static String DRIVER_NOT_FOUND = GV.getDRIVER_NOT_FOUND();
 	private static String DATABASE_NAME = GV.getDATABASE_NAME();
 	private static String FULL_TABLE_NAME = GV.getFULL_TABLE_NAME();
 	/** MySQL 連線字串 **/
@@ -69,8 +69,6 @@ public class InsertMySQLDatabaseTable {
 					}
 				}
 			}
-		} else {
-			System.out.println(DRIVER_NOT_FOUND);
 		}
 
 	}
@@ -108,8 +106,6 @@ public class InsertMySQLDatabaseTable {
 					}
 				}
 			}
-		} else {
-			System.out.println(DRIVER_NOT_FOUND);
 		}
 
 	}
@@ -148,8 +144,6 @@ public class InsertMySQLDatabaseTable {
 				}
 			}
 
-		} else {
-			System.out.println(DRIVER_NOT_FOUND);
 		}
 
 	}
