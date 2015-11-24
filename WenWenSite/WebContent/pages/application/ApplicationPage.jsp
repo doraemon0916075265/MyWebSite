@@ -23,7 +23,7 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<!-- 選項 -->
-				<li><a href="#" data-toggle="modal" data-target="#calculatorModal"><span class="glyphicon glyphicon-calendar"></span></a><span class="sr-only">(current)</span></li>
+				<li><a href="#"><span class="glyphicon glyphicon-remove"></span></a><span class="sr-only">(current)</span></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-refresh"></span>&nbsp;<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="InitDatabase.do" type="submit">資料庫</a></li>
@@ -41,6 +41,7 @@
 			<ul class="nav navbar-nav navbar-right">
 				<!-- 選項 -->
 				<li><a href="https://tw.yahoo.com/" target="_blank">buttonR1</a></li>
+				<li><a href="#" data-toggle="modal" data-target="#calculatorModal"><span class="glyphicon glyphicon-calendar"></span></a><span class="sr-only">(current)</span></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>&nbsp;<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="<%=request.getContextPath()%>/pages/login/loginPage.jsp"><span class="glyphicon glyphicon-log-in"></span></a></li>
