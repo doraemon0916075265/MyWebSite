@@ -8,7 +8,7 @@
 			<li role="presentation" class="active"><a href="#bulletinBoard" aria-controls="bulletinBoard" role="tab" data-toggle="tab">${BulletinBoard}</a></li>
 			<li role="presentation"><a href="#appName" aria-controls="appName" role="tab" data-toggle="tab">${AppName}</a></li>
 			<li role="presentation"><a href="#companyCRUD" aria-controls="companyCRUD" role="tab" data-toggle="tab">${CompanyName}</a></li>
-			<li role="presentation"><a href="#loginMember" aria-controls="loginMember" role="tab" data-toggle="tab">會員登入</a></li>
+			<!-- 			<li role="presentation"><a href="#loginMember" aria-controls="loginMember" role="tab" data-toggle="tab">會員登入</a></li> -->
 		</ul>
 		<!-- 導覽列內容 -->
 		<div class="tab-content">
@@ -19,12 +19,9 @@
 				<c:import url="/pages/subject/subject.jsp" context="${pageContext.request.contextPath}" />
 			</div>
 			<div role="tabpanel" class="tab-pane" id="companyCRUD">
-				<h4>
+				<h3>
 					<a href="<%=request.getContextPath()%>/pages/company/CRUD.jsp">${CompanyName}CRUD</a>
-				</h4>
-			</div>
-			<div role="tabpanel" class="tab-pane" id="loginMember">
-				<c:import url="/pages/login/loginPage.jsp" context="${pageContext.request.contextPath}" />
+				</h3>
 			</div>
 		</div>
 	</div>

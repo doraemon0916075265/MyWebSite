@@ -16,7 +16,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>${AppName}</title>
 <c:import url="/pages/application/ApplicationPage.jsp" context="${pageContext.request.contextPath}" />
-<link href="<%=request.getContextPath()%>/style/Index.css" rel="stylesheet">
 </head>
 <body>
 	<c:import url="/pages/application/TabBar.jsp" context="${pageContext.request.contextPath}" />

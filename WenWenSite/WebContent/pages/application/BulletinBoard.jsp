@@ -5,5 +5,5 @@
 ${initDB}
 <br>
 <c:if test="${not empty initDB}">
-qqq
+qq
 </c:if>

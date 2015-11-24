@@ -11,6 +11,7 @@
 </head>
 <body>
 	<center>
+		<br>
 		<h2>${CompanyName}&nbsp;CRUD</h2>
 		<form action="CompanyCRUD.do">
 			<table id="companyCRUDtable" class="table table-responsive">

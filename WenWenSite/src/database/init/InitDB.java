@@ -15,8 +15,6 @@ public class InitDB {
 		Date beginInit = new Date(System.currentTimeMillis());
 		List<String> result = new ArrayList<String>();
 		List<String> temp = new ArrayList<String>();
-		result.clear();
-		temp.clear();
 		/** MySQL 系列 **/
 		System.out.println(DATABASE_NAME_MYSQL);
 		result.add(DATABASE_NAME_MYSQL);

@@ -26,7 +26,6 @@ public class InitDatabaseServlet extends HttpServlet {
 		Date startInit = new Date(System.currentTimeMillis());
 
 		List<String> resultList = new ArrayList<String>();
-		resultList.clear();
 		resultList = InitDB.runInit();
 
 		request.setAttribute("initDB", resultList);

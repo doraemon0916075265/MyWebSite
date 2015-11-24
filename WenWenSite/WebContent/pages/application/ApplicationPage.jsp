@@ -24,15 +24,9 @@
 			<ul class="nav navbar-nav">
 				<!-- 選項 -->
 				<li><a href="#" data-toggle="modal" data-target="#calculatorModal"><span class="glyphicon glyphicon-calendar"></span></a><span class="sr-only">(current)</span></li>
-				<li><a href="https://tw.yahoo.com/" target="_blank"><span class="glyphicon glyphicon-flash"></span></a></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">初始化&nbsp;<span class="caret"></span></a>
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-refresh"></span>&nbsp;<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="InitDatabase.do" type="submit">資料庫</a></li>
-						<li><a href="#">Action2</a></li>
-						<li><a href="#">Action3</a></li>
-						<li class="divider"></li>
-						<li><a href="#">Action5</a></li>
-						<li><a href="#">Action6</a></li>
 					</ul></li>
 			</ul>
 			<!-- 搜尋 -->
@@ -47,9 +41,9 @@
 			<ul class="nav navbar-nav navbar-right">
 				<!-- 選項 -->
 				<li><a href="https://tw.yahoo.com/" target="_blank">buttonR1</a></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">下拉2&nbsp;<span class="caret"></span></a>
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>&nbsp;<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="#">Action1</a></li>
+						<li><a href="<%=request.getContextPath()%>/pages/login/loginPage.jsp"><span class="glyphicon glyphicon-log-in"></span></a></li>
 						<li><a href="#">Action2</a></li>
 						<li><a href="#">Action3</a></li>
 						<li class="divider"></li>
