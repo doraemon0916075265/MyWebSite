@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/Login.do")
+@WebServlet("/pages/login/Login.do")
 public class LoginServlet extends HttpServlet {
 
 	@Override

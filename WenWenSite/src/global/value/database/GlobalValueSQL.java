@@ -6,6 +6,8 @@ public class GlobalValueSQL {
 	private final String SUCCESS_WORD = "✓";
 	private final String FAIL_WORD = "✗";
 	private final String PRINT_STYLE = "%s\t%s\t%s\n";
+	private final String USELESS_WORD = "無效的";
+	private final String CAN_NOT_DO_THIS = "無效的操作";
 	private final String CAN_NOT_WORD = "無法";
 	private final String CAN_DROP_DATABASE = "刪除資料庫";
 	private final String CAN_CREATE_DATABASE = "創建資料庫";
@@ -18,7 +20,8 @@ public class GlobalValueSQL {
 	/** SQL 其他字串 **/
 	private final String DATABASE_NAME_MYSQL = "MySQL";
 	private final String DATABASE_NAME_ORACLE = "Oracle";
-	private final String DRIVER_NOT_FOUND = "無效的 Driver";
+	private final String DRIVER_NOT_FOUND = USELESS_WORD + " Driver";
+	private final String USELESS_MYSQL_USER_OR_PASSWORD = USELESS_WORD + "帳號或密碼";
 	private final String DATABASE_NAME = "company";// 資料庫名稱
 	private final String TABLE_NAME = "employeeinfo";// 表格名稱
 	private final String FULL_TABLE_NAME = DATABASE_NAME + "." + TABLE_NAME;
@@ -84,6 +87,18 @@ public class GlobalValueSQL {
 
 	public String getEMPTY_WORD() {
 		return EMPTY_WORD;
+	}
+
+	public String getCAN_NOT_DO_THIS() {
+		return CAN_NOT_DO_THIS;
+	}
+
+	public String getUSELESS_WORD() {
+		return USELESS_WORD;
+	}
+
+	public String getUSELESS_MYSQL_USER_OR_PASSWORD() {
+		return USELESS_MYSQL_USER_OR_PASSWORD;
 	}
 
 	public String getSUCCESS_WORD() {
