@@ -21,7 +21,7 @@ public class InitDatabaseServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Date startInit = new Date(System.currentTimeMillis());
+		long startInit = new Date(System.currentTimeMillis()).getTime();
 
 		List<String> resultList = new ArrayList<String>();
 		resultList = InitDB.runInit();
@@ -29,7 +29,7 @@ public class InitDatabaseServlet extends HttpServlet {
 		request.setAttribute("initDB", resultList);
 
 		resultList.add("\n");
-		resultList.add("總共費時：" + (new Date(System.currentTimeMillis()).getTime() - startInit.getTime()) + "毫秒");
+		resultList.add("總共費時：" + (new Date(System.currentTimeMillis()).getTime() - startInit) + "毫秒");
 		request.getRequestDispatcher(GO_TO_INDEX_PAGE).forward(request, response);
 	}
 
