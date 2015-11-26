@@ -14,11 +14,11 @@ import web.model.bean.CompanyCRUDBean;
 import web.model.dao.interfaces.CompanyCRUDdao;
 
 public class CompanyCRUDmysqlJDBC implements CompanyCRUDdao {
-	static GlobalValueSQL GV = new GlobalValueSQL();
+	static GlobalValueSQL GVSQL = new GlobalValueSQL();
 	/** MySQL 連線字串 **/
-	private static String MYSQL_CONNURL = GV.getMYSQL_CONNURL();
-	private static String MYSQL_USER = GV.getMYSQL_USER();
-	private static String MYSQL_PASSWORD = GV.getMYSQL_PASSWORD();
+	private static String MYSQL_CONNURL = GVSQL.getMYSQL_CONNURL();
+	private static String MYSQL_USER = GVSQL.getMYSQL_USER();
+	private static String MYSQL_PASSWORD = GVSQL.getMYSQL_PASSWORD();
 	/** SQL指令 **/
 	private static final String SELECT_ALL = "select * from company.employeeinfo";
 	private static final String SELECT_BY_ID = "select * from company.employeeinfo where id=?";
@@ -29,7 +29,7 @@ public class CompanyCRUDmysqlJDBC implements CompanyCRUDdao {
 	public List<CompanyCRUDBean> select() {
 		List<CompanyCRUDBean> result = new ArrayList<CompanyCRUDBean>();
 
-		if (GV.isUsefulMySQLDriver()) {
+		if (GVSQL.isUsefulMySQLDriver()) {
 			CompanyCRUDBean bean = null;
 			Connection conn = null;
 			PreparedStatement pstmt = null;
@@ -82,7 +82,7 @@ public class CompanyCRUDmysqlJDBC implements CompanyCRUDdao {
 
 	public CompanyCRUDBean select(int id) {
 		CompanyCRUDBean result = null;
-		if (GV.isUsefulMySQLDriver()) {
+		if (GVSQL.isUsefulMySQLDriver()) {
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
@@ -133,7 +133,7 @@ public class CompanyCRUDmysqlJDBC implements CompanyCRUDdao {
 
 	public CompanyCRUDBean insert(CompanyCRUDBean bean) {
 		CompanyCRUDBean result = null;
-		if (GV.isUsefulMySQLDriver()) {
+		if (GVSQL.isUsefulMySQLDriver()) {
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 
@@ -184,7 +184,7 @@ public class CompanyCRUDmysqlJDBC implements CompanyCRUDdao {
 
 	public CompanyCRUDBean update(CompanyCRUDBean bean) {
 		CompanyCRUDBean result = null;
-		if (GV.isUsefulMySQLDriver()) {
+		if (GVSQL.isUsefulMySQLDriver()) {
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 
@@ -241,7 +241,7 @@ public class CompanyCRUDmysqlJDBC implements CompanyCRUDdao {
 
 	public boolean delete(int id) {
 		boolean result = false;
-		if (GV.isUsefulMySQLDriver()) {
+		if (GVSQL.isUsefulMySQLDriver()) {
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 

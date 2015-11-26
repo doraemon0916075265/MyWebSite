@@ -16,8 +16,8 @@ import global.value.web.GlobalValueWebSite;
 
 @WebServlet("/InitDatabase.do")
 public class InitDatabaseServlet extends HttpServlet {
-	static GlobalValueWebSite GVW = new GlobalValueWebSite();
-	private static String GO_TO_INDEX_PAGE = GVW.getGoToIndexPage();
+	static GlobalValueWebSite GVWS = new GlobalValueWebSite();
+	private static String GO_TO_INDEX_PAGE = GVWS.getGoToIndexPage();
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

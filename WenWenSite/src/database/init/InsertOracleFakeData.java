@@ -10,28 +10,28 @@ import java.util.List;
 import global.value.database.GlobalValueSQL;
 
 public class InsertOracleFakeData {
-	static GlobalValueSQL GV = new GlobalValueSQL();
+	static GlobalValueSQL GVSQL = new GlobalValueSQL();
 	/** 輸出字串 **/
-	private static String EMPTY_WORD = GV.getEMPTY_WORD();
-	private static String PRINT_STYLE = GV.getPRINT_STYLE();
-	private static String CAN_NOT_WORD = GV.getCAN_NOT_WORD();
-	private static String SUCCESS_WORD = GV.getSUCCESS_WORD();
-	private static String FAIL_WORD = GV.getFAIL_WORD();
-	private static String CAN_DROP_IDENTITY = GV.getCAN_DROP_IDENTITY();
-	private static String CAN_CREATE_IDENTITY = GV.getCAN_CREATE_IDENTITY();
-	private static String CAN_INSERT_FAKE_DATA = GV.getCAN_INSERT_FAKE_DATA();
+	private static String EMPTY_WORD = GVSQL.getEMPTY_WORD();
+	private static String PRINT_STYLE = GVSQL.getPRINT_STYLE();
+	private static String CAN_NOT_WORD = GVSQL.getCAN_NOT_WORD();
+	private static String SUCCESS_WORD = GVSQL.getSUCCESS_WORD();
+	private static String FAIL_WORD = GVSQL.getFAIL_WORD();
+	private static String CAN_DROP_IDENTITY = GVSQL.getCAN_DROP_IDENTITY();
+	private static String CAN_CREATE_IDENTITY = GVSQL.getCAN_CREATE_IDENTITY();
+	private static String CAN_INSERT_FAKE_DATA = GVSQL.getCAN_INSERT_FAKE_DATA();
 	/** SQL 其他字串 **/
-	private static String DATABASE_NAME_ORACLE = GV.getDATABASE_NAME_ORACLE();
-	private static String FULL_TABLE_NAME = GV.getFULL_TABLE_NAME();
+	private static String DATABASE_NAME_ORACLE = GVSQL.getDATABASE_NAME_ORACLE();
+	private static String FULL_TABLE_NAME = GVSQL.getFULL_TABLE_NAME();
 	/** Oracle 連線字串 **/
-	private static String ORACLE_CONNURL = GV.getORACLE_CONNURL();
-	private static String ORACLE_USER = GV.getORACLE_USER();
-	private static String ORACLE_PASSWORD = GV.getORACLE_PASSWORD();
+	private static String ORACLE_CONNURL = GVSQL.getORACLE_CONNURL();
+	private static String ORACLE_USER = GVSQL.getORACLE_USER();
+	private static String ORACLE_PASSWORD = GVSQL.getORACLE_PASSWORD();
 	/** Oracle 流水號 **/
-	private static String DROP_IDENTITY = GV.getDROP_IDENTITY();
-	private static String CREATE_IDENTITY = GV.getCREATE_IDENTITY();
+	private static String DROP_IDENTITY = GVSQL.getDROP_IDENTITY();
+	private static String CREATE_IDENTITY = GVSQL.getCREATE_IDENTITY();
 	/** Oracle SQL 指令 **/
-	private static String ORACLE_INSERT_FAKE_DATA = GV.getORACLE_INSERT_FAKE_DATA();
+	private static String ORACLE_INSERT_FAKE_DATA = GVSQL.getORACLE_INSERT_FAKE_DATA();
 
 	/** 結果 **/
 	static List<String> result = new ArrayList<String>();
@@ -46,7 +46,7 @@ public class InsertOracleFakeData {
 	}
 
 	private static void dropIdentity() {
-		if (GV.isUsefulOracleDriver()) {
+		if (GVSQL.isUsefulOracleDriver()) {
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			try {
@@ -84,7 +84,7 @@ public class InsertOracleFakeData {
 	}
 
 	private static void createIdentity() {
-		if (GV.isUsefulOracleDriver()) {
+		if (GVSQL.isUsefulOracleDriver()) {
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			try {
@@ -122,7 +122,7 @@ public class InsertOracleFakeData {
 	}
 
 	private static void insertFakeData() {
-		if (GV.isUsefulOracleDriver()) {
+		if (GVSQL.isUsefulOracleDriver()) {
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			try {

@@ -15,11 +15,11 @@ import web.model.bean.CompanyCRUDBean;
 import web.model.dao.interfaces.CompanyCRUDdao;
 
 public class CompanyCRUDoracleJDBC implements CompanyCRUDdao {
-	static GlobalValueSQL GV = new GlobalValueSQL();
+	static GlobalValueSQL GVSQL = new GlobalValueSQL();
 	/** Oracle 連線字串 **/
-	private static String ORACLE_CONNURL = GV.getORACLE_CONNURL();
-	private static String ORACLE_USER = GV.getORACLE_USER();
-	private static String ORACLE_PASSWORD = GV.getORACLE_PASSWORD();
+	private static String ORACLE_CONNURL = GVSQL.getORACLE_CONNURL();
+	private static String ORACLE_USER = GVSQL.getORACLE_USER();
+	private static String ORACLE_PASSWORD = GVSQL.getORACLE_PASSWORD();
 	/** SQL指令 **/
 	private static final String SELECT_ALL = "select * from employeeinfo";
 	private static final String SELECT_BY_ID = "select * from employeeinfo where id=?";
@@ -29,7 +29,7 @@ public class CompanyCRUDoracleJDBC implements CompanyCRUDdao {
 
 	public List<CompanyCRUDBean> select() {
 		List<CompanyCRUDBean> result = new ArrayList<CompanyCRUDBean>();
-		if (GV.isUsefulOracleDriver()) {
+		if (GVSQL.isUsefulOracleDriver()) {
 			CompanyCRUDBean bean = null;
 			Connection conn = null;
 			PreparedStatement pstmt = null;
@@ -81,7 +81,7 @@ public class CompanyCRUDoracleJDBC implements CompanyCRUDdao {
 
 	public CompanyCRUDBean select(int id) {
 		CompanyCRUDBean result = null;
-		if (GV.isUsefulOracleDriver()) {
+		if (GVSQL.isUsefulOracleDriver()) {
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
@@ -132,7 +132,7 @@ public class CompanyCRUDoracleJDBC implements CompanyCRUDdao {
 
 	public CompanyCRUDBean insert(CompanyCRUDBean bean) {
 		CompanyCRUDBean result = null;
-		if (GV.isUsefulOracleDriver()) {
+		if (GVSQL.isUsefulOracleDriver()) {
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 
@@ -192,7 +192,7 @@ public class CompanyCRUDoracleJDBC implements CompanyCRUDdao {
 
 	public CompanyCRUDBean update(CompanyCRUDBean bean) {
 		CompanyCRUDBean result = null;
-		if (GV.isUsefulOracleDriver()) {
+		if (GVSQL.isUsefulOracleDriver()) {
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 
@@ -248,7 +248,7 @@ public class CompanyCRUDoracleJDBC implements CompanyCRUDdao {
 
 	public boolean delete(int id) {
 		boolean result = false;
-		if (GV.isUsefulOracleDriver()) {
+		if (GVSQL.isUsefulOracleDriver()) {
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 

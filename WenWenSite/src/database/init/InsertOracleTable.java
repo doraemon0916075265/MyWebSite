@@ -10,23 +10,23 @@ import java.util.List;
 import global.value.database.GlobalValueSQL;
 
 public class InsertOracleTable {
-	static GlobalValueSQL GV = new GlobalValueSQL();
+	static GlobalValueSQL GVSQL = new GlobalValueSQL();
 	/** 輸出字串 **/
-	private static String PRINT_STYLE = GV.getPRINT_STYLE();
-	private static String CAN_NOT_WORD = GV.getCAN_NOT_WORD();
-	private static String SUCCESS_WORD = GV.getSUCCESS_WORD();
-	private static String FAIL_WORD = GV.getFAIL_WORD();
-	private static String CAN_DROP_TABLE = GV.getCAN_DROP_TABLE();
-	private static String CAN_CREATE_TABLE = GV.getCAN_CREATE_TABLE();
+	private static String PRINT_STYLE = GVSQL.getPRINT_STYLE();
+	private static String CAN_NOT_WORD = GVSQL.getCAN_NOT_WORD();
+	private static String SUCCESS_WORD = GVSQL.getSUCCESS_WORD();
+	private static String FAIL_WORD = GVSQL.getFAIL_WORD();
+	private static String CAN_DROP_TABLE = GVSQL.getCAN_DROP_TABLE();
+	private static String CAN_CREATE_TABLE = GVSQL.getCAN_CREATE_TABLE();
 	/** SQL 其他字串 **/
-	private static String FULL_TABLE_NAME = GV.getFULL_TABLE_NAME();
+	private static String FULL_TABLE_NAME = GVSQL.getFULL_TABLE_NAME();
 	/** Oracle 連線字串 **/
-	private static String ORACLE_CONNURL = GV.getORACLE_CONNURL();
-	private static String ORACLE_USER = GV.getORACLE_USER();
-	private static String ORACLE_PASSWORD = GV.getORACLE_PASSWORD();
+	private static String ORACLE_CONNURL = GVSQL.getORACLE_CONNURL();
+	private static String ORACLE_USER = GVSQL.getORACLE_USER();
+	private static String ORACLE_PASSWORD = GVSQL.getORACLE_PASSWORD();
 	/** Oracle SQL 指令 **/
-	private static String ORACLE_DROP_TABLE = GV.getORACLE_DROP_TABLE();
-	private static String ORACLE_CREATE_TABLE = GV.getORACLE_CREATE_TABLE();
+	private static String ORACLE_DROP_TABLE = GVSQL.getORACLE_DROP_TABLE();
+	private static String ORACLE_CREATE_TABLE = GVSQL.getORACLE_CREATE_TABLE();
 
 	/** 結果 **/
 	static List<String> result = new ArrayList<String>();
@@ -40,7 +40,7 @@ public class InsertOracleTable {
 	}
 
 	private static void dropTable() {
-		if (GV.isUsefulOracleDriver()) {
+		if (GVSQL.isUsefulOracleDriver()) {
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			try {
@@ -77,7 +77,7 @@ public class InsertOracleTable {
 	}
 
 	private static void createTable() {
-		if (GV.isUsefulOracleDriver()) {
+		if (GVSQL.isUsefulOracleDriver()) {
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			try {

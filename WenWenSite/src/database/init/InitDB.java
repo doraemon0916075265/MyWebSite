@@ -7,12 +7,12 @@ import java.util.List;
 import global.value.database.GlobalValueSQL;
 
 public class InitDB {
-	static GlobalValueSQL GV = new GlobalValueSQL();
-	private static String DATABASE_NAME_ORACLE = GV.getDATABASE_NAME_ORACLE();
-	private static String DATABASE_NAME_MYSQL = GV.getDATABASE_NAME_MYSQL();
-	private static String FAIL_WORD = GV.getFAIL_WORD();
-	private static String DRIVER_NOT_FOUND = GV.getDRIVER_NOT_FOUND();
-	private static String CAN_NOT_DO_THIS = GV.getCAN_NOT_DO_THIS();
+	static GlobalValueSQL GVSQL = new GlobalValueSQL();
+	private static String DATABASE_NAME_ORACLE = GVSQL.getDATABASE_NAME_ORACLE();
+	private static String DATABASE_NAME_MYSQL = GVSQL.getDATABASE_NAME_MYSQL();
+	private static String FAIL_WORD = GVSQL.getFAIL_WORD();
+	private static String DRIVER_NOT_FOUND = GVSQL.getDRIVER_NOT_FOUND();
+	private static String CAN_NOT_DO_THIS = GVSQL.getCAN_NOT_DO_THIS();
 
 	public static List<String> runInit() {
 		Date beginInit = new Date(System.currentTimeMillis());
@@ -20,7 +20,7 @@ public class InitDB {
 		/** MySQL 系列 **/
 		System.out.println(DATABASE_NAME_MYSQL);
 		result.add(DATABASE_NAME_MYSQL);
-		if (GV.isUsefulMySQLDriver()) {
+		if (GVSQL.isUsefulMySQLDriver()) {
 			if (InsertMySQLDatabaseTable.start().isEmpty() || InsertMySQLFakeData.start().isEmpty()) {
 				result.add(CAN_NOT_DO_THIS);
 			} else {
@@ -34,7 +34,7 @@ public class InitDB {
 		/** Oracle 系列 **/
 		System.out.println(DATABASE_NAME_ORACLE);
 		result.add(DATABASE_NAME_ORACLE);
-		if (GV.isUsefulOracleDriver()) {
+		if (GVSQL.isUsefulOracleDriver()) {
 			if (InsertOracleTable.start().isEmpty() || InsertOracleFakeData.start().isEmpty()) {
 				result.add(CAN_NOT_DO_THIS);
 			} else {

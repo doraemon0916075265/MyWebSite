@@ -6,16 +6,16 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import global.value.database.GlobalValueSQL;
 import global.value.service.GlobalValue;
 
 public class CreateDatabaseTable {
 	/** 在 Eclipse console 建立資料庫 **/
-	/** 驅動字串 **/
-	private static final String MYSQL_DRIVER = "com.mysql.jdbc.Driver";
-	/** 連線字串 **/
-	private static final String MYSQL_CONNURL = "jdbc:mysql://localhost:3306/student";
-	private static final String MYSQL_USER = "root";
-	private static final String MYSQL_PASSWORD = "root";
+	static GlobalValueSQL GVSQL = new GlobalValueSQL();
+	/** MySQL 連線字串 **/
+	private static String MYSQL_CONNURL = GVSQL.getMYSQL_CONNURL();
+	private static String MYSQL_USER = GVSQL.getMYSQL_USER();
+	private static String MYSQL_PASSWORD = GVSQL.getMYSQL_PASSWORD();
 
 	/** SQL指令 **/
 	private static final String MYSQL_CREATE_DATABASE = "create database ";
@@ -24,97 +24,88 @@ public class CreateDatabaseTable {
 	private boolean createDatabase(String databaseName) {
 		/** 新增資料庫 **/
 		boolean result = false;
-		try {
-			// 找驅動程式
-			Class.forName(MYSQL_DRIVER);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		Connection conn = null;
-		PreparedStatement pstmt = null;
+		if (GVSQL.isUsefulMySQLDriver()) {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
 
-		String SQLdatabaseName = MYSQL_CREATE_DATABASE + databaseName;
-
-		try {
-			conn = DriverManager.getConnection(MYSQL_CONNURL, MYSQL_USER, MYSQL_PASSWORD);
-			pstmt = conn.prepareStatement(SQLdatabaseName);
+			String SQLdatabaseName = MYSQL_CREATE_DATABASE + databaseName;
 
 			try {
-				int count = pstmt.executeUpdate();
-				if (count == 1) {
-					result = true;
-				}
-			} catch (Exception e) {
-				System.out.print("無法執行操作，");
-			}
+				conn = DriverManager.getConnection(MYSQL_CONNURL, MYSQL_USER, MYSQL_PASSWORD);
+				pstmt = conn.prepareStatement(SQLdatabaseName);
 
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			if (pstmt != null) {
 				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
+					int count = pstmt.executeUpdate();
+					if (count == 1) {
+						result = true;
+					}
+				} catch (Exception e) {
+					System.out.print("無法執行操作，");
 				}
-			}
-			if (conn != null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		}
-
 		return result;
 	}
 
 	private boolean dropDatabase(String databaseName) {
-		/** 刪除資料庫 **/
-		try {
-			// 找驅動程式
-			Class.forName(MYSQL_DRIVER);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
 		boolean result = false;
-		Connection conn = null;
-		PreparedStatement pstmt = null;
+		/** 刪除資料庫 **/
+		if (GVSQL.isUsefulMySQLDriver()) {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
 
-		String SQLdatabaseName = MYSQL_DROP_DATABASE + databaseName;
-
-		try {
-			conn = DriverManager.getConnection(MYSQL_CONNURL, MYSQL_USER, MYSQL_PASSWORD);
-			pstmt = conn.prepareStatement(SQLdatabaseName);
+			String SQLdatabaseName = MYSQL_DROP_DATABASE + databaseName;
 
 			try {
-				pstmt.executeUpdate();
-				result = true;
-			} catch (Exception e) {
-				System.out.print("無法執行操作，");
-			}
+				conn = DriverManager.getConnection(MYSQL_CONNURL, MYSQL_USER, MYSQL_PASSWORD);
+				pstmt = conn.prepareStatement(SQLdatabaseName);
 
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			if (pstmt != null) {
 				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
+					pstmt.executeUpdate();
+					result = true;
+				} catch (Exception e) {
+					System.out.print("無法執行操作，");
 				}
-			}
-			if (conn != null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		}
-
 		return result;
+
 	}
 
 	public static void main(String[] args) {

@@ -10,22 +10,22 @@ import java.util.List;
 import global.value.database.GlobalValueSQL;
 
 public class InsertMySQLFakeData {
-	static GlobalValueSQL GV = new GlobalValueSQL();
+	static GlobalValueSQL GVSQL = new GlobalValueSQL();
 	/** 輸出字串 **/
-	private static String SUCCESS_WORD = GV.getSUCCESS_WORD();
-	private static String FAIL_WORD = GV.getFAIL_WORD();
-	private static String PRINT_STYLE = GV.getPRINT_STYLE();
-	private static String CAN_NOT_WORD = GV.getCAN_NOT_WORD();
-	private static String CAN_INSERT_FAKE_DATA = GV.getCAN_INSERT_FAKE_DATA();
+	private static String SUCCESS_WORD = GVSQL.getSUCCESS_WORD();
+	private static String FAIL_WORD = GVSQL.getFAIL_WORD();
+	private static String PRINT_STYLE = GVSQL.getPRINT_STYLE();
+	private static String CAN_NOT_WORD = GVSQL.getCAN_NOT_WORD();
+	private static String CAN_INSERT_FAKE_DATA = GVSQL.getCAN_INSERT_FAKE_DATA();
 	/** SQL 其他字串 **/
-	private static String DATABASE_NAME_MYSQL = GV.getDATABASE_NAME_MYSQL();
-	private static String FULL_TABLE_NAME = GV.getFULL_TABLE_NAME();
+	private static String DATABASE_NAME_MYSQL = GVSQL.getDATABASE_NAME_MYSQL();
+	private static String FULL_TABLE_NAME = GVSQL.getFULL_TABLE_NAME();
 	/** MySQL 連線字串 **/
-	private static String MYSQL_CONNURL = GV.getMYSQL_CONNURL();
-	private static String MYSQL_USER = GV.getMYSQL_USER();
-	private static String MYSQL_PASSWORD = GV.getMYSQL_PASSWORD();
+	private static String MYSQL_CONNURL = GVSQL.getMYSQL_CONNURL();
+	private static String MYSQL_USER = GVSQL.getMYSQL_USER();
+	private static String MYSQL_PASSWORD = GVSQL.getMYSQL_PASSWORD();
 	/** MySQL SQL 指令 **/
-	private static String MYSQL_INSERT_FAKE_DATA = GV.getMYSQL_INSERT_FAKE_DATA();
+	private static String MYSQL_INSERT_FAKE_DATA = GVSQL.getMYSQL_INSERT_FAKE_DATA();
 
 	/** 結果 **/
 	static List<String> result = new ArrayList<String>();
@@ -38,7 +38,7 @@ public class InsertMySQLFakeData {
 	}
 
 	private static void insertFakeData() {
-		if (GV.isUsefulMySQLDriver()) {
+		if (GVSQL.isUsefulMySQLDriver()) {
 
 			Connection conn = null;
 			PreparedStatement pstmt = null;
