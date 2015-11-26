@@ -22,6 +22,8 @@ public class Excel2003TimeSheet {
 	private static String[] EXCEL_SHEET_TABLE_TITLE = GVT.getEXCEL_SHEET_TABLE_TITLE();
 	private static int EXCEL_SHEET_TABLE_TITLE_SIZE = GVT.getEXCEL_SHEET_TABLE_TITLE_SIZE();
 	private static int EXCEL_SHEET_TABLE_ABOVE_TITLE_HEIGHT = GVT.getEXCEL_SHEET_TABLE_ABOVE_TITLE_HEIGHT();
+	private static String GET_ON_WORK_TIME = GVT.getGET_ON_WORK_TIME();
+	private static String GET_OFF_WORK_TIME = GVT.getGET_OFF_WORK_TIME();
 
 	public static void writeToExcel() {
 		List<String> listMonth = GVT.turnYearMonthToDay(2015, 11);
@@ -65,6 +67,10 @@ public class Excel2003TimeSheet {
 						tab.setString(textTable.substring(0, 10));
 					} else if (column == 1) {
 						tab.setString(textTable.substring(13, textTable.length()));
+					} else if (column == 2) {
+						tab.setString(GET_ON_WORK_TIME);
+					} else if (column == 3) {
+						tab.setString(GET_OFF_WORK_TIME);
 					} else {
 						tab.setString(EMPTY_WORD);
 					}

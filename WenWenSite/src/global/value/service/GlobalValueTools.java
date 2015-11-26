@@ -17,6 +17,8 @@ public class GlobalValueTools {
 	private final String[] EXCEL_SHEET_TABLE_TITLE = { "出勤日期", "星期", "上班時間", "下班時間", "加班時數", "請假時數", "說明 (假日, 特休, 病假, 事假, 其他)" };
 	private final int EXCEL_SHEET_TABLE_TITLE_SIZE = EXCEL_SHEET_TABLE_TITLE.length;
 	private final int EXCEL_SHEET_TABLE_ABOVE_TITLE_HEIGHT = 8;
+	private final String GET_ON_WORK_TIME = "9:00";
+	private final String GET_OFF_WORK_TIME = "6:30";
 
 	/** 測試用 **/
 	private final int WRITE_YEAR = 2015;
@@ -100,6 +102,14 @@ public class GlobalValueTools {
 
 	public int getEXCEL_SHEET_TABLE_ABOVE_TITLE_HEIGHT() {
 		return EXCEL_SHEET_TABLE_ABOVE_TITLE_HEIGHT;
+	}
+
+	public String getGET_ON_WORK_TIME() {
+		return GET_ON_WORK_TIME;
+	}
+
+	public String getGET_OFF_WORK_TIME() {
+		return GET_OFF_WORK_TIME;
 	}
 
 }
