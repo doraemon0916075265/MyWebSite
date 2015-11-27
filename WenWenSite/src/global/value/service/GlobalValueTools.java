@@ -20,8 +20,8 @@ public class GlobalValueTools {
 	private final String[] EXCEL_SHEET01_TABLE_HEADER = { "月曆" };
 	private final int EXCEL_SHEET01_TABLE_HEADER_HEIGHT = 1;
 	private final String[] EXCEL_SHEET01_TABLE_TITLE = { "日期", "星期", "備註" };
-	private final int EXCEL_SHEET01_TABLE_TITLE_SIZE = EXCEL_SHEET01_TABLE_TITLE.length;
 	private final int EXCEL_SHEET01_TABLE_ABOVE_TITLE_HEIGHT = 8;
+	private final int EXCEL_SHEET01_TABLE_TITLE_SIZE = EXCEL_SHEET01_TABLE_TITLE.length;
 
 	/** 輸入年跟月，回傳當月的每一天 **/
 	public List<String> turnYearMonthToDay(int year, int month) {
