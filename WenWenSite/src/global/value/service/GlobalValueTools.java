@@ -41,8 +41,6 @@ public class GlobalValueTools {
 			result.add(sdf.format(everyDay));
 		}
 
-		result.add("" + maxDate);
-
 		return result;
 	}
 
