@@ -15,7 +15,7 @@ public class InitDB {
 	private static String CAN_NOT_DO_THIS = GVSQL.getCAN_NOT_DO_THIS();
 
 	public static List<String> runInit() {
-		Date beginInit = new Date(System.currentTimeMillis());
+		long startInit = new Date(System.currentTimeMillis()).getTime();
 		List<String> result = new ArrayList<String>();
 		/** MySQL 系列 **/
 		System.out.println(DATABASE_NAME_MYSQL);
@@ -45,8 +45,7 @@ public class InitDB {
 			result.add(FAIL_WORD + "\t" + DRIVER_NOT_FOUND);
 		}
 
-		Date endInit = new Date(System.currentTimeMillis());
-		System.out.println("費時：" + (endInit.getTime() - beginInit.getTime()) + "毫秒");
+		System.out.println("費時：" + ((new Date(System.currentTimeMillis()).getTime()) - startInit) + "毫秒");
 		return result;
 	}
 
