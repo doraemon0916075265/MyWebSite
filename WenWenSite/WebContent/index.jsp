@@ -3,10 +3,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="LoginTitle" value="${SYSTEM.loginTitle}" scope="application" />
 <c:set var="AppName" value="${SYSTEM.appName}" scope="application" />
+<c:set var="FileExcel" value="${SYSTEM.fileExcel}" scope="application" />
 <c:set var="MathPlace" value="${SYSTEM.mathPlace}" scope="application" />
 <c:set var="CompanyName" value="${SYSTEM.companyName}" scope="application" />
 <c:set var="HomePage" value="${SYSTEM.homePage}" scope="application" />
 <c:set var="BulletinBoard" value="${SYSTEM.bulletinBoard}" scope="application" />
+<c:set var="Initialize" value="${SYSTEM.initialize}" scope="application" />
+<c:set var="Database" value="${SYSTEM.database}" scope="application" />
 <c:set var="MySQL" value="${SYSTEM.mysql}" scope="application" />
 <c:set var="Oracle" value="${SYSTEM.oracle}" scope="application" />
 

@@ -17,16 +17,16 @@
 				<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 			</button>
 			<!-- 系統名稱 -->
-			<a class="navbar-brand" href="<%=request.getContextPath()%>/index.jsp"><span class="glyphicon glyphicon-home"></span>&nbsp;${SYSTEM.appName}</a>
+			<a class="navbar-brand" href="<%=request.getContextPath()%>/index.jsp" title="${AppName}"><span class="glyphicon glyphicon-home"></span>&nbsp;${SYSTEM.appName}</a>
 		</div>
 
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<!-- 選項 -->
-				<li><a href="#"><span class="glyphicon glyphicon-remove"></span></a><span class="sr-only">(current)</span></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-refresh"></span>&nbsp;<span class="caret"></span></a>
+				<li><a href="#" title="${FileExcel}"><span class="glyphicon glyphicon-file"></span></a><span class="sr-only">(current)</span></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" title="${Initialize}"><span class="glyphicon glyphicon-refresh"></span>&nbsp;<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="InitDatabase.do" type="submit">資料庫</a></li>
+						<li><a href="InitDatabase.do" type="submit" title="${Database}">${Database}</a></li>
 					</ul></li>
 			</ul>
 			<!-- 搜尋 -->
