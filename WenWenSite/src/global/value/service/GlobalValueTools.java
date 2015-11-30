@@ -11,16 +11,14 @@ public class GlobalValueTools {
 	private final String EMPTY_WORD = "";
 	/** Excel **/
 	private final String FILE_EXCEL_PATH = "C:/Users/user/Desktop/";
-	private final String FILE_EXCEL_NAME = "TimeSheet";
 	private final String FILE_EXCEL_NAME_EXTENSION = ".xls";
-	private final String FILE_CREATE_EXCEL_FULL_NAME = FILE_EXCEL_PATH + FILE_EXCEL_NAME + FILE_EXCEL_NAME_EXTENSION;
 	/** Sheet **/
 	private final String EXCEL_SHEET01_NAME = "月曆";
 	/** Table **/
 	private final String[] EXCEL_SHEET01_TABLE_HEADER = { "月曆" };
 	private final int EXCEL_SHEET01_TABLE_HEADER_HEIGHT = 1;
 	private final String[] EXCEL_SHEET01_TABLE_TITLE = { "日期", "星期", "備註" };
-	private final int EXCEL_SHEET01_TABLE_ABOVE_TITLE_HEIGHT = 8;
+	private final int EXCEL_SHEET01_TABLE_ABOVE_TITLE_HEIGHT = EXCEL_SHEET01_TABLE_HEADER_HEIGHT + 1;
 	private final int EXCEL_SHEET01_TABLE_TITLE_SIZE = EXCEL_SHEET01_TABLE_TITLE.length;
 
 	/** 輸入年跟月，回傳當月的每一天 **/
@@ -52,16 +50,8 @@ public class GlobalValueTools {
 		return FILE_EXCEL_PATH;
 	}
 
-	public String getFILE_EXCEL_NAME() {
-		return FILE_EXCEL_NAME;
-	}
-
 	public String getFILE_EXCEL_NAME_EXTENSION() {
 		return FILE_EXCEL_NAME_EXTENSION;
-	}
-
-	public String getFILE_CREATE_EXCEL_FULL_NAME() {
-		return FILE_CREATE_EXCEL_FULL_NAME;
 	}
 
 	public String getEXCEL_SHEET01_NAME() {
@@ -80,12 +70,12 @@ public class GlobalValueTools {
 		return EXCEL_SHEET01_TABLE_TITLE;
 	}
 
-	public int getEXCEL_SHEET01_TABLE_TITLE_SIZE() {
-		return EXCEL_SHEET01_TABLE_TITLE_SIZE;
-	}
-
 	public int getEXCEL_SHEET01_TABLE_ABOVE_TITLE_HEIGHT() {
 		return EXCEL_SHEET01_TABLE_ABOVE_TITLE_HEIGHT;
+	}
+
+	public int getEXCEL_SHEET01_TABLE_TITLE_SIZE() {
+		return EXCEL_SHEET01_TABLE_TITLE_SIZE;
 	}
 
 }
