@@ -31,7 +31,11 @@
 				</tbody>
 			</table>
 		</form>
-
 	</center>
+	<script type="text/javascript">
+		function CheckUsername() {
+			var URL = "pages/login/checkUsername.jsp";
+		}
+	</script>
 </body>
 </html>

@@ -6,21 +6,34 @@ public class GlobalValueSQL {
 	private final String WORD_SUCCESS = "✓";
 	private final String WORD_FAIL = "✗";
 	private final String WORD_DO_NOT = "不";
+	private final String WORD_EFFECTIVE = "有效的";
+	private final String WORD_EXIST = "已存在";
+	private final String WORD_NOT_EXIST = "不存在";
+	private final String WORD_REPEAT = "重複的";
 	private final String WORD_CAN_NOT = "無法";
 	private final String WORD_USELESS = "無效的";
+	private final String WORD_USERNAME = "帳號";
+	private final String WORD_OPERATE = "操作";
 	private final String WORD_DATABASE_NAME_MYSQL = "MySQL";
 	private final String WORD_DATABASE_NAME_ORACLE = "Oracle";
+	private final String WORD_CREATE = "建立";
+	private final String WORD_INSERT = "匯入";
+	private final String WORD_DELETE = "刪除";
+	private final String WORD_DATABASE = "資料庫";
+	private final String WORD_TABLE = "資料表";
+	private final String WORD_IDENTITY = "流水號";
+	private final String WORD_FAKE_DATA = "假資料";
 	/** 輸出字串 CAN **/
-	private final String CAN_USE_USERNAME = "可用的帳號";
-	private final String CAN_NOT_USERNAME = WORD_DO_NOT + CAN_USE_USERNAME;
-	private final String CAN_USELESS_TO_DO = WORD_USELESS + "操作";
-	private final String CAN_DROP_DATABASE = "刪除資料庫";
-	private final String CAN_CREATE_DATABASE = "創建資料庫";
-	private final String CAN_DROP_TABLE = "刪除資料表";
-	private final String CAN_CREATE_TABLE = "建立資料表";
-	private final String CAN_DROP_IDENTITY = "刪除流水號";
-	private final String CAN_CREATE_IDENTITY = "建立流水號";
-	private final String CAN_INSERT_FAKE_DATA = "建立假資料";
+	private final String CAN_USERNAME_NOT_EXIST = WORD_USERNAME + WORD_NOT_EXIST;
+	private final String CAN_USERNAME_EXIST = WORD_USERNAME + WORD_EXIST;
+	private final String CAN_USELESS_TO_DO = WORD_USELESS + WORD_OPERATE;
+	private final String CAN_DROP_DATABASE = WORD_DELETE + WORD_DATABASE;
+	private final String CAN_CREATE_DATABASE = WORD_CREATE + WORD_DATABASE;
+	private final String CAN_DROP_TABLE = WORD_DELETE + WORD_TABLE;
+	private final String CAN_CREATE_TABLE = WORD_CREATE + WORD_TABLE;
+	private final String CAN_DROP_IDENTITY = WORD_DELETE + WORD_IDENTITY;
+	private final String CAN_CREATE_IDENTITY = WORD_CREATE + WORD_IDENTITY;
+	private final String CAN_INSERT_FAKE_DATA = WORD_INSERT + WORD_FAKE_DATA;
 	/** 輸出字串 STYLE **/
 	private final String STYLE_PRINT_CONSOLE_SUCCESS = WORD_SUCCESS + "\t%s\t%s\n";
 	private final String STYLE_PRINT_CONSOLE_FAIL = WORD_FAIL + "\t%s\t%s\n";
@@ -89,12 +102,36 @@ public class GlobalValueSQL {
 		return WORD_DO_NOT;
 	}
 
+	public String getWORD_EFFECTIVE() {
+		return WORD_EFFECTIVE;
+	}
+
+	public String getWORD_EXIST() {
+		return WORD_EXIST;
+	}
+
+	public String getWORD_NOT_EXIST() {
+		return WORD_NOT_EXIST;
+	}
+
+	public String getWORD_REPEAT() {
+		return WORD_REPEAT;
+	}
+
 	public String getWORD_CAN_NOT() {
 		return WORD_CAN_NOT;
 	}
 
 	public String getWORD_USELESS() {
 		return WORD_USELESS;
+	}
+
+	public String getWORD_USERNAME() {
+		return WORD_USERNAME;
+	}
+
+	public String getWORD_OPERATE() {
+		return WORD_OPERATE;
 	}
 
 	public String getWORD_DATABASE_NAME_MYSQL() {
@@ -105,12 +142,40 @@ public class GlobalValueSQL {
 		return WORD_DATABASE_NAME_ORACLE;
 	}
 
-	public String getCAN_USE_USERNAME() {
-		return CAN_USE_USERNAME;
+	public String getWORD_CREATE() {
+		return WORD_CREATE;
 	}
 
-	public String getCAN_NOT_USERNAME() {
-		return CAN_NOT_USERNAME;
+	public String getWORD_INSERT() {
+		return WORD_INSERT;
+	}
+
+	public String getWORD_DELETE() {
+		return WORD_DELETE;
+	}
+
+	public String getWORD_DATABASE() {
+		return WORD_DATABASE;
+	}
+
+	public String getWORD_TABLE() {
+		return WORD_TABLE;
+	}
+
+	public String getWORD_IDENTITY() {
+		return WORD_IDENTITY;
+	}
+
+	public String getWORD_FAKE_DATA() {
+		return WORD_FAKE_DATA;
+	}
+
+	public String getCAN_USERNAME_NOT_EXIST() {
+		return CAN_USERNAME_NOT_EXIST;
+	}
+
+	public String getCAN_USERNAME_EXIST() {
+		return CAN_USERNAME_EXIST;
 	}
 
 	public String getCAN_USELESS_TO_DO() {
