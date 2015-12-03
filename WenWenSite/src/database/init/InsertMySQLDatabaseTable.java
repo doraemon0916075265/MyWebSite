@@ -11,28 +11,32 @@ import global.value.database.GlobalValueSQL;
 
 public class InsertMySQLDatabaseTable {
 	static GlobalValueSQL GVSQL = new GlobalValueSQL();
-
-	/** 輸出字串 **/
-	private static String SUCCESS_WORD = GVSQL.getSUCCESS_WORD();
-	private static String FAIL_WORD = GVSQL.getFAIL_WORD();
-	private static String PRINT_STYLE = GVSQL.getPRINT_STYLE();
-	private static String CAN_NOT_WORD = GVSQL.getCAN_NOT_WORD();
+	/** 輸出字串 WORD **/
+	private static String WORD_SUCCESS = GVSQL.getWORD_SUCCESS();
+	private static String WORD_FAIL = GVSQL.getWORD_FAIL();
+	private static String WORD_CAN_NOT = GVSQL.getWORD_CAN_NOT();
+	/** 輸出字串 CAN **/
 	private static String CAN_DROP_DATABASE = GVSQL.getCAN_DROP_DATABASE();
 	private static String CAN_CREATE_DATABASE = GVSQL.getCAN_CREATE_DATABASE();
 	private static String CAN_CREATE_TABLE = GVSQL.getCAN_CREATE_TABLE();
+	/** 輸出字串 STYLE **/
+	private static String STYLE_PRINT_CONSOLE_SUCCESS = GVSQL.getSTYLE_PRINT_CONSOLE_SUCCESS();
+	private static String STYLE_PRINT_CONSOLE_FAIL = GVSQL.getSTYLE_PRINT_CONSOLE_FAIL();
 	/** SQL 其他字串 **/
-	private static String DATABASE_NAME = GVSQL.getDATABASE_NAME();
-	private static String FULL_TABLE_NAME = GVSQL.getFULL_TABLE_NAME();
+	private static String NAME_DATABASE = GVSQL.getNAME_DATABASE();
+	private static String NAME_TABLE = GVSQL.getNAME_TABLE();
+	private static String NAME_FULL_TABLE = GVSQL.getNAME_FULL_TABLE();
 	/** MySQL 連線字串 **/
 	private static String MYSQL_CONNURL = GVSQL.getMYSQL_CONNURL();
 	private static String MYSQL_USER = GVSQL.getMYSQL_USER();
 	private static String MYSQL_PASSWORD = GVSQL.getMYSQL_PASSWORD();
-	/** MySQL SQL指令 **/
-	private static String MYSQL_CREATE_DATABASE = GVSQL.getMYSQL_CREATE_DATABASE();
-	private static String MYSQL_DROP_DATABASE = GVSQL.getMYSQL_DROP_DATABASE();
-	private static String MYSQL_CREATE_TABLE = GVSQL.getMYSQL_CREATE_TABLE();
-
-	/** 結果 **/
+	/** MySQL SQL指令 - database **/
+	private static final String MYSQL_CREATE_DATABASE = "create database " + NAME_DATABASE;
+	private static final String MYSQL_DROP_DATABASE = "drop database " + NAME_DATABASE;
+	/** MySQL SQL指令 - table **/
+	private static final String MYSQL_TABLE_TEMP_COLUMN = "id int auto_increment,primary key(id),name varchar(50),age int,cellphone varchar(10),email varchar(50),hiredate datetime";
+	private static final String MYSQL_CREATE_TABLE = "create table " + NAME_DATABASE + "." + NAME_TABLE + "(" + MYSQL_TABLE_TEMP_COLUMN + ")";
+	/** 結果 LIST **/
 	static List<String> result = new ArrayList<String>();
 
 	public static List<String> start() {
@@ -54,11 +58,11 @@ public class InsertMySQLDatabaseTable {
 				pstmt = conn.prepareStatement(MYSQL_DROP_DATABASE);
 				try {
 					pstmt.executeUpdate();
-					System.out.printf(PRINT_STYLE, SUCCESS_WORD, CAN_DROP_DATABASE, DATABASE_NAME);
-					result.add(SUCCESS_WORD + "\t" + CAN_DROP_DATABASE);
+					System.out.printf(STYLE_PRINT_CONSOLE_SUCCESS, CAN_DROP_DATABASE, NAME_DATABASE);
+					result.add(WORD_SUCCESS + "\t" + CAN_DROP_DATABASE);
 				} catch (Exception e) {
-					System.out.printf(PRINT_STYLE, FAIL_WORD, CAN_NOT_WORD + CAN_DROP_DATABASE, DATABASE_NAME);
-					result.add(FAIL_WORD + "\t" + CAN_NOT_WORD + CAN_DROP_DATABASE);
+					System.out.printf(STYLE_PRINT_CONSOLE_FAIL, WORD_CAN_NOT + CAN_DROP_DATABASE, NAME_DATABASE);
+					result.add(WORD_FAIL + "\t" + WORD_CAN_NOT + CAN_DROP_DATABASE);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -94,11 +98,11 @@ public class InsertMySQLDatabaseTable {
 				pstmt = conn.prepareStatement(MYSQL_CREATE_DATABASE);
 				try {
 					pstmt.executeUpdate();
-					System.out.printf(PRINT_STYLE, SUCCESS_WORD, CAN_CREATE_DATABASE, FULL_TABLE_NAME);
-					result.add(SUCCESS_WORD + "\t" + CAN_CREATE_DATABASE);
+					System.out.printf(STYLE_PRINT_CONSOLE_SUCCESS, CAN_CREATE_DATABASE, NAME_FULL_TABLE);
+					result.add(WORD_SUCCESS + "\t" + CAN_CREATE_DATABASE);
 				} catch (Exception e) {
-					System.out.printf(PRINT_STYLE, FAIL_WORD, CAN_CREATE_DATABASE, FULL_TABLE_NAME);
-					result.add(FAIL_WORD + "\t" + CAN_NOT_WORD + CAN_CREATE_DATABASE);
+					System.out.printf(STYLE_PRINT_CONSOLE_FAIL, CAN_CREATE_DATABASE, NAME_FULL_TABLE);
+					result.add(WORD_FAIL + "\t" + WORD_CAN_NOT + CAN_CREATE_DATABASE);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -133,11 +137,11 @@ public class InsertMySQLDatabaseTable {
 				pstmt = conn.prepareStatement(MYSQL_CREATE_TABLE);
 				try {
 					pstmt.executeUpdate();
-					System.out.printf(PRINT_STYLE, SUCCESS_WORD, CAN_CREATE_TABLE, FULL_TABLE_NAME);
-					result.add(SUCCESS_WORD + "\t" + CAN_CREATE_TABLE);
+					System.out.printf(STYLE_PRINT_CONSOLE_SUCCESS, CAN_CREATE_TABLE, NAME_FULL_TABLE);
+					result.add(WORD_SUCCESS + "\t" + CAN_CREATE_TABLE);
 				} catch (Exception e) {
-					System.out.printf(PRINT_STYLE, FAIL_WORD, CAN_NOT_WORD + CAN_CREATE_TABLE, FULL_TABLE_NAME);
-					result.add(FAIL_WORD + "\t" + CAN_NOT_WORD + CAN_CREATE_TABLE);
+					System.out.printf(STYLE_PRINT_CONSOLE_FAIL, WORD_CAN_NOT + CAN_CREATE_TABLE, NAME_FULL_TABLE);
+					result.add(WORD_FAIL + "\t" + WORD_CAN_NOT + CAN_CREATE_TABLE);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();

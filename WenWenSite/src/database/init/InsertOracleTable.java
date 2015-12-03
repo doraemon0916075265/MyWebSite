@@ -11,24 +11,28 @@ import global.value.database.GlobalValueSQL;
 
 public class InsertOracleTable {
 	static GlobalValueSQL GVSQL = new GlobalValueSQL();
-	/** 輸出字串 **/
-	private static String PRINT_STYLE = GVSQL.getPRINT_STYLE();
-	private static String CAN_NOT_WORD = GVSQL.getCAN_NOT_WORD();
-	private static String SUCCESS_WORD = GVSQL.getSUCCESS_WORD();
-	private static String FAIL_WORD = GVSQL.getFAIL_WORD();
+	/** 輸出字串 WORD **/
+	private static String WORD_SUCCESS = GVSQL.getWORD_SUCCESS();
+	private static String WORD_FAIL = GVSQL.getWORD_FAIL();
+	private static String WORD_CAN_NOT = GVSQL.getWORD_CAN_NOT();
+	/** 輸出字串 CAN **/
 	private static String CAN_DROP_TABLE = GVSQL.getCAN_DROP_TABLE();
 	private static String CAN_CREATE_TABLE = GVSQL.getCAN_CREATE_TABLE();
+	/** 輸出字串 STYLE **/
+	private static String STYLE_PRINT_CONSOLE_SUCCESS = GVSQL.getSTYLE_PRINT_CONSOLE_SUCCESS();
+	private static String STYLE_PRINT_CONSOLE_FAIL = GVSQL.getSTYLE_PRINT_CONSOLE_FAIL();
 	/** SQL 其他字串 **/
-	private static String FULL_TABLE_NAME = GVSQL.getFULL_TABLE_NAME();
+	private static String NAME_TABLE = GVSQL.getNAME_TABLE();
+	private static String NAME_FULL_TABLE = GVSQL.getNAME_FULL_TABLE();
 	/** Oracle 連線字串 **/
 	private static String ORACLE_CONNURL = GVSQL.getORACLE_CONNURL();
 	private static String ORACLE_USER = GVSQL.getORACLE_USER();
 	private static String ORACLE_PASSWORD = GVSQL.getORACLE_PASSWORD();
-	/** Oracle SQL 指令 **/
-	private static String ORACLE_DROP_TABLE = GVSQL.getORACLE_DROP_TABLE();
-	private static String ORACLE_CREATE_TABLE = GVSQL.getORACLE_CREATE_TABLE();
-
-	/** 結果 **/
+	/** Oracle SQL指令 - table **/
+	private static final String ORACLE_DROP_TABLE = "drop table " + NAME_TABLE;
+	private static final String ORACLE_TABLE_COLUMN = "ID NUMBER primary key not null, NAME NVARCHAR2(50),AGE NUMBER(5),CELLPHONE NVARCHAR2(10),EMAIL NVARCHAR2(50),HIREDATE timestamp";
+	private static final String ORACLE_CREATE_TABLE = "create table " + NAME_TABLE + "(" + ORACLE_TABLE_COLUMN + ")";
+	/** 結果 List **/
 	static List<String> result = new ArrayList<String>();
 
 	public static List<String> start() {
@@ -49,11 +53,11 @@ public class InsertOracleTable {
 				pstmt = conn.prepareStatement(ORACLE_DROP_TABLE);
 				try {
 					pstmt.executeUpdate();
-					System.out.printf(PRINT_STYLE, SUCCESS_WORD, CAN_DROP_TABLE, FULL_TABLE_NAME);
-					result.add(SUCCESS_WORD + "\t" + CAN_DROP_TABLE);
+					System.out.printf(STYLE_PRINT_CONSOLE_SUCCESS, CAN_DROP_TABLE, NAME_FULL_TABLE);
+					result.add(WORD_SUCCESS + "\t" + CAN_DROP_TABLE);
 				} catch (Exception e) {
-					System.out.printf(PRINT_STYLE, FAIL_WORD, CAN_NOT_WORD + CAN_DROP_TABLE, FULL_TABLE_NAME);
-					result.add(FAIL_WORD + "\t" + CAN_NOT_WORD + CAN_DROP_TABLE);
+					System.out.printf(STYLE_PRINT_CONSOLE_FAIL, WORD_CAN_NOT + CAN_DROP_TABLE, NAME_FULL_TABLE);
+					result.add(WORD_FAIL + "\t" + WORD_CAN_NOT + CAN_DROP_TABLE);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -86,11 +90,11 @@ public class InsertOracleTable {
 				pstmt = conn.prepareStatement(ORACLE_CREATE_TABLE);
 				try {
 					pstmt.executeUpdate();
-					System.out.printf(PRINT_STYLE, SUCCESS_WORD, CAN_CREATE_TABLE, FULL_TABLE_NAME);
-					result.add(SUCCESS_WORD + "\t" + CAN_CREATE_TABLE);
+					System.out.printf(STYLE_PRINT_CONSOLE_SUCCESS, CAN_CREATE_TABLE, NAME_FULL_TABLE);
+					result.add(WORD_SUCCESS + "\t" + CAN_CREATE_TABLE);
 				} catch (Exception e) {
-					System.out.printf(PRINT_STYLE, FAIL_WORD, CAN_NOT_WORD + CAN_CREATE_TABLE, FULL_TABLE_NAME);
-					result.add(FAIL_WORD + "\t" + CAN_NOT_WORD + CAN_CREATE_TABLE);
+					System.out.printf(STYLE_PRINT_CONSOLE_FAIL, WORD_CAN_NOT + CAN_CREATE_TABLE, NAME_FULL_TABLE);
+					result.add(WORD_FAIL + "\t" + WORD_CAN_NOT + CAN_CREATE_TABLE);
 				}
 
 			} catch (SQLException e) {

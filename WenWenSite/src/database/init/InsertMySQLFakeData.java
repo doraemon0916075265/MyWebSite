@@ -11,21 +11,24 @@ import global.value.database.GlobalValueSQL;
 
 public class InsertMySQLFakeData {
 	static GlobalValueSQL GVSQL = new GlobalValueSQL();
-	/** 輸出字串 **/
-	private static String SUCCESS_WORD = GVSQL.getSUCCESS_WORD();
-	private static String FAIL_WORD = GVSQL.getFAIL_WORD();
-	private static String PRINT_STYLE = GVSQL.getPRINT_STYLE();
-	private static String CAN_NOT_WORD = GVSQL.getCAN_NOT_WORD();
+	/** 輸出字串 WORD **/
+	private static String WORD_SUCCESS = GVSQL.getWORD_SUCCESS();
+	private static String WORD_FAIL = GVSQL.getWORD_FAIL();
+	private static String WORD_CAN_NOT = GVSQL.getWORD_CAN_NOT();
+	/** 輸出字串 CAN **/
 	private static String CAN_INSERT_FAKE_DATA = GVSQL.getCAN_INSERT_FAKE_DATA();
+	/** 輸出字串 STYLE **/
+	private static String STYLE_PRINT_CONSOLE_SUCCESS = GVSQL.getSTYLE_PRINT_CONSOLE_SUCCESS();
+	private static String STYLE_PRINT_CONSOLE_FAIL = GVSQL.getSTYLE_PRINT_CONSOLE_FAIL();
 	/** SQL 其他字串 **/
-	private static String DATABASE_NAME_MYSQL = GVSQL.getDATABASE_NAME_MYSQL();
-	private static String FULL_TABLE_NAME = GVSQL.getFULL_TABLE_NAME();
+	private static String WORD_DATABASE_NAME_MYSQL = GVSQL.getWORD_DATABASE_NAME_MYSQL();
+	private static String NAME_FULL_TABLE = GVSQL.getNAME_FULL_TABLE();
 	/** MySQL 連線字串 **/
 	private static String MYSQL_CONNURL = GVSQL.getMYSQL_CONNURL();
 	private static String MYSQL_USER = GVSQL.getMYSQL_USER();
 	private static String MYSQL_PASSWORD = GVSQL.getMYSQL_PASSWORD();
-	/** MySQL SQL 指令 **/
-	private static String MYSQL_INSERT_FAKE_DATA = GVSQL.getMYSQL_INSERT_FAKE_DATA();
+	/** MySQL SQL指令 - data **/
+	private static final String MYSQL_INSERT_FAKE_DATA = "insert into " + NAME_FULL_TABLE + " (name,age,cellphone,email,hiredate) values (?,?,?,?,?)";
 
 	/** 結果 **/
 	static List<String> result = new ArrayList<String>();
@@ -47,11 +50,11 @@ public class InsertMySQLFakeData {
 				conn = DriverManager.getConnection(MYSQL_CONNURL, MYSQL_USER, MYSQL_PASSWORD);
 				pstmt = conn.prepareStatement(MYSQL_INSERT_FAKE_DATA);
 				InsertFakeData data = new InsertFakeData();
-				int datasize = data.allFakeEmployee(DATABASE_NAME_MYSQL).size();
+				int datasize = data.allFakeEmployee(WORD_DATABASE_NAME_MYSQL).size();
 
 				try {
 					for (int i = 0; i < datasize; i++) {
-						String name = data.allFakeEmployee(DATABASE_NAME_MYSQL).get(i);
+						String name = data.allFakeEmployee(WORD_DATABASE_NAME_MYSQL).get(i);
 						int age = (int) (Math.random() * 119) + 1;
 						String cellphone = "09" + (int) (Math.random() * 100000000);
 						pstmt.setString(1, name);
@@ -66,11 +69,11 @@ public class InsertMySQLFakeData {
 							System.out.println("新增資料失敗");
 						}
 					}
-					System.out.printf(PRINT_STYLE, SUCCESS_WORD, CAN_INSERT_FAKE_DATA, FULL_TABLE_NAME);
-					result.add(SUCCESS_WORD + "\t" + CAN_INSERT_FAKE_DATA);
+					System.out.printf(STYLE_PRINT_CONSOLE_SUCCESS, CAN_INSERT_FAKE_DATA, NAME_FULL_TABLE);
+					result.add(WORD_SUCCESS + "\t" + CAN_INSERT_FAKE_DATA);
 				} catch (Exception e) {
-					System.out.printf(PRINT_STYLE, FAIL_WORD, CAN_NOT_WORD + CAN_INSERT_FAKE_DATA, FULL_TABLE_NAME);
-					result.add(FAIL_WORD + "\t" + CAN_NOT_WORD + CAN_INSERT_FAKE_DATA);
+					System.out.printf(STYLE_PRINT_CONSOLE_FAIL, WORD_CAN_NOT + CAN_INSERT_FAKE_DATA, NAME_FULL_TABLE);
+					result.add(WORD_FAIL + "\t" + WORD_CAN_NOT + CAN_INSERT_FAKE_DATA);
 				}
 
 			} catch (SQLException e) {
