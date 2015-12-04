@@ -8,7 +8,7 @@
 <title>${AppName}-${MathExam001}</title>
 <c:import url="/pages/application/ApplicationPage.jsp" context="${pageContext.request.contextPath}" />
 
-<link rel="stylesheet" href="<%=request.getContextPath()%>/style/MathExam.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/styles/MathExam.css">
 
 </head>
 <body>

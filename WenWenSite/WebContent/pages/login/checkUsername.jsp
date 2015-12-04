@@ -1,9 +1,7 @@
+<!-- 此頁純檢查帳號 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="global.value.database.GlobalValueSQL"%>
-<%
-	Thread.sleep(500);
-%>
 <%
 	GlobalValueSQL GVSQL = new GlobalValueSQL();
 	/** MySQL 連線字串 **/
@@ -14,7 +12,7 @@
 	String CAN_USERNAME_NOT_EXIST = GVSQL.getCAN_USERNAME_NOT_EXIST();
 	String CAN_USERNAME_EXIST = GVSQL.getCAN_USERNAME_EXIST();
 
-	String SQLquery = "select count(*) from " + NAME_FULL_TABLE + " where name=?";
+	String SELECT_EXIST_USERNAME = "select count(*) from " + NAME_FULL_TABLE + " where name=?";
 	String username = request.getParameter("username");
 
 	if (GVSQL.isUsefulMySQLDriver()) {
@@ -23,7 +21,7 @@
 		ResultSet rs = null;
 		try {
 			conn = DriverManager.getConnection(MYSQL_CONNURL, MYSQL_USER, MYSQL_PASSWORD);
-			pstmt = conn.prepareStatement(SQLquery);
+			pstmt = conn.prepareStatement(SELECT_EXIST_USERNAME);
 			pstmt.setString(1, username);
 
 			rs = pstmt.executeQuery();
@@ -34,7 +32,7 @@
 			}
 			out.print(output);
 		} catch (SQLException e) {
-			// 			out.println("Error:" + e.getMessage());
+			out.println("Error:" + e.getMessage());
 		} finally {
 			if (rs != null) {
 				rs.close();

@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>${CompanyName}&nbsp;CRUD</title>
 <c:import url="/pages/application/ApplicationPage.jsp" context="${pageContext.request.contextPath}" />
-<link href="<%=request.getContextPath()%>/style/Company.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/styles/Company.css" rel="stylesheet">
 </head>
 <body>
 	<center>
