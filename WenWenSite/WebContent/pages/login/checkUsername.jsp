@@ -1,8 +1,13 @@
-<!-- 此頁純檢查帳號 -->
+<%@page import="global.value.service.GlobalValueService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="global.value.database.GlobalValueSQL"%>
 <%
+	// 	Thread.sleep(1500);
+%>
+
+<%
+	// 此頁純檢查帳號
 	GlobalValueSQL GVSQL = new GlobalValueSQL();
 	/** MySQL 連線字串 **/
 	String MYSQL_CONNURL = GVSQL.getMYSQL_CONNURL();
@@ -11,9 +16,12 @@
 	String NAME_FULL_TABLE = GVSQL.getNAME_FULL_TABLE();
 	String CAN_USERNAME_NOT_EXIST = GVSQL.getCAN_USERNAME_NOT_EXIST();
 	String CAN_USERNAME_EXIST = GVSQL.getCAN_USERNAME_EXIST();
-
 	String SELECT_EXIST_USERNAME = "select count(*) from " + NAME_FULL_TABLE + " where name=?";
 	String username = request.getParameter("username");
+	/** 輸出字串 IMG **/
+	GlobalValueService GVS = new GlobalValueService();
+	String IMG_TAG_CHECK = GVS.getIMG_TAG_CHECK();
+	String IMG_TAG_UNCHECK = GVS.getIMG_TAG_UNCHECK();
 
 	if (GVSQL.isUsefulMySQLDriver()) {
 		Connection conn = null;
@@ -25,12 +33,12 @@
 			pstmt.setString(1, username);
 
 			rs = pstmt.executeQuery();
-			String output = CAN_USERNAME_NOT_EXIST;
+			String output = IMG_TAG_CHECK;
 			rs.next();
 			if (rs.getInt(1) >= 1) {
-				output = CAN_USERNAME_EXIST;
+				output = IMG_TAG_UNCHECK + CAN_USERNAME_EXIST;
 			}
-			out.print(output);
+			out.print("<b>" + output + "</b>");
 		} catch (SQLException e) {
 			out.println("Error:" + e.getMessage());
 		} finally {

@@ -3,3 +3,8 @@
 #loginMember tr td {
 	padding: 8px 0px;
 }
+
+#loginMember tr td:nth-child(3) {
+	min-width: 8em;
+	color: red;
+}

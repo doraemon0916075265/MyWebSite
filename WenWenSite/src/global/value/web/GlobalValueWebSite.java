@@ -14,6 +14,11 @@ public class GlobalValueWebSite {
 	private static final String DATABASE = "資料庫";
 	private static final String MYSQL = "MySQL";
 	private static final String ORACLE = "Oracle";
+	private static final String CHECKINGDATA = "檢查中";
+
+	public String getCheckingdata() {
+		return CHECKINGDATA;
+	}
 
 	public String getInitialize() {
 		return INITIALIZE;

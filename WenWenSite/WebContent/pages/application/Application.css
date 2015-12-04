@@ -11,3 +11,8 @@ body {
 a {
 	text-decoration: none;
 }
+
+.iconWorking {
+	width: 0.8em;
+	margin: 0 0.6em;
+}

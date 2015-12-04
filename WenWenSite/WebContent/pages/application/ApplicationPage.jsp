@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!-- title旁邊的小圖示 -->
+<link rel="shortcut icon" href="<%=request.getContextPath()%>/pages/application/application.png">
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <!-- Bootstrap3 最新編譯和最佳化的 CSS -->
