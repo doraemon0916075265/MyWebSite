@@ -1,4 +1,4 @@
-<%@page import="global.value.service.GlobalValueService"%>
+<%@ page import="global.value.service.GlobalValueService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="global.value.database.GlobalValueSQL"%>

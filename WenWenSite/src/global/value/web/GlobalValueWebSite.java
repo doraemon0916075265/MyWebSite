@@ -1,8 +1,8 @@
 package global.value.web;
 
 public class GlobalValueWebSite {
-	private static final String GO_TO_COMPANYCRUD_PAGE = "/pages/company/CRUD.jsp";
-	private static final String GO_TO_INDEX_PAGE = "/index.jsp";
+	private static final String PAGE_GO_TO_COMPANYCRUD = "/pages/company/CRUD.jsp";
+	private static final String PAGE_GO_TO_INDEX = "/index.jsp";
 	private static final String LOGINTITLE = "登入";
 	private static final String APPNAME = "Learn On-Line";
 	private static final String FILEEXCEL = "Excel";
@@ -15,6 +15,26 @@ public class GlobalValueWebSite {
 	private static final String MYSQL = "MySQL";
 	private static final String ORACLE = "Oracle";
 	private static final String CHECKINGDATA = "檢查中";
+	private static final String BROWSERNOTSUPPORT = "您的瀏覽器不支援";
+	private static final String WORD_OPENDATA = "開放資料";
+	private static final String DATATYPE_XML = "xml";
+	private static final String DATATYPE_JSON = "json";
+
+	public String getWordOpendata() {
+		return WORD_OPENDATA;
+	}
+
+	public String getDatatypeXml() {
+		return DATATYPE_XML;
+	}
+
+	public String getDatatypeJson() {
+		return DATATYPE_JSON;
+	}
+
+	public String getBrowsernotsupport() {
+		return BROWSERNOTSUPPORT;
+	}
 
 	public String getCheckingdata() {
 		return CHECKINGDATA;
@@ -32,12 +52,12 @@ public class GlobalValueWebSite {
 		return FILEEXCEL;
 	}
 
-	public String getGoToCompanycrudPage() {
-		return GO_TO_COMPANYCRUD_PAGE;
+	public static String getPageGoToCompanycrud() {
+		return PAGE_GO_TO_COMPANYCRUD;
 	}
 
-	public String getGoToIndexPage() {
-		return GO_TO_INDEX_PAGE;
+	public static String getPageGoToIndex() {
+		return PAGE_GO_TO_INDEX;
 	}
 
 	public String getBulletinBoard() {

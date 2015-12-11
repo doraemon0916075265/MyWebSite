@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+<title>點、線、面</title>
+<style>
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#map {
+	height: 100%;
+}
+</style>
+</head>
+<body>
+	<div id="map"></div>
+	<script>
+		function initMap() {
+			var map = new google.maps.Map(document.getElementById('map'), {
+				zoom : 13,
+				center : {
+					lat : 25.058397,
+					lng : 121.554970
+				},
+				mapTypeId : google.maps.MapTypeId.TERRAIN
+			});
+
+			var triangleCoords = [ {
+				lat : 25.033493,
+				lng : 121.564101
+			}, {
+				lat : 25.039794,
+				lng : 121.560271
+			}, {
+				lat : 25.100501,
+				lng : 121.549444
+			}
+
+			];
+
+			var bermudaTriangle = new google.maps.Polygon({
+				paths : triangleCoords,
+				strokeColor : '#FF0000',
+				strokeOpacity : 0.8,
+				strokeWeight : 2,
+				fillColor : '#FF0000',
+				fillOpacity : 0.35
+			});
+			bermudaTriangle.setMap(map);
+		}
+	</script>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?signed_in=true&callback=initMap"></script>
+</body>
+</html>

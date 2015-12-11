@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+<title>取資料</title>
+
+</head>
+<body>
+	<div id="map"></div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+	<script type="text/javascript">
+		$.getJSON("https://maps.googleapis.com/maps/api/geocode/json?address=%E5%8F%B0%E5%8C%97101", function(data) {
+			$.each(data, function(i, res) {
+				$.each(res, function(n, add) {
+					$('#map').append("<p>" + add.formatted_address + "</p>");
+
+				});
+			});
+		});
+	</script>
+
+</body>
+</html>

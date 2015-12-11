@@ -13,6 +13,8 @@
 <c:set var="MySQL" value="${SYSTEM.mysql}" scope="application" />
 <c:set var="Oracle" value="${SYSTEM.oracle}" scope="application" />
 <c:set var="Checkingdata" value="${SYSTEM.checkingdata}" scope="application" />
+<c:set var="Browsernotsupport" value="${SYSTEM.browsernotsupport}" scope="application" />
+<c:set var="WordOpendata" value="${SYSTEM.wordOpendata}" scope="application" />
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>

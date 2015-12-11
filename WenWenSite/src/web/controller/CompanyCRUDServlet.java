@@ -21,7 +21,7 @@ import web.model.service.CompanyService;
 public class CompanyCRUDServlet extends HttpServlet {
 
 	static GlobalValueWebSite GVWS = new GlobalValueWebSite();
-	private static String GO_TO_COMPANYCRUD_PAGE = GVWS.getGoToCompanycrudPage();
+	private static String GO_TO_COMPANYCRUD_PAGE = GVWS.getPageGoToCompanycrud();
 
 	private CompanyService service;
 

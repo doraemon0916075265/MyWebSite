@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0">
+<meta charset="utf-8">
+<title>臺北市六大自行車道</title>
+<style>
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#map {
+	height: 100%;
+}
+</style>
+</head>
+<body>
+
+	<div id="map"></div>
+
+	<script>
+		function initMap() {
+			var map = new google.maps.Map(document.getElementById('map'), {
+				zoom : 13,
+				center : {
+					lat : 24.397,
+					lng : 121.644
+				}
+			});
+
+			var ctaLayer = new google.maps.KmlLayer({
+				<!-- 	<div>臺北市水利處雨量站</div> -->	
+// 				url : 'http://data.taipei/opendata/datalist/datasetMeta/download?id=faaaf206-5106-4970-a64a-c4823bea9cfc&rid=c9120632-e663-40d1-9a16-8b015f2db892',
+				<!-- 	<div>臺北市易積水地區</div> -->		
+// 				url : 'http://data.taipei/opendata/datalist/datasetMeta/download?id=6b2db7f7-8e3c-4f76-b6c8-c48f8541b1d6&rid=7e0896e4-29dc-40ec-9b1f-cfda5d41cdf7',
+				<!-- 	<div>臺北市歷年積水紀錄圖</div> -->		
+// 				url : 'http://data.taipei/opendata/datalist/datasetMeta/download?id=5ec0e641-ab47-40a5-a299-2f2c340bc142&rid=42aaa294-c3ee-4632-8df7-a5f6a7936797',
+				<!-- 	<div>臺北市六大自行車道</div> -->
+				url : 'http://data.taipei/opendata/datalist/datasetMeta/download?id=d083a75b-32b5-4e56-9830-6736746bc1b8&rid=fec8b462-9e7d-443b-a935-b20004935804',
+				map : map
+			});
+		}
+	</script>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?signed_in=true&callback=initMap">
+		
+	</script>
+</body>
+</html>
