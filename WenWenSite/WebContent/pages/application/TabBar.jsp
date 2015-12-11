@@ -9,7 +9,7 @@
 			<li role="presentation"><a href="#bulletinBoard" aria-controls="bulletinBoard" role="tab" data-toggle="tab">${BulletinBoard}</a></li>
 			<li role="presentation"><a href="#appName" aria-controls="appName" role="tab" data-toggle="tab">${AppName}</a></li>
 			<li role="presentation"><a href="#companyCRUD" aria-controls="companyCRUD" role="tab" data-toggle="tab">${CompanyName}</a></li>
-			<li role="presentation" class="active"><a href="#GetOpenData" aria-controls="testPage" role="tab" data-toggle="tab">testPage</a></li>
+			<li role="presentation" class="active"><a href="#GetOpenData" aria-controls="testPage" role="tab" data-toggle="tab">${Opendata}</a></li>
 		</ul>
 		<!-- 導覽列內容 -->
 		<div class="tab-content">
@@ -27,7 +27,7 @@
 			</div>
 			<div role="tabpanel" class="tab-pane active" id="GetOpenData">
 				<h3>
-					<a href="<%=request.getContextPath()%>/pages/GetOpenData.jsp">testPage</a>
+					<a href="<%=request.getContextPath()%>/pages/GetOpenData.jsp">${Opendata}</a>
 				</h3>
 			</div>
 		</div>

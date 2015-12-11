@@ -15,12 +15,12 @@
 				<tbody>
 					<tr>
 						<td>帳號：</td>
-						<td><input type="text" name="username" value="${param.username}"></td>
+						<td><input type="text" name="username" value="${param.username}" id="LoginUsername"></td>
 						<td>&nbsp;${error.username}<span id="usernameChecker"><img src="<%=request.getContextPath()%>/images/waiting.gif" class="iconWorking">${Checkingdata}</span><span id="usernameCheckResult"></span></td>
 					</tr>
 					<tr>
 						<td>密碼：</td>
-						<td><input type="text" name="password" value="${param.password}"></td>
+						<td><input type="password" name="password" value="${param.password}"></td>
 						<td>&nbsp;${error.password}</td>
 					</tr>
 					<tr>

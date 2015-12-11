@@ -5,13 +5,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>test</title>
+<title>${AppName}-${Opendata}</title>
 <c:import url="/pages/application/ApplicationPage.jsp" context="${pageContext.request.contextPath}" />
 </head>
 <body>
 	<center>
-		<br>
-		<h3>測試</h3>
+		<br> 
+		
 		<select>
 			<option value="qq">中文</option>
 			<option value="qq1">English</option>
@@ -64,7 +64,7 @@
 					xmlHttp.open("get", URL, true);
 					xmlHttp.send();
 				} else {
-					alert("${Browsernotsupport}");
+					alert("${BrowserNotSupport}");
 				}
 			});
 			function startCheck() {

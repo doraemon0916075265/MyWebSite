@@ -1,12 +1,12 @@
 (function($) {
 	$("#usernameChecker").css('display', 'none');
-	$("input[name='username']").blur(CheckUsername);
+	$("#LoginUsername").blur(CheckUsername);
 	var xmlHttp = null;
 
 	function CheckUsername() {
 		var username = $(this).val();
-		var usernameCheckResult = document.getElementById("usernameCheckResult");
 		var usernameLength = username.trim().length;
+		var usernameCheckResult = document.getElementById("usernameCheckResult");
 		if (usernameLength > 0 && username != null) {
 			var URLpost = "../login/checkUsername.jsp?";
 			var URLget = "../login/checkUsername.jsp?username=" + username;
@@ -21,9 +21,12 @@
 				// xmlHttp.open("get", URLget, true);
 				// xmlHttp.send();
 			} else {
-				alert("${Browsernotsupport}");
+				alert("${BrowserNotSupport}");
 			}
+		} else {
+			$("#usernameCheckResult").css('display', 'none');
 		}
+
 	}
 
 	function startCheck() {

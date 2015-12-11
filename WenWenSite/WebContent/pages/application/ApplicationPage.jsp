@@ -25,7 +25,7 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<!-- 選項 -->
-				<li><a href="#" title="${FileExcel}"><span class="glyphicon glyphicon-file"></span></a><span class="sr-only">(current)</span></li>
+				<li><a href="#" title="${FiletypeExcel}"><span class="glyphicon glyphicon-file"></span></a><span class="sr-only">(current)</span></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" title="${Initialize}"><span class="glyphicon glyphicon-refresh"></span>&nbsp;<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="InitDatabase.do" type="submit" title="${Database}">${Database}</a></li>
@@ -42,7 +42,12 @@
 			</form>
 			<ul class="nav navbar-nav navbar-right">
 				<!-- 選項 -->
-				<li><a href="https://tw.yahoo.com/" target="_blank">buttonR1</a></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-book"></span>&nbsp;<span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="<%=request.getContextPath()%>/pages/dataBaseControl/dataBase.jsp">${Database}</a></li>
+						<li><a href="#">Action2</a></li>
+					</ul></li>
+
 				<li><a href="#" data-toggle="modal" data-target="#calculatorModal"><span class="glyphicon glyphicon-calendar"></span></a><span class="sr-only">(current)</span></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>&nbsp;<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
@@ -78,6 +83,6 @@
 		</div>
 	</div>
 </div>
-
+<title>${AppName}</title>
 <!-- css -->
 <link href="<%=request.getContextPath()%>/pages/application/Application.css" rel="stylesheet">

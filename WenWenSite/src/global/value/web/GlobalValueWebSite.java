@@ -1,11 +1,9 @@
 package global.value.web;
 
 public class GlobalValueWebSite {
-	private static final String PAGE_GO_TO_COMPANYCRUD = "/pages/company/CRUD.jsp";
-	private static final String PAGE_GO_TO_INDEX = "/index.jsp";
+	/** 輸出字串 **/
 	private static final String LOGINTITLE = "登入";
-	private static final String APPNAME = "Learn On-Line";
-	private static final String FILEEXCEL = "Excel";
+	private static final String APPNAME = "Hey Men";
 	private static final String MATHPLACE = "數學專區";
 	private static final String COMPANYNAME = "Company";
 	private static final String HOMEPAGE = "首頁";
@@ -15,13 +13,28 @@ public class GlobalValueWebSite {
 	private static final String MYSQL = "MySQL";
 	private static final String ORACLE = "Oracle";
 	private static final String CHECKINGDATA = "檢查中";
-	private static final String BROWSERNOTSUPPORT = "您的瀏覽器不支援";
-	private static final String WORD_OPENDATA = "開放資料";
+	private static final String BROWSER_NOT_SUPPORT = "您的瀏覽器不支援";
+	private static final String OPENDATA = "開放資料";
+	private static final String SHOW_DATABASE = "查看資料庫";
+	/** File 系列 **/
+	private static final String FILETYPE_EXCEL = "Excel";
+	/** DataType 系列 **/
 	private static final String DATATYPE_XML = "xml";
 	private static final String DATATYPE_JSON = "json";
+	/** Page 系列 **/
+	private static final String PAGE_GO_TO_COMPANYCRUD = "/pages/company/CRUD.jsp";
+	private static final String PAGE_GO_TO_INDEX = "/index.jsp";
 
-	public String getWordOpendata() {
-		return WORD_OPENDATA;
+	public String getShowDatabase() {
+		return SHOW_DATABASE;
+	}
+
+	public String getOpendata() {
+		return OPENDATA;
+	}
+
+	public String getFiletypeExcel() {
+		return FILETYPE_EXCEL;
 	}
 
 	public String getDatatypeXml() {
@@ -32,8 +45,8 @@ public class GlobalValueWebSite {
 		return DATATYPE_JSON;
 	}
 
-	public String getBrowsernotsupport() {
-		return BROWSERNOTSUPPORT;
+	public String getBrowserNotSupport() {
+		return BROWSER_NOT_SUPPORT;
 	}
 
 	public String getCheckingdata() {
@@ -46,10 +59,6 @@ public class GlobalValueWebSite {
 
 	public String getDatabase() {
 		return DATABASE;
-	}
-
-	public String getFileExcel() {
-		return FILEEXCEL;
 	}
 
 	public static String getPageGoToCompanycrud() {
