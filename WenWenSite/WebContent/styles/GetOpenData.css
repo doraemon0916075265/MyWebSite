@@ -1,0 +1,14 @@
+@CHARSET "UTF-8";
+
+#fileResult tr:HOVER {
+	background-color: #E8CCFF;
+}
+
+#fileResult tr {
+	/* 	height: 220px; */
+	
+}
+
+#fileResult td {
+	vertical-align: middle;
+}

@@ -19,5 +19,9 @@ a {
 
 center {
 	margin: 0 auto;
-	width: 85%;
+	width: 90%;
+}
+
+.btn-pill {
+	border-radius: 1em;
 }

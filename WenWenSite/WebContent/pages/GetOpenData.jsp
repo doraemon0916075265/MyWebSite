@@ -7,18 +7,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>${AppName}-${Opendata}</title>
 <c:import url="/pages/application/ApplicationPage.jsp" context="${pageContext.request.contextPath}" />
+<link href="<%=request.getContextPath()%>/styles/GetOpenData.css" rel="stylesheet">
 </head>
 <body>
 	<center>
-		<br>
 		<hr>
-		<button type="button" class="btn btn-primary" id="getFile">
+		<button type="button" class="btn btn-primary btn-pill" id="getFile">
 			<span class="glyphicon glyphicon-send"></span>
 		</button>
 		<br> <br>
 		<div id="funTime"></div>
 		<br>
-		<table class="table" id="resultTable">
+		<table class="table table-responsive" id="resultTable">
 			<tbody id="fileResult">
 			</tbody>
 		</table>
@@ -100,9 +100,21 @@
 								var ELEtd6Len = 140;
 								var TXTxbody = document.createTextNode(xbody.length >= ELEtd6Len ? xbody.toString().substring(0, ELEtd6Len) + "..." : xbody);
 								ELEtd6.appendChild(TXTxbody);
+								// 景點圖片	ELEtd2
+								var ELEtd2 = document.createElement("td");
+								var ELEimg = document.createElement("img");
+								var SIZEimg = "120px";
+								ELEimg.setAttribute("class", "img-circle");
+								ELEimg.setAttribute("src", imgArray[0]);
+								ELEimg.setAttribute("title", stitle);
+								ELEimg.setAttribute("width", SIZEimg);
+								ELEimg.setAttribute("height", SIZEimg);
+								ELEimg.setAttribute("style", "border:1.5px solid black");
+								ELEtd2.appendChild(ELEimg);
 
 								var ELEtr = document.createElement("tr");
 								ELEtr.appendChild(ELEtd1);
+								ELEtr.appendChild(ELEtd2);
 								ELEtr.appendChild(ELEtd3);
 								ELEtr.appendChild(ELEtd4);
 								ELEtr.appendChild(ELEtd5);
@@ -113,11 +125,6 @@
 							} catch (e) {
 							}
 						}
-						$("#fileResult tr").hover(function() {
-							$(this).css('background-color', '#E8CCFF');
-						}, function() {
-							$(this).css('background-color', '#FFF5EE');
-						});
 						$("#fileResult tr").css('border', '2px solid blue').css('cursor', 'pointer');
 					} else {
 						$("#getFileResult").innerHTML = xmlHTTP.status + ":" + xmlHTTP.statusText;
