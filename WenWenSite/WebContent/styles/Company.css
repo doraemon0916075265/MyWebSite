@@ -1,9 +1,5 @@
 @CHARSET "UTF-8";
 
-body {
-	
-}
-
 #companyCRUDtable, #companyBTNtable {
 	width: 85%;
 	max-width: 400px;

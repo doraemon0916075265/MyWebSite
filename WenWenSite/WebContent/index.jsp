@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:useBean id="SYSTEM" class="global.value.web.GlobalValueWebSite" scope="application" />
+<jsp:useBean id="URL" class="global.value.web.GlobalValueURL" scope="application" />
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!-- 輸出字串 -->
 <c:set var="LoginTitle" value="${SYSTEM.loginTitle}" scope="application" />
@@ -21,6 +22,8 @@
 <!-- DataType 系列 -->
 <c:set var="Xml" value="${SYSTEM.datatypeXml}" scope="application" />
 <c:set var="Json" value="${SYSTEM.datatypeJson}" scope="application" />
+<!-- 外部 URL 系列 -->
+<c:set var="DatatpeZhXViewpoint" value="${URL.datatpeZhXViewpoint}" scope="application" />
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>

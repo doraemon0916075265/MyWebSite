@@ -16,3 +16,8 @@ a {
 	width: 0.8em;
 	margin: 0 0.6em;
 }
+
+center {
+	margin: 0 auto;
+	width: 85%;
+}
