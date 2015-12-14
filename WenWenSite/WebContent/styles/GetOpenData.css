@@ -1,14 +1,16 @@
 @CHARSET "UTF-8";
 
-#fileResult tr:HOVER {
+.fileResult tr:HOVER {
 	background-color: #E8CCFF;
 }
 
-#fileResult tr {
-	/* 	height: 220px; */
-	
+.fileResult tr {
+	height: 220px;
 }
 
-#fileResult td {
+.fileResult td {
 	vertical-align: middle;
+	word-break: break-all;
+	/* 	max-width: 400px; */
+	height: 200px;
 }

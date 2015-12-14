@@ -19,7 +19,7 @@
 		<div id="funTime"></div>
 		<br>
 		<table class="table table-responsive" id="resultTable">
-			<tbody id="fileResult">
+			<tbody class="fileResult" id="fileResult">
 			</tbody>
 		</table>
 	</center>
@@ -91,14 +91,15 @@
 								ELEtd4.appendChild(TXTcat2);
 								// 開放時間	ELEtd5
 								var ELEtd5 = document.createElement("td");
-								var ELEtd5Len = 19;
-								// var TXTmemoTime = document.createTextNode(memoTime.toString().substring(0, 12));
-								var TXTmemoTime = document.createTextNode(memoTime.length >= ELEtd5Len ? memoTime.toString().substring(0, ELEtd5Len) + "..." : memoTime);
+								// var ELEtd5Len = 19;
+								// var TXTmemoTime = document.createTextNode(memoTime.length >= ELEtd5Len ? memoTime.toString().substring(0, ELEtd5Len) + "..." : memoTime);
+								var TXTmemoTime = document.createTextNode(memoTime);
 								ELEtd5.appendChild(TXTmemoTime);
 								// 景點描述	ELEtd6
 								var ELEtd6 = document.createElement("td");
-								var ELEtd6Len = 140;
-								var TXTxbody = document.createTextNode(xbody.length >= ELEtd6Len ? xbody.toString().substring(0, ELEtd6Len) + "..." : xbody);
+								// var ELEtd6Len = 140;
+								// var TXTxbody = document.createTextNode(xbody.length >= ELEtd6Len ? xbody.toString().substring(0, ELEtd6Len) + "..." : xbody);
+								var TXTxbody = document.createTextNode(xbody);
 								ELEtd6.appendChild(TXTxbody);
 								// 景點圖片	ELEtd2
 								var ELEtd2 = document.createElement("td");
@@ -125,7 +126,6 @@
 							} catch (e) {
 							}
 						}
-						$("#fileResult tr").css('border', '2px solid blue').css('cursor', 'pointer');
 					} else {
 						$("#getFileResult").innerHTML = xmlHTTP.status + ":" + xmlHTTP.statusText;
 					}
