@@ -10,7 +10,7 @@
 			<li role="presentation"><a href="#appName" aria-controls="appName" role="tab" data-toggle="tab">${AppName}</a></li>
 			<li role="presentation"><a href="#companyCRUD" aria-controls="companyCRUD" role="tab" data-toggle="tab">${CompanyName}</a></li>
 			<li role="presentation"><a href="#GetOpenData" aria-controls="testPage" role="tab" data-toggle="tab">${Opendata}</a></li>
-			<li role="presentation" class="active"><a href="#GetOpenDataPro" aria-controls="testPage" role="tab" data-toggle="tab">${Opendata}</a></li>
+			<li role="presentation" class="active"><a href="#getOpenDataPro" aria-controls="testPage" role="tab" data-toggle="tab">${Opendata}Pro</a></li>
 		</ul>
 		<!-- 導覽列內容 -->
 		<div class="tab-content">
@@ -31,9 +31,9 @@
 					<a href="<%=request.getContextPath()%>/pages/GetOpenData.jsp">${Opendata}</a>
 				</h3>
 			</div>
-			<div role="tabpanel" class="tab-pane active" id="GetOpenDataPro">
+			<div role="tabpanel" class="tab-pane active" id="getOpenDataPro">
 				<h3>
-					<a href="<%=request.getContextPath()%>/pages/getOpenData/GetOpenDataPro.jsp">${Opendata}</a>
+					<a href="<%=request.getContextPath()%>/pages/getOpenData/chooseOpenDataPro.jsp">${Opendata}Pro</a>
 				</h3>
 			</div>
 		</div>
