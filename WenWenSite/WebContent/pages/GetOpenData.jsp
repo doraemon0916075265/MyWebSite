@@ -30,8 +30,8 @@
 			var xmlHttp = null;
 			$("#getFile").click(function() {
 				startFunction = new Date().getTime();
-				// var URL = "http://163.29.157.32:8080/dataset/bd31c976-d3a5-4eed-b8c3-7454bc266afa/resource/36847f3f-deff-4183-a5bb-800737591de5/download/98f7320b0eab491f8a62dcc82fbd4f82.xml";
-				var URL = "${DatatpeZhXViewpoint}";
+				// var URL = "${DatatpeZhXViewpoint}";
+				var URL = "${DatatpeEnXViewpoint}";
 				xmlHttp = new XMLHttpRequest();
 				if (xmlHttp != null) {
 					xmlHttp.addEventListener("readystatechange", startCheck);

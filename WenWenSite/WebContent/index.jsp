@@ -24,6 +24,7 @@
 <c:set var="Json" value="${SYSTEM.datatypeJson}" scope="application" />
 <!-- 外部 URL 系列 -->
 <c:set var="DatatpeZhXViewpoint" value="${URL.datatpeZhXViewpoint}" scope="application" />
+<c:set var="DatatpeEnXViewpoint" value="${URL.datatpeEnXViewpoint}" scope="application" />
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
