@@ -1,3 +1,4 @@
+<%@page import="global.value.web.GlobalValuePullDown"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -11,23 +12,37 @@
 <body>
 	<center>
 		<br>
+		<%
+			GlobalValuePullDown GVPD = new GlobalValuePullDown();
+			String[] Language = GVPD.getPdLanguage();
+			String[] DataSource = GVPD.getPdDataSource();
+			int LanguageLen = Language.length;
+			int DataSourceLen = DataSource.length;
+		%>
 		<div class="row">
-			<div class="col-xs-2">
+			<div class="col-xs-3">
 				<select class="form-control">
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
-					<option>4</option>
-					<option>5</option>
+					<%
+						for (int i = 0; i < DataSourceLen; i++) {
+							out.print("<option value=" + DataSource[i] + ">" + DataSource[i] + "</option>");
+						}
+					%>
 				</select>
 			</div>
 			<div class="col-xs-2">
 				<select class="form-control">
-					<option>中文</option>
-					<option>English</option>
+					<%
+						for (int i = 0; i < LanguageLen; i++) {
+							out.print("<option value=" + Language[i] + ">" + Language[i] + "</option>");
+						}
+					%>
 				</select>
 			</div>
 		</div>
+		<br>
+		<button type="button" class="btn btn-primary btn-pill" id="getFile">
+			<span class="glyphicon glyphicon-send"></span>
+		</button>
 	</center>
 </body>
 </html>
