@@ -70,9 +70,9 @@
 								var imgArray = [];
 								for (var j = 0; j < imgLen; j++) {
 									imgArray[j] = section[i].getElementsByTagName("img")[j].firstChild.nodeValue;
-									console.log("j" + imgArray[j]);
+									// 									console.log("j" + imgArray[j]);
 								}
-								console.log(rownum + "\t" + stitle + "\t" + cat2 + "\t" + memoTime + "\t" + xbody + "\t" + address + "\t" + imgArray[0]);
+								// 								console.log(rownum + "\t" + stitle + "\t" + cat2 + "\t" + memoTime + "\t" + xbody + "\t" + address + "\t" + imgArray[0]);
 
 								var ELEImg = document.createElement("img");
 								ELEImg.setAttribute("src", imgArray[0]);

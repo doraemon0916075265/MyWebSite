@@ -61,7 +61,7 @@ public class GlobalValueWebSite {
 		return DATABASE;
 	}
 
-	public static String getPageGoToCompanycrud() {
+	public String getPageGoToCompanycrud() {
 		return PAGE_GO_TO_COMPANYCRUD;
 	}
 

@@ -17,7 +17,7 @@
 			<table id="companyCRUDtable" class="table table-responsive">
 				<tbody>
 					<tr>
-						<td>資料庫</td>
+						<td>${Database}</td>
 						<td><select name="database" id="database">
 								<option value="MySQL" id="MySQL">MySQL</option>
 								<option value="Oracle" id="Oracle">Oracle</option>
