@@ -30,16 +30,14 @@
 			var xmlHttp = null;
 			$("#getFile").click(function() {
 				startFunction = new Date().getTime();
-				// var URL = "${DatatpeZhXViewpoint}";
-				var URL = "${DatatpeEnXViewpoint}";
+				var URL = "${DatatpeZhXViewpoint}";
+// 				var URL = "${DatatpeEnXViewpoint}";
 				xmlHttp = new XMLHttpRequest();
 				if (xmlHttp != null) {
 					xmlHttp.addEventListener("readystatechange", startCheck);
 					xmlHttp.open("get", URL, true);
 					xmlHttp.send();
-				} else {
-					alert("${BrowserNotSupport}");
-				}
+				} 
 			});
 			function startCheck() {
 				if (xmlHttp.readyState == 1) {

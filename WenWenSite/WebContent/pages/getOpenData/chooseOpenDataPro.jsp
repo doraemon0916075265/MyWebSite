@@ -12,108 +12,124 @@
 <body>
 	<center>
 		<br>
-		<form action="FindOpenData.do">
-			<%
-				GlobalValuePullDown GVPD = new GlobalValuePullDown();
-				String[] DataSource = GVPD.getPdDataSource();
-				String[] Language = GVPD.getPdLanguage();
-				String[] Item = GVPD.getPdItem();
-				int DataSourceLen = DataSource.length;
-				int LanguageLen = Language.length;
-				int ItemLen = Item.length;
-				int size = 1;
-			%>
-			<div class="row">
-				<div class="col-xs-3">
-					<select class="form-control" id="selectOption<%=size++%>">
-						<%
-							for (int i = 0; i < DataSourceLen; i++) {
-								out.print("<option value=" + DataSource[i] + ">" + DataSource[i] + "</option>");
-							}
-						%>
-					</select>
-				</div>
-				<div class="col-xs-2">
-					<select class="form-control" id="selectOption<%=size++%>">
-						<%
-							for (int i = 0; i < LanguageLen; i++) {
-								out.print("<option value=" + Language[i] + ">" + Language[i] + "</option>");
-								// out.print("<option value=" + i + ">" + Language[i] + "</option>");
-							}
-						%>
-					</select>
-				</div>
-				<div class="col-xs-2">
-					<select class="form-control" id="selectOption<%=size++%>">
-						<%
-							for (int i = 0; i < ItemLen; i++) {
-								out.print("<option value=" + Item[i] + ">" + Item[i] + "</option>");
-								// out.print("<option value=" + i + ">" + Item[i] + "</option>");
-							}
-						%>
-					</select>
-				</div>
+		<%
+			GlobalValuePullDown GVPD = new GlobalValuePullDown();
+			String[] DataSource = GVPD.getPdDataSource();
+			String[] Language = GVPD.getPdLanguage();
+			String[] Item = GVPD.getPdItem();
+			int DataSourceLen = DataSource.length;
+			int LanguageLen = Language.length;
+			int ItemLen = Item.length;
+			int size = 1;
+		%>
+		<div class="row">
+			<div class="col-xs-3">
+				<select class="form-control" id="selectOption<%=size%>" name="selectOption<%=size++%>">
+					<%
+						for (int i = 0; i < DataSourceLen; i++) {
+							out.print("<option value=" + DataSource[i] + ">" + DataSource[i] + "</option>");
+						}
+					%>
+				</select>
 			</div>
-			<br>
-			<button type="submit" class="btn btn-primary btn-pill" id="getOpenDataFile">
-				<span class="glyphicon glyphicon-send"></span>
-			</button>
-		</form>
-		<hr>
-		<div>result</div>
+			<div class="col-xs-2">
+				<select class="form-control" id="selectOption<%=size%>" name="selectOption<%=size++%>">
+					<%
+						for (int i = 0; i < LanguageLen; i++) {
+							out.print("<option value=" + Language[i] + ">" + Language[i] + "</option>");
+							// out.print("<option value=" + i + ">" + Language[i] + "</option>");
+						}
+					%>
+				</select>
+			</div>
+			<div class="col-xs-2">
+				<select class="form-control" id="selectOption<%=size%>" name="selectOption<%=size++%>">
+					<%
+						for (int i = 0; i < ItemLen; i++) {
+							out.print("<option value=" + Item[i] + ">" + Item[i] + "</option>");
+							// out.print("<option value=" + i + ">" + Item[i] + "</option>");
+						}
+					%>
+				</select>
+			</div>
+		</div>
+		<br>
+		<button type="button" class="btn btn-primary btn-pill" id="getOpenDataFile">
+			<span class="glyphicon glyphicon-send"></span>
+		</button>
+		<br>
+		<c:import url="/pages/getOpenData/resultDataForCRUD.jsp" context="${pageContext.request.contextPath}" />
+		<br>
+		<div id="anyError"></div>
+	</center>
+	<script type="text/javascript">
+		(function($) {
+			var xmlHttp = null;
 
-		<script type="text/javascript">
-			(function($) {
-				// 去抓資料
-				$("#getOpenDataFile").click(function() {
-					var xmlHttp = null;
-					var optionArray = new Array();
-					for (var i = 1; typeof ($("#selectOption" + i).val()) !== 'undefined'; i++) {
-						var option = $("#selectOption" + i).val();
-						optionArray[i] = option;
-					}
-					var chooseDataSource = optionArray[1];
-					var chooseLanguage = optionArray[2];
-					var chooseItem = optionArray[3];
-					console.log(optionArray);
+			$("#getOpenDataFile").click(function() {
 
-				});
-			}(jQuery));
-		</script>
-
-		<script type="text/javascript">
-			(function($) {
-				var xmlHttp = null;
-				initOption();
-
-				var selectOption1 = document.getElementById("#selectOption1");
-				var testtt = document.getElementById("#testtt");
-
-				function initOption() {
-					//一開始就要執行第一個下拉選單 
-					$("#selectOption1").css('border', '2px solid green');
-					var URLget = "../getOpenData/checkOpenDataURL.jsp";
+				var openDataURL = findOpenDataURL();
+				console.log(openDataURL);
+				if (openDataURL.trim().length != 0) {
 					xmlHttp = new XMLHttpRequest();
 					if (xmlHttp != null) {
-						xmlHttp.addEventListener("readystatechange", startCheck);
-						/** post */
-						// xmlHttp.open("post", URLpost, true);
-						// xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-						// xmlHttp.send("username=" + username);
-						/** get */
-						xmlHttp.open("get", URLget, true);
+						xmlHttp.addEventListener("readystatechange", function() {
+							if (xmlHttp.readyState == 1) {
+							} else if (xmlHttp.readyState == 4) {
+								if (xmlHttp.status == 200) {
+									data = xmlHttp.responseXML;
+									console.log(data);
+								} else {
+									$("#anyError").innerHTML = xmlHttp.status + ":" + xmlHttp.statusText;
+								}
+							}
+						});
+						xmlHttp.open("get", openDataURL, true);
 						xmlHttp.send();
 					} else {
 						alert("${BrowserNotSupport}");
 					}
+				} else {
+					$("#anyError").text("無效的操作");
 				}
 
-				function startCheck() {
+			});
 
+			function findOpenDataURL() {
+				var result;
+				var optionArray = new Array();
+				for (var i = 1; typeof ($("#selectOption" + i).val()) != 'undefined'; i++) {
+					optionArray[i] = $("#selectOption" + i).val();
 				}
 
-			}(jQuery));
-		</script>
-	</center>
+				var opt01_DataSource = optionArray[1];
+				var opt01_Language = optionArray[2];
+				var opt01_Item = optionArray[3];
+
+				var URLget = "../getOpenData/checkOpenDataURL.jsp?opt01_DataSource=" + opt01_DataSource + "&opt01_Language=" + opt01_Language + "&opt01_Item=" + opt01_Item;
+
+				xmlHttp = new XMLHttpRequest();
+				if (xmlHttp != null) {
+					xmlHttp.addEventListener("readystatechange", function() {
+						if (xmlHttp.readyState == 1) {
+						} else if (xmlHttp.readyState == 4) {
+							if (xmlHttp.status == 200) {
+								result = xmlHttp.responseText;
+							} else {
+								$("#anyError").innerHTML = xmlHttp.status + ":" + xmlHttp.statusText;
+							}
+						}
+					});
+					/** get */
+					xmlHttp.open("get", URLget, false);
+					xmlHttp.send();
+				} else {
+					alert("${BrowserNotSupport}");
+				}
+				return result;
+			}
+
+		}(jQuery));
+	</script>
 </body>
 </html>

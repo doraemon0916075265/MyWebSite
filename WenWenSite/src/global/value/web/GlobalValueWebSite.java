@@ -24,6 +24,11 @@ public class GlobalValueWebSite {
 	/** Page 系列 **/
 	private static final String PAGE_GO_TO_COMPANYCRUD = "/pages/company/CRUD.jsp";
 	private static final String PAGE_GO_TO_INDEX = "/index.jsp";
+	private static final String PAGE_GO_TO_CHOOSEOPENDATA = "/pages/getOpenData/chooseOpenDataPro.jsp";
+
+	public String getPageGoToChooseopendata() {
+		return PAGE_GO_TO_CHOOSEOPENDATA;
+	}
 
 	public String getShowDatabase() {
 		return SHOW_DATABASE;
